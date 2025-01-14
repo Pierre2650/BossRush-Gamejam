@@ -27,11 +27,41 @@ public class Player_controller : MonoBehaviour
         xAxis = yAxis = 0;
 
 
-        if (Input.GetKey(KeyCode.D)){
+        mouvementInput();
+        animationController();
+
+
+    }
+
+
+
+
+    private void FixedUpdate()
+    {
+        mouvement();
+        
+
+    
+    }
+
+
+    private void animationController()
+    {
+        myAni.SetFloat("horizontal", xAxis);
+        myAni.SetFloat("vertical", yAxis);
+        myAni.SetFloat("speed", myRb.velocity.sqrMagnitude);
+
+    }
+
+    private void mouvementInput()
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
             xAxis = 1;
         }
-        
-        if (Input.GetKey(KeyCode.A)){
+
+        if (Input.GetKey(KeyCode.A))
+        {
             xAxis = -1;
         }
 
@@ -44,17 +74,9 @@ public class Player_controller : MonoBehaviour
         {
             yAxis = -1;
         }
-
-       myAni.SetFloat("horizontal",xAxis);
-       myAni.SetFloat("vertical",yAxis);
-       myAni.SetFloat("speed", myRb.velocity.sqrMagnitude);
-
-
-
     }
 
-
-    private void FixedUpdate()
+    private void mouvement()
     {
         if (xAxis == 0 && yAxis == 0)
         {
@@ -64,24 +86,17 @@ public class Player_controller : MonoBehaviour
         else
         {
             Vector2 temp = new Vector2(xAxis, yAxis);
-            
+
             temp.Normalize();
-            
+
             myRb.velocity = temp * speed;
         }
 
-        
 
-    
     }
 
-    private void OnDisable()
-    {
-        myRb.velocity = Vector2.zero ;
-        xAxis = 0;
-        yAxis = 0;
-        myAni.SetFloat("horizontal", xAxis);
-        myAni.SetFloat("vertical", yAxis);
-        myAni.SetFloat("speed", myRb.velocity.sqrMagnitude);
-    }
+
+
+
+
 }
