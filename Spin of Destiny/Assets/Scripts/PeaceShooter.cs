@@ -22,6 +22,10 @@ public class PeaceShooter : MonoBehaviour
     public float gunShootAnimSpeed = 1.0f;
 
 
+    [Header("Projectile")]
+    public GameObject bulletPrefab;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +46,7 @@ public class PeaceShooter : MonoBehaviour
 
         if (Input.GetMouseButton(0) && !atkOnColdown)
         {
+            spawnBullet();
             StartCoroutine(gunShootAnim());
         }
 
@@ -92,22 +97,29 @@ public class PeaceShooter : MonoBehaviour
 
     }
 
-    protected virtual void getDirNearestCrossHair()
+    private  void getDirNearestCrossHair()
     {
-        /*calculate the nearest direction to the player,
-         * 1. take current enemy pos
-         * 2. add a unit vector from the possible direction to the enemy pos 
-         * 3. compare the distance from this new vector to the player to the distance from the current "nearest" unit vector to the player
+        /*calculate the nearest direction to the crosshair,
+         * 1. take current pistol position
+         * 2. add a cos sin  vector from the possible direction to the pistol position
+         * 3. compare the distance from this new vector to the crosshair , to the distance from the current "nearest" cos sin  vector to the crosshair
          */
 
 
 
         Vector2 posToTest, currentNpos;
 
+        //Optimized Version 
+        //  divide pi cirlcle on 4 
+        //  find where section we are
+        //  only find the neares position in this section
 
-        for (float i = 0; i < (Mathf.PI * 2); i = i + 0.1f)
+        float[] startEnd = findPISection();
+
+
+        for (float i = startEnd[0]; i < startEnd[1]; i = i + 0.01f)
         {
-            posToTest = new Vector2(transform.position.x + Mathf.Cos(i) , transform.position.y + Mathf.Sin(i));
+            posToTest = new Vector2(transform.position.x + Mathf.Cos(i), transform.position.y + Mathf.Sin(i));
             currentNpos = new Vector2(transform.position.x + NearDirToCross.x, transform.position.y + NearDirToCross.y);
 
 
@@ -119,6 +131,54 @@ public class PeaceShooter : MonoBehaviour
 
 
 
+
+
+    }
+
+    private float[] findPISection()
+    {
+        float[] startEnd = new float[2];
+
+
+        if (chTransform.transform.position.x > transform.position.x && chTransform.transform.position.y > transform.position.y)
+        {
+           // Debug.Log("cross hair on X Positive, Y Positive");
+
+            startEnd[0] = 0;
+            startEnd[1] = (Mathf.PI/2);
+
+        }
+        else if (chTransform.transform.position.x < transform.position.x && chTransform.transform.position.y > transform.position.y)
+        {
+           // Debug.Log("cross hair on X Negative, Y Positive");
+
+            startEnd[0] = (Mathf.PI / 2);
+            startEnd[1] = (Mathf.PI);
+        }
+        else if (chTransform.transform.position.x < transform.position.x && chTransform.transform.position.y < transform.position.y)
+        {
+           // Debug.Log("cross hair on X Negative, Y Negative");
+            startEnd[0] = (Mathf.PI);
+            startEnd[1] = ((3 * Mathf.PI) / 2);
+        }
+        else if (chTransform.transform.position.x > transform.position.x && chTransform.transform.position.y < transform.position.y)
+        {
+           //Debug.Log("cross hair on X Positive, Y Negative");
+
+            startEnd[0] = ((3 * Mathf.PI) / 2);
+            startEnd[1] = (Mathf.PI * 2);
+
+        }
+        else
+        {
+           // Debug.Log("Not in PI cercle?");
+
+            startEnd[0] = 0;
+            startEnd[1] = (Mathf.PI * 2);
+
+        }
+
+        return startEnd;
 
     }
 
@@ -154,11 +214,31 @@ public class PeaceShooter : MonoBehaviour
     }
 
 
+    private void spawnBullet()
+    {
+        Vector2 spawnPos = new Vector2(transform.position.x + NearDirToCross.x / 3,  transform.position.y + NearDirToCross.y / 3f);
+        Quaternion spawnRot = transform.rotation;
+
+
+        GameObject temp = Instantiate(bulletPrefab, spawnPos, spawnRot , transform.parent);
+        Bullet_Controller temp2 = temp.GetComponent<Bullet_Controller>();
+        temp2.direction = NearDirToCross;
+    }
+
+
+    public Vector2 getNearDirToCross()
+    {
+        return NearDirToCross;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(new Vector2(transform.position.x + NearDirToCross.x, transform.position.y + NearDirToCross.y), 0.2f);
 
-        
+        //Gizmos.color = Color.green;
+        //Gizmos.DrawWireSphere(new Vector2(transform.position.x + NearDirToCross.x/3, transform.position.y + NearDirToCross.y/3f), 0.2f);
+
+
     }
 }
