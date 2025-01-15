@@ -51,6 +51,9 @@ public class Player_controller : MonoBehaviour
         myAni.SetFloat("vertical", yAxis);
         myAni.SetFloat("speed", myRb.velocity.sqrMagnitude);
 
+
+
+
     }
 
     private void mouvementInput()
