@@ -139,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pistol_V1.00 - SHOOTING (ALL FX)_0
+      name: pistol_0
       rect:
         serializedVersion: 2
         x: 18
@@ -147,7 +147,7 @@ TextureImporter:
         width: 30
         height: 20
       alignment: 9
-      pivot: {x: 0.32335433, y: 0.59825915}
+      pivot: {x: 0.32335433, y: 0.6954918}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -160,15 +160,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pistol_V1.00 - SHOOTING (ALL FX)_1
+      name: pistol_1
       rect:
         serializedVersion: 2
         x: 98
         y: 19
         width: 35
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.25552782, y: 0.675021}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,15 +181,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pistol_V1.00 - SHOOTING (ALL FX)_2
+      name: pistol_2
       rect:
         serializedVersion: 2
         x: 178
         y: 19
         width: 37
         height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.2477186, y: 0.65910876}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -202,15 +202,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pistol_V1.00 - SHOOTING (ALL FX)_3
+      name: pistol_3
       rect:
         serializedVersion: 2
         x: 257
         y: 19
         width: 41
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.2249019, y: 0.69446546}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -223,15 +223,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pistol_V1.00 - SHOOTING (ALL FX)_4
+      name: pistol_4
       rect:
         serializedVersion: 2
         x: 336
         y: 19
         width: 44
         height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.2259792, y: 0.65910965}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -244,15 +244,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pistol_V1.00 - SHOOTING (ALL FX)_5
+      name: pistol_5
       rect:
         serializedVersion: 2
         x: 415
         y: 19
         width: 49
         height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.21425332, y: 0.5810277}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -265,15 +265,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pistol_V1.00 - SHOOTING (ALL FX)_6
+      name: pistol_6
       rect:
         serializedVersion: 2
         x: 497
         y: 19
         width: 49
         height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.20631564, y: 0.5000001}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -286,15 +286,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pistol_V1.00 - SHOOTING (ALL FX)_7
+      name: pistol_7
       rect:
         serializedVersion: 2
         x: 578
         y: 19
         width: 54
         height: 27
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.1974962, y: 0.49999973}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -307,15 +307,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pistol_V1.00 - SHOOTING (ALL FX)_9
+      name: pistol_8
       rect:
         serializedVersion: 2
         x: 656
         y: 19
         width: 62
         height: 27
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.19888994, y: 0.49999973}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -328,15 +328,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pistol_V1.00 - SHOOTING (ALL FX)_12
+      name: pistol_9
       rect:
         serializedVersion: 2
         x: 738
         y: 19
         width: 63
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.16045561, y: 0.6361273}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -349,15 +349,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pistol_V1.00 - SHOOTING (ALL FX)_13
+      name: pistol_10
       rect:
         serializedVersion: 2
         x: 818
         y: 19
         width: 62
         height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.1737976, y: 0.61668}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -380,17 +380,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Pistol_V1.00 - SHOOTING (ALL FX)_0: -3369519772711588046
-      Pistol_V1.00 - SHOOTING (ALL FX)_1: -1694597945420493942
-      Pistol_V1.00 - SHOOTING (ALL FX)_12: -8771242229769846105
-      Pistol_V1.00 - SHOOTING (ALL FX)_13: -7667951066408036510
-      Pistol_V1.00 - SHOOTING (ALL FX)_2: -1189989626084974196
-      Pistol_V1.00 - SHOOTING (ALL FX)_3: 8595966708727844580
-      Pistol_V1.00 - SHOOTING (ALL FX)_4: -5157459729802918984
-      Pistol_V1.00 - SHOOTING (ALL FX)_5: 3588355569683231626
-      Pistol_V1.00 - SHOOTING (ALL FX)_6: 7755050476094638879
-      Pistol_V1.00 - SHOOTING (ALL FX)_7: 6935638328277126692
-      Pistol_V1.00 - SHOOTING (ALL FX)_9: 1973263367303943863
+      pistol_0: -3369519772711588046
+      pistol_1: -1694597945420493942
+      pistol_10: -7667951066408036510
+      pistol_2: -1189989626084974196
+      pistol_3: 8595966708727844580
+      pistol_4: -5157459729802918984
+      pistol_5: 3588355569683231626
+      pistol_6: 7755050476094638879
+      pistol_7: 6935638328277126692
+      pistol_8: 1973263367303943863
+      pistol_9: -8771242229769846105
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

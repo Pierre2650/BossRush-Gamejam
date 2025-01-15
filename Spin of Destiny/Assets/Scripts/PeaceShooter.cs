@@ -5,17 +5,33 @@ using static UnityEngine.GraphicsBuffer;
 
 public class PeaceShooter : MonoBehaviour
 {
+    private SpriteRenderer mySpR;
+
+
     public GameObject crossHair;
     private Transform chTransform;
     private AimController chConrtoller;
-
     private Vector2 NearDirToCross = Vector2.zero;
+
+
+    private bool atkOnColdown = false;
+
+    [Header("Animations")]
+    public Sprite[] gunSprites;
+    private int currentIndexSprite = 0;
+    public float gunShootAnimSpeed = 1.0f;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         chTransform = crossHair.GetComponent<Transform>();
         chConrtoller = crossHair.GetComponent<AimController>();
+        mySpR = GetComponent<SpriteRenderer>();
         
+
+
     }
 
     // Update is called once per frame
@@ -24,7 +40,10 @@ public class PeaceShooter : MonoBehaviour
         
        followCross();
 
-       
+        if (Input.GetMouseButton(0) && !atkOnColdown)
+        {
+            StartCoroutine(gunShootAnim());
+        }
 
 
 
@@ -35,23 +54,18 @@ public class PeaceShooter : MonoBehaviour
     {
         float angleZ = 0f;
 
-        /*
-        if (chConrtoller.isMoving)
-        {
-            getDirNearestCrossHair();
-            angleZ = Vector3.Angle(NearDirToCross, transform.position);
-            angleZ -= 90;
-        }
-        else
-        {
-            angleZ = transform.eulerAngles.z;
-
-        }*/
-
+        //Get information needed
+        //  The Targed vector , the Gun vector
 
         getDirNearestCrossHair();
-        angleZ = Vector3.Angle(NearDirToCross, transform.position);
+        Vector3 playerPos = new Vector3(0, Mathf.Abs(transform.position.y), 0);
+
+        //Angle Calculation
+        angleZ = Vector3.Angle(NearDirToCross, playerPos);
+
+        //Calibration
         angleZ -= 90;
+        angleZ *= -1;
 
 
         float angleY = 0f;
@@ -107,6 +121,38 @@ public class PeaceShooter : MonoBehaviour
 
 
     }
+
+    private IEnumerator gunShootAnim()
+    {
+        atkOnColdown = true;
+        bool end = false;
+
+        yield return new WaitForSeconds(gunShootAnimSpeed);
+
+        if (currentIndexSprite > 9)
+        {
+
+            end = true;
+
+
+        }
+
+
+        mySpR.sprite = gunSprites[currentIndexSprite];
+        currentIndexSprite += 1;
+
+        if (!end)
+        {
+            StartCoroutine(gunShootAnim());
+
+        }
+        else {
+            currentIndexSprite = 0;
+            atkOnColdown = false ;
+        }
+
+    }
+
 
     private void OnDrawGizmos()
     {

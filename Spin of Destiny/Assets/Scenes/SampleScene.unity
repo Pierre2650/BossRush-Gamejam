@@ -9806,7 +9806,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -3369519772711588046, guid: 9a6316e671c07ee4389d736478831bfb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9831,6 +9831,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crossHair: {fileID: 188441280}
+  gunSprites:
+  - {fileID: -1694597945420493942, guid: 9a6316e671c07ee4389d736478831bfb, type: 3}
+  - {fileID: -1189989626084974196, guid: 9a6316e671c07ee4389d736478831bfb, type: 3}
+  - {fileID: 8595966708727844580, guid: 9a6316e671c07ee4389d736478831bfb, type: 3}
+  - {fileID: -5157459729802918984, guid: 9a6316e671c07ee4389d736478831bfb, type: 3}
+  - {fileID: 3588355569683231626, guid: 9a6316e671c07ee4389d736478831bfb, type: 3}
+  - {fileID: 7755050476094638879, guid: 9a6316e671c07ee4389d736478831bfb, type: 3}
+  - {fileID: 6935638328277126692, guid: 9a6316e671c07ee4389d736478831bfb, type: 3}
+  - {fileID: 1973263367303943863, guid: 9a6316e671c07ee4389d736478831bfb, type: 3}
+  - {fileID: -8771242229769846105, guid: 9a6316e671c07ee4389d736478831bfb, type: 3}
+  - {fileID: -7667951066408036510, guid: 9a6316e671c07ee4389d736478831bfb, type: 3}
+  - {fileID: -3369519772711588046, guid: 9a6316e671c07ee4389d736478831bfb, type: 3}
 --- !u!1 &2075182019
 GameObject:
   m_ObjectHideFlags: 0
