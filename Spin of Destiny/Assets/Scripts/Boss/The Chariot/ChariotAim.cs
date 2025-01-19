@@ -15,7 +15,7 @@ public class ChariotAim : MonoBehaviour
 
     public bool stopAim = false;
     private float timer = 0f;
-    public float scanDuration = 3f;
+    private float scanDuration = 1.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -43,11 +43,12 @@ public class ChariotAim : MonoBehaviour
 
                 stopAim = true;
 
+
             }
 
         }
 
-        
+
 
     }
 
@@ -60,12 +61,9 @@ public class ChariotAim : MonoBehaviour
 
     }
 
-    public void resetAim()
+    public void setVisibleLine(bool visible)
     {
-        //stop = false;
+        myLR.enabled = visible;
+
     }
-
-
-  
-
 }

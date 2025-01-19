@@ -18,25 +18,25 @@ public class Chariot : Tarot
 
 
     [Header("ChargeAttack")]
-    public float chargeSpeed;
+    private float chargeSpeed = 40f;
     private Vector2 chargeDirection;
-    public bool startStop = false;
+    private bool startStop = false;
     private float stopElapsedT;
-    public float chargeStopDuration;
+    private float chargeStopDuration = 0.1f;
     private bool isCharging = false;
 
-       private int  nCharges = 3;
+    private int  nCharges = 3;
 
     [Header("Vulnerability")]
     private bool isVulnerable;
     private bool isWaiting = false;
     private float vulnerableElapsedT;
-    public float vulnerableDuration;
+    private float vulnerableDuration = 1.5f;
 
 
     [Header("Invulnerability")]
     private float backToSafetyElapsed = 0;
-    public float backToSafetyDuration;
+    private float backToSafetyDuration = 0.5f;
     private AnimationCurve backToSafetyCurve = AnimationCurve.Linear(0f,0f,1f,1f);
 
  
@@ -45,13 +45,15 @@ public class Chariot : Tarot
     void Start()
     {
         myRb = GetComponent<Rigidbody2D>();
-        prefabRedLine = GameObject.Find("BossLineAim");
-        aimLine = prefabRedLine.GetComponent<ChariotAim>();
+
+        prefabRedLine = (GameObject)Resources.Load("BossAim", typeof(GameObject));
+        GameObject temp = Instantiate(prefabRedLine,this.transform);
+
+        aimLine = temp.GetComponent<ChariotAim>();
         aimLine.enabled = true;
 
         safeZone = transform.localPosition;
 
-        //startAim();
 
     }
 
@@ -124,6 +126,7 @@ public class Chariot : Tarot
             if (nCharges == 0)
             {
                 isWaiting = true;
+                aimLine.setVisibleLine(false);
 
             }
             else
@@ -176,7 +179,6 @@ public class Chariot : Tarot
 
         }
         backToSafetyElapsed = 0;
-
         aimLine.stopAim = false;
         
         nCharges = 3;

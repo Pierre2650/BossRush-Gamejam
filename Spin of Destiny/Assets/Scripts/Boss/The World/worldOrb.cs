@@ -2,35 +2,88 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class worldOrb : MonoBehaviour
+public class WorldOrb : MonoBehaviour
 {
     private GameObject turnbased;
     private Turn_Controller Turn_Controller;
-    
+
+    [Header("Evolution")]
+    private float evoElapsedTime = 0f;
+    private float evoTime = 5f;
+    private int size = 1;
+
+    [Header("MiniOrbs")]
+    private GameObject miniOrbsPrefab;
+    private bool spawn = false;
+    private float toSpawnElapsed = 0.6f;
+    private float tospawnTime = 0.5f;
+    private float nbOrbs = 3;
+
     // Start is called before the first frame update
     void Start()
     {
         turnbased = GameObject.Find("TurnBase_Manager");
         Turn_Controller = turnbased.GetComponent<Turn_Controller>();
+        miniOrbsPrefab = (GameObject)Resources.Load("orbSpawn", typeof(GameObject));
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        switch (Turn_Controller.turnCount)
+        evoElapsedTime += Time.deltaTime;
+        if (evoElapsedTime > evoTime)
         {
+            evolve();
 
-            case 1:
-                this.transform.localScale = new Vector2(2, 2);
-                break;
-
-            case 2:
-                this.transform.localScale = new Vector2(3, 3);
-                break;
+            spawn = true;
+            evoElapsedTime = 0;
         }
 
 
+        if (spawn) { 
+            spawnOrb();
+        }
+
+
+
+          
+
+
         
+    }
+
+    private void evolve()
+    {
+
+        size++;
+
+        if (size == 4)
+        {
+            Destroy(this.gameObject);
+        }
+
+        transform.localScale = new Vector2(size, size);
+    }
+
+    private void spawnOrb()
+    {
+
+        toSpawnElapsed += Time.deltaTime;
+        if (toSpawnElapsed > tospawnTime)
+        {
+
+            Instantiate(miniOrbsPrefab, this.transform.position, this.transform.rotation, this.transform.parent);
+            nbOrbs--;
+            toSpawnElapsed = 0;
+        }
+
+        if (nbOrbs == 0)
+        {
+            toSpawnElapsed = 0.5f;
+            spawn = false;
+            nbOrbs = 3;
+        }
+
     }
 }
