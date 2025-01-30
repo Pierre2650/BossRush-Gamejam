@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Enum_Card 
+public enum Enum_Weapons
 {
-   Chariot,
-   Tower,
-   World,
-   Star,
-   Devil
-    
+    Sword,
+    Crossbow,
+    Katana,
+
 }

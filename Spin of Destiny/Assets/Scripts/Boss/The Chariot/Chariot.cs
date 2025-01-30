@@ -12,8 +12,6 @@ public class Chariot : Tarot
     public GameObject prefabRedLine;
     private ChariotAim aimLine;
 
-
-
     private Vector2 safeZone;
 
 

@@ -20,14 +20,12 @@ public class Tower : Tarot
     private int nbObstacles = 8;
     private float intervalElapsed = 0f;
     private float interval = 0.5f;
-
+    private Vector3Int lastObstPos = Vector3Int.zero;
 
     [Header("Player")]
     private GameObject Player;
     private Vector3Int playerPos;
 
-
-    private bool test = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -89,8 +87,9 @@ public class Tower : Tarot
                 Debug.Log("zone = "+spawnZone+" Pos = "+spawnPos);
                 temp++;
             }
-            while (spawnPos == playerPos && temp < 200);
+            while (spawnPos == playerPos && temp < 200 && Vector3Int.Distance(lastObstPos, spawnPos) < 5);
             
+            lastObstPos = spawnPos;
             pos = spawnPos;
 
 

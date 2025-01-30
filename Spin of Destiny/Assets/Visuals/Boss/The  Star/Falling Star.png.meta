@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: d6a00f612d939bf43aa9d56e558c69af
+guid: 790dc67adae2d6944b809405322eaf28
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6351821455703399998
-    second: Spin10_0
+      213: 2830956896800209201
+    second: Falling Star_0
+  - first:
+      213: 3895921454032139564
+    second: Falling Star_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,22 +103,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Spin10_0
+      name: Falling Star_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 23
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 8
+        y: 2
+        width: 15
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5041359, y: 0.24184206}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c128181a0cc9d7a0800000000000000
-      internalID: -6351821455703399998
+      spriteID: 139f7307c44994720800000000000000
+      internalID: 2830956896800209201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Falling Star_3
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 3
+        width: 14
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5044316, y: 0.2062323}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c25b864cbe7111630800000000000000
+      internalID: 3895921454032139564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Falling Star_2
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 4
+        width: 13
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5047737, y: 0.18798573}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fe6ec1703e39514b9321d62bc4032ed
+      internalID: 1770410305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Falling Star_1
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 8
+        width: 12
+        height: 29
+      alignment: 9
+      pivot: {x: 0.49483237, y: 0.20906363}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 249487c79a622454981cad7dc3a409a0
+      internalID: 818932730
       vertices: []
       indices: 
       edges: []
@@ -123,7 +189,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0d8a34d166a81134bb389417533df331
     internalID: 0
     vertices: []
     indices: 
@@ -131,7 +197,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Spin10_0: -6351821455703399998
+      Falling Star_0: 2830956896800209201
+      Falling Star_1: 818932730
+      Falling Star_2: 1770410305
+      Falling Star_3: 3895921454032139564
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

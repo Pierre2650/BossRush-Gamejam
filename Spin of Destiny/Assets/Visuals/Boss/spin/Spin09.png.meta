@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Spin09_0: 4204445699182505573
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

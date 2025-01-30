@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Swr_Mouvemente : MonoBehaviour
+public class PickableObj_Mouvement : MonoBehaviour
 {
     //To know if to switch mouvement
     private bool switchPos = false;
-    private Vector2 startPos, endPos;
 
     [SerializeField] private float duration;
     public float elapsedT;
@@ -16,35 +16,27 @@ public class Swr_Mouvemente : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
-    {
-        startPos = transform.position;
-        endPos = new Vector2(startPos.x, startPos.y + 0.3f);
+
+    private void OnEnable() {
         StartCoroutine(floatingMouv());
     }
 
 
-    // Update is called once per frame
-    private void Update()
-    {
-
-
-
-        if (switchPos)
-        {
-            var temp = startPos; 
-            startPos = endPos;
-            endPos = temp;
-            StartCoroutine(floatingMouv());
-            switchPos = false;
-        }
-
-    }
-
 
     IEnumerator floatingMouv()
     {
-       
+        Vector2 startPos = transform.position; 
+        Vector2 endPos;
+        if (!switchPos)
+        {
+            endPos = new Vector2(startPos.x, startPos.y + 0.3f);
+        }
+        else {
+        
+            endPos = new Vector2(startPos.x, startPos.y - 0.3f);
+        }
+        
+
         float percentageDur = 0;
 
 
@@ -61,11 +53,19 @@ public class Swr_Mouvemente : MonoBehaviour
 
         }
 
-        switchPos = true;
+        switchPos = !switchPos;
         elapsedT = 0;
+
+
+        StartCoroutine(floatingMouv());
 
     }
 
+    private void OnDisable()
+    {
+        elapsedT = 0;
+        StopAllCoroutines();
+    }
 
- 
+
 }

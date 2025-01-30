@@ -231,14 +231,5 @@ public class PeaceShooter : MonoBehaviour
         return NearDirToCross;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(new Vector2(transform.position.x + NearDirToCross.x, transform.position.y + NearDirToCross.y), 0.2f);
-
-        //Gizmos.color = Color.green;
-        //Gizmos.DrawWireSphere(new Vector2(transform.position.x + NearDirToCross.x/3, transform.position.y + NearDirToCross.y/3f), 0.2f);
-
-
-    }
+   
 }

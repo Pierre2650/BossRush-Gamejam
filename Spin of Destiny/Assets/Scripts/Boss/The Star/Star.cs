@@ -6,22 +6,30 @@ using static UnityEditor.PlayerSettings;
 public class Star : MonoBehaviour
 {
     [Header("FallingStar")]
-    public Vector2 fallPos;
-    public int  nbStars = 16;
-    public GameObject fallZonePrefab;
+    private int  nbStars = 20;
+    private GameObject fallZonePrefab;
+
+    private Vector2 lastStarPos = Vector2.zero;
 
     [Header("Spawn Interval")]
     private float intervalElapsed = 0f;
-    private float interval = 0.8f;
+    private float interval = 0.3f;
 
     [Header("Player")]
-    public GameObject player;
+    private GameObject player;
     private Vector2 playerPos;
+
+
+    [Header("Coldown")]
+    private float coldownElapsed = 0f;
+    private float coldownDur = 2.5f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        fallZonePrefab = (GameObject)Resources.Load("StarFallZone", typeof(GameObject));
+        player = GameObject.Find("Player");
+
     }
 
     // Update is called once per frame
@@ -35,10 +43,22 @@ public class Star : MonoBehaviour
 
             if (intervalElapsed > interval)
             {
+
                 fallZoneGeneration();
                 nbStars--;
                 intervalElapsed = 0f;
             }
+        }
+        else {
+            coldownElapsed += Time.deltaTime;
+
+            if (coldownElapsed > coldownDur)
+            {
+                nbStars = 20;
+                lastStarPos = Vector2.zero;
+                coldownElapsed = 0f;
+            }
+
         }
 
 
@@ -48,7 +68,6 @@ public class Star : MonoBehaviour
     {
         Vector2 spawnPos = Vector2.zero;
         int spawnZone;
-
         int i = Mathf.Abs(nbStars - 10);
 
         if (i < 3)
@@ -61,15 +80,35 @@ public class Star : MonoBehaviour
         }
 
 
-       /* if (spawnZone == 0) {
-            spawnPos = playerPos;
+
+        int temp = 0;
+
+        if (nbStars % 4 == 0)
+        {
+            Debug.Log(nbStars);
+
+            spawnPos = new Vector2(playerPos.x, playerPos.y - 0.7f);
         }
-        else { 
-            spawnPos = generateSpawnPos(spawnZone); 
+        else
+        {
+
+            do
+            {
+                spawnPos = generateSpawnPos(spawnZone);
+                temp++;
+
+            } while (Vector2.Distance(lastStarPos, spawnPos) < 2.5f && temp < 200);
+
+            lastStarPos = spawnPos;
+
+            if (temp != 1) { 
+                Debug.Log("SpawnPos on Star, Temp = "+temp);
+            }
+            
         }
 
         spawnFallZone(spawnPos);
-       */
+       
 
 
 

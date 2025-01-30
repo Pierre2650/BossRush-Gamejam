@@ -5,12 +5,13 @@ using UnityEngine;
 public class Player_controller : MonoBehaviour
 {
     //SelfComponents
-    private Rigidbody2D myRb;
+    public Rigidbody2D myRb;
     private Animator myAni;
 
     [Header("Mouvement Manager")]
-    private float xAxis = 0;
-    private float yAxis = 0;
+    public float xAxis = 0;
+    public float yAxis = 0;
+    private char lastDir = 's';
     [SerializeField] private float speed = 0;
 
 
@@ -24,7 +25,8 @@ public class Player_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        xAxis = yAxis = 0;
+        xAxis = 0;
+        yAxis = 0;
 
 
         mouvementInput();
