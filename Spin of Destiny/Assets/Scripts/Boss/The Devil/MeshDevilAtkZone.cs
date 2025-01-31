@@ -4,17 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
-public class MeshTest : MonoBehaviour
+public class MeshDevilAtkZone : MonoBehaviour
 {
     public MeshRenderer myMshR;
-
-    private float radius = 4f;
-    public int n = 100;
-
-    public Vector2 Dir = Vector2.zero;
     public Devil controller;
 
+    [Header("Paramters")]
+    private float radius = 4f;
+    private int n = 100;
+    public Vector2 Dir = Vector2.zero;
+    
 
+    [Header("Real Scrythe")]
     public GameObject child;
 
 
@@ -23,32 +24,12 @@ public class MeshTest : MonoBehaviour
     {
         myMshR = GetComponent<MeshRenderer>();
         myMshR.enabled = false;
-        AttackZone();
+        generateAttackZone();
 
     }
 
 
-
-   
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Dir = controller.playerDir;
-
-        
-
-        if (Input.GetKey(KeyCode.Z))
-        {
-            //AttackZone();
-        }
-
-
-
-
-    }
-
-    private void AttackZone()
+    private void generateAttackZone()
     {
         Mesh mesh = new Mesh();
         //verticies
@@ -82,7 +63,7 @@ public class MeshTest : MonoBehaviour
 
 
     }
-    public void followPlayer()
+    public void aimAttackZoneAtPlayer()
     {
         float angleZ = 0f;
 
@@ -93,7 +74,6 @@ public class MeshTest : MonoBehaviour
 
         //Angle Calculation
         angleZ = Vector3.Angle(Dir, playerPos);
-        //Debug.Log("angleZ = "+ angleZ);
 
          //Calibration
         angleZ -= 90;
@@ -119,14 +99,17 @@ public class MeshTest : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, angleY , angleZ);
 
 
-
-
-
     }
 
-    public void callScythe()
+    public void showScythe()
     {
         child.SetActive(true);
+    }
+
+    public void attackEnded()
+    {
+        child.SetActive(false);
+        controller.stateMachine();
     }
 
     private void OnDrawGizmos()
@@ -137,8 +120,6 @@ public class MeshTest : MonoBehaviour
         Gizmos.DrawWireSphere(temp, 0.2f);
 
 
-        
-        
 
     }
 }

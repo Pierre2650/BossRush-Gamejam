@@ -17,15 +17,13 @@ public class Devil_Scythe_Controller : MonoBehaviour
 
 
     [Header("Parent")]
-
-    private MeshTest meshController;
-
+    private MeshDevilAtkZone meshController;
 
     // Start is called before the first frame update
 
     private void Awake()
     {
-        meshController = transform.parent.GetComponent<MeshTest>();
+        meshController = transform.parent.GetComponent<MeshDevilAtkZone>();
         this.gameObject.SetActive(false);
     }
 
@@ -36,16 +34,6 @@ public class Devil_Scythe_Controller : MonoBehaviour
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            attackMouv = StartCoroutine(attack());
-        }
-
-
-    }
 
 
     private IEnumerator waitToAtk()
@@ -82,7 +70,6 @@ public class Devil_Scythe_Controller : MonoBehaviour
         swingElapsedT = 0;
         attackMouv = null;
 
-        //transform.eulerAngles = start;
         StartCoroutine(endAtk());
 
     }
@@ -92,7 +79,7 @@ public class Devil_Scythe_Controller : MonoBehaviour
         
         yield return new WaitForSeconds(0.5f);
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 44);
-        this.gameObject.SetActive(false);
+        meshController.attackEnded();
     }
 
 }
