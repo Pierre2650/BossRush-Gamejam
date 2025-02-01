@@ -231,5 +231,11 @@ public class PeaceShooter : MonoBehaviour
         return NearDirToCross;
     }
 
-   
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        currentIndexSprite = 0;
+        atkOnColdown = false;
+    }
+
 }

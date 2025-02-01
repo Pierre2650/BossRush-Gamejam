@@ -87,7 +87,7 @@ public class Tower : Tarot
                 Debug.Log("zone = "+spawnZone+" Pos = "+spawnPos);
                 temp++;
             }
-            while (spawnPos == playerPos && temp < 200 && Vector3Int.Distance(lastObstPos, spawnPos) < 5);
+            while (spawnPos == playerPos && temp < 200 && Vector3Int.Distance(lastObstPos, spawnPos) < 6);
             
             lastObstPos = spawnPos;
             pos = spawnPos;

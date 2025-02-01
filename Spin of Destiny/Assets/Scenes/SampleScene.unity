@@ -7842,9 +7842,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 161746315}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.6185255, y: -3.0074024, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 498603165}
@@ -7892,7 +7892,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -5797087427143652343, guid: 79cbb7a0874e7af47bc0a3e23774baf6, type: 3}
+  m_Sprite: {fileID: -3224148325412505322, guid: d3a04f0597c5189468b7688c65cc685b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8825,7 +8825,7 @@ GameObject:
   - component: {fileID: 543179355}
   - component: {fileID: 543179356}
   m_Layer: 0
-  m_Name: SpecialWeapon
+  m_Name: Special Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8915,7 +8915,7 @@ MonoBehaviour:
   Scriptable_Weapon: {fileID: 0}
   damage: 0
   weapon: 0
-  pistol: {fileID: 2057803397}
+  pistol: {fileID: 1006503281}
   roulette: {fileID: 161746315}
 --- !u!1 &566783358
 GameObject:
@@ -9657,7 +9657,7 @@ GameObject:
   - component: {fileID: 935546742}
   - component: {fileID: 935546741}
   - component: {fileID: 935546744}
-  - component: {fileID: 935546745}
+  - component: {fileID: 935546746}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -9842,7 +9842,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 10
---- !u!114 &935546745
+--- !u!114 &935546746
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9851,11 +9851,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 935546737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9befe24fddbaf2d45aa8c104d85a9492, type: 3}
+  m_Script: {fileID: 11500000, guid: 9be83dc0db0dd294b8e719819072fc7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  player: {fileID: 0}
+  shadowPrefab: {fileID: 2409915767538324327, guid: 8bdf2df04cc2cf3449ce7fa9fd28a5dc, type: 3}
+  shadows: []
+  nShadows: 2
+  spawnPos: {x: 0, y: 0}
+  player: {fileID: 566783358}
+  intervaltest: 0
 --- !u!1 &935557434
 GameObject:
   m_ObjectHideFlags: 0
@@ -9992,7 +9996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1006503282}
   m_Layer: 0
-  m_Name: Main
+  m_Name: Main Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
