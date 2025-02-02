@@ -8,6 +8,7 @@ public enum Enum_Card
    Tower,
    World,
    Star,
-   Devil
+   Devil,
+   Lovers
     
 }

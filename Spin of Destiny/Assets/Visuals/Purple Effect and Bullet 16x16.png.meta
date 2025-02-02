@@ -907,48 +907,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 175
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e554cb506a296bf0800000000000000
-      internalID: -330686504290200089
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_2
-      rect:
-        serializedVersion: 2
-        x: 33
-        y: 191
-        width: 13
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 263f1cdee8cf977e0800000000000000
-      internalID: -1767103687961742494
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Purple Effect and Bullet 16x16_3
       rect:
         serializedVersion: 2
@@ -1616,48 +1574,6 @@ TextureImporter:
       bones: []
       spriteID: 4ea6d19b6d6387660800000000000000
       internalID: 7383711884930542308
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_47
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 164
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b98b2fca5ff2e14c0800000000000000
-      internalID: -4314958660759275365
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_48
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 161
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: be4963090d7077090800000000000000
-      internalID: -8036946417665272597
       vertices: []
       indices: 
       edges: []
@@ -5904,6 +5820,132 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: loversAtk_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 192
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2f4677add7815949b6650b68532cfba
+      internalID: -1297344740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loversAtk_1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 192
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55a481c9e20997c4eb9da26f3e40047e
+      internalID: 698087946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loversAtk_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 192
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f121f5b16e0dfaa4b90da5c8b1652dd8
+      internalID: -1558447239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loversAtk_3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 176
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96691e15e0a8d39438826c833275b35c
+      internalID: 2087916367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loversAtk_4
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 176
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3143397fb79fa644d8b42e8b65b0ed93
+      internalID: 1267518475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: loversAtk_5
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 176
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60cb52d447f354640b5a67524ade15ec
+      internalID: -1289895426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -5928,6 +5970,12 @@ TextureImporter:
       StartCible_1: -444954035
       StartCible_2: 665501410
       StartCible_3: 2005892025
+      loversAtk_0: -1297344740
+      loversAtk_1: 698087946
+      loversAtk_2: -1558447239
+      loversAtk_3: 2087916367
+      loversAtk_4: 1267518475
+      loversAtk_5: -1289895426
       orbSpawn_0: 179376056702028132
       orbSpawn_1: -853300907
   mipmapLimitGroupName: 

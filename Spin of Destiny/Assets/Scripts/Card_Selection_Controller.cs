@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class Card_Selection_Controller : MonoBehaviour
 {
-    public List<Enum_Card> cards = new List<Enum_Card>();
+    [Header("Selected Cards Manager")]
+    public List<Card_Enum_Type> cards = new List<Card_Enum_Type>();
     public int numberOfCards = 3;
 
-    //Start Game
+    [Header("Start Game")]
     public GameObject Game;
     public GameObject thisObj;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -31,9 +26,23 @@ public class Card_Selection_Controller : MonoBehaviour
         
     }
 
-    public void addCard(Enum_Card card)
+    public void addCard(Card_Enum_Type card)
     {
         cards.Add(card);
+    }
+
+
+    public bool checkConditions(char t)
+    {
+        foreach (Card_Enum_Type card in cards)
+        {
+            if(card.type == 'A' && t == 'A')
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
              
 

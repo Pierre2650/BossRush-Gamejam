@@ -25,7 +25,7 @@ public class PickableObj_Mouvement : MonoBehaviour
 
     IEnumerator floatingMouv()
     {
-        Vector2 startPos = transform.position; 
+        Vector2 startPos = transform.localPosition; 
         Vector2 endPos;
         if (!switchPos)
         {
@@ -46,7 +46,7 @@ public class PickableObj_Mouvement : MonoBehaviour
 
             percentageDur = elapsedT / duration;
 
-            transform.position = Vector2.Lerp(startPos, endPos, curve.Evaluate(percentageDur));
+            transform.localPosition = Vector2.Lerp(startPos, endPos, curve.Evaluate(percentageDur));
 
             elapsedT += Time.deltaTime;
             yield return null;

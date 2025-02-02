@@ -2,66 +2,112 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Devil : MonoBehaviour
+public class Devil_ATK : Tarot_Controllers
 {
+    private Vector2 startPos;
 
     [Header("Berzier Mouvement")]
-    public float speed = 1.0f;
+    private float speed = 1.0f;
     private float t = 0f;
     private Vector3 P0;
-    public Vector3 P1;
-    public Vector3 P2;
-    private bool test = false;
-    private float maxD = 5.2f;
+    private Vector3 P1;
+    private Vector3 P2;
+    private float maxD = 3.2f;
+
+
+    [Header("Jump")]
+    private bool goJump = false;
+    private int nJumps = 3 ;
+
 
 
     [Header("The Player")]
     public GameObject player;
 
+
+    [Header("Scythe Cosmetic")]
+    private GameObject fakeScythePrefab;
+    private GameObject fakeScythe;
+
     [Header("AttackZone")]
-    private float pathFindInterval = 0f;
-    public Vector2 playerDir = Vector2.zero;
-    public GameObject mesh;
-    private MeshTest meshController;
+    private GameObject meshPrefab;
+    private GameObject mesh;
+
+    private Vector2 playerDir = Vector2.zero;
+    private MeshDevilAtkZone meshController;
+
+    private bool isAttacking = true;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        P0 = transform.position;
         player = GameObject.Find("Player");
-        //P2 = player.transform.position;
-        meshController = mesh.GetComponent<MeshTest>();
-        
+        fakeScythePrefab = (GameObject)Resources.Load("DevilScythe_Cosmetic", typeof(GameObject));
+        meshPrefab = (GameObject)Resources.Load("AttackZone", typeof(GameObject));
+
+        spawnPrefabs();
+
+       
+        startPos = transform.position;
+
+        stateMachine();
+
+
+    }
+
+    private void spawnPrefabs()
+    {
+       fakeScythe = Instantiate(fakeScythePrefab, transform);
+       mesh = Instantiate(meshPrefab, transform);
+
+       meshController = mesh.GetComponent<MeshDevilAtkZone>();
+       meshController.controller = this;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(this.transform.position, player.transform.position) > maxD)
+        setFakeScytheDir();
+
+        if (Vector3.Distance(this.transform.position, player.transform.position) > maxD && isAttacking)
         {
             P2 = player.transform.position;
         }
-        
+       
 
-        if (Input.GetKey(KeyCode.X))
-        {
-            test = true;
-            P1 = new Vector3(P2.x, 11f);
-        }
-
-        if (test)
+        if (goJump)
         {
             jump();
             
         }
 
-        pathFindInterval += Time.deltaTime;
-        if (pathFindInterval > 0.2f)
+
+
+    }
+
+
+    private void setFakeScytheDir()
+    {
+        float angleY = 0f;
+
+        if (transform.position.x < player.transform.position.x)
         {
-            //pathFind(player.transform.position);
-            pathFindInterval = 0f;
+
+            angleY = 0f;
         }
 
+        if (transform.position.x > player.transform.position.x)
+        {
+
+          
+            angleY = 180f;
+        }
+
+
+        transform.rotation = Quaternion.Euler(0, angleY, 0);
 
     }
 
@@ -78,26 +124,72 @@ public class Devil : MonoBehaviour
         }
         else
         {
-            test = false;
+            goJump = false;
             t = 0f;
-            showAttack();
+
+            if (isAttacking) { 
+                nJumps--;
+                showAttack();
+            }
+            else
+            {
+                StartCoroutine(waitOnSpawn());
+
+            }
         }
 
     }
 
     private void showAttack()
     {
+        fakeScythe.SetActive(false);
+
         pathFind(player.transform.position);
-
         meshController.Dir = playerDir;
-
-        meshController.followPlayer();
+        meshController.aimAttackZoneAtPlayer();
         meshController.myMshR.enabled = true;
-        meshController.callScythe();
+
+        meshController.showScythe();
 
     }
 
 
+    public void stateMachine()
+    {
+        fakeScythe.SetActive(true);
+
+        if(nJumps  <= 0)
+        {
+            isAttacking = false;
+            
+        }
+
+        StartCoroutine(waitToJump());
+    }
+    private IEnumerator waitToJump()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        P0 = transform.position;
+        P1 = new Vector3(P2.x, 11f);
+
+        if (!isAttacking)
+        {
+            P2 = startPos;
+        }
+
+
+        goJump = true;
+    }
+
+    private IEnumerator waitOnSpawn()
+    {
+        Debug.Log("wait on spawn called");
+        yield return new WaitForSeconds(2f);
+        isAttacking = true;
+        nJumps = 3;
+        stateMachine();
+    }
 
 
     private void pathFind(Vector2 targetPos)

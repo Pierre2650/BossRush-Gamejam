@@ -5,22 +5,24 @@ using UnityEngine;
 
 public class Card_Controller : MonoBehaviour
 {
+    [Header("InitComponents")]
+    private SpriteRenderer spriteComponent;
+
+
+    [Header("CardDefine")]
     public Enum_Card value;
+    public char type;
 
 
     public Card_Selection_Controller selectionController;
 
-    private bool onObject = false;
+    public bool clickable = false;
 
-    //Curve for type of mouvement
+    [Header("animations")]
+    private bool onObject = false;
+    //Curve for type f mouvement
     [SerializeField] private AnimationCurve curve;
     [SerializeField] private AnimationCurve curveForStart;
-
-    private SpriteRenderer spriteComponent;
-
-    private bool clickable = false;
-
-
 
     //handle sprites by searching them
     [Header("Animations")]
@@ -50,7 +52,7 @@ public class Card_Controller : MonoBehaviour
 
     private void OnEnable()
     {
-        clickable = true;
+        //clickable = true;
     }
 
     // Start is called before the first frame update
@@ -67,13 +69,67 @@ public class Card_Controller : MonoBehaviour
         {
 
             StartCoroutine(onClick());
-            selectionController.addCard(value);
 
-            clickable = false;
+            //selectType();
+           
+
+            //Temporary condition
+            if (selectionController.checkConditions(type)) { 
+
+
+                Card_Enum_Type temp = new Card_Enum_Type();
+                temp.value = value;
+                temp.type = type;
+
+                selectionController.addCard(temp);
+
+                clickable = false;
+            }
+            else
+            {
+                Debug.Log("A already exist");
+            }
 
         }
 
 
+    }
+
+
+    private void selectType()
+    {
+        int temp = 0;
+
+        do
+        {
+            generateType();
+            temp++;
+
+        }while (!selectionController.checkConditions(type) && temp < 200);
+    }
+
+
+    private void generateType()
+    {
+        int rand = Random.Range(1, 4);
+
+        switch (rand)
+        {
+            case 1:
+
+                type = 'A';
+
+                break;
+
+            case 2:
+                type = 'B';
+
+                break;
+            
+            case 3:
+                type = 'M';
+                break;
+        }
     }
 
     void OnMouseOver()

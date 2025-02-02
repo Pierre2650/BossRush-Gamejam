@@ -12,7 +12,7 @@ public class Bullet_Controller : MonoBehaviour
 
     [Header("Destroy Timer")]
     private float elapsedT = 0;
-    private float duration = 3f;
+    private float duration = 1.5f;
 
 
     // Start is called before the first frame update

@@ -2,59 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class World : MonoBehaviour
+public class World : IControllerFinder
 {
-    private GameObject orbPrefab;
-    private GameObject orb = null;
-    private Vector2 spawnPos = Vector2.zero;
-
-    [Header("Atk Pace")]
-    private float waitTimer = 0;
-    private float waitDuration = 2f;
-
-    
-    // Start is called before the first frame update
-    void Start()
+    public void chooseController(char t, GameObject boss, List<Tarot_Controllers> Controllers)
     {
-        orbPrefab = (GameObject)Resources.Load("TheWorldOrb", typeof(GameObject));
-
-        spawnOrb();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
- 
-        if (orb == null)
+        switch (t)
         {
-            waitTimer += Time.deltaTime;
+            case 'A':
+                
+                break;
 
-            if (waitTimer > waitDuration) {
 
-                spawnOrb();
+            case 'B':
 
-                waitTimer = 0f;
+                break;
 
-            } 
+
+            case 'M':
+
+                boss.AddComponent<World_MAP>();
+                World_MAP temp = boss.GetComponent<World_MAP>();
+                Controllers.Add(temp);
+
+                //temp.enabled = false;
+
+                break;
+
+
 
         }
-
-        
-        
-    }
-
-
- 
-    private Vector2 newSpawnPos()
-    {
-        return new Vector2(Random.Range(-13.2f, 17.5f), Random.Range(6.6f, -10f));
-
-    }
-
-    private void spawnOrb()
-    {
-        spawnPos = newSpawnPos();
-        orb = Instantiate(orbPrefab, spawnPos, transform.rotation, transform.parent);
-
     }
 }
