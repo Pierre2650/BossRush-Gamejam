@@ -7,7 +7,7 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 public class MeshDevilAtkZone : MonoBehaviour
 {
     public MeshRenderer myMshR;
-    public Devil controller;
+    public Devil_ATK controller;
 
     [Header("Paramters")]
     private float radius = 4f;

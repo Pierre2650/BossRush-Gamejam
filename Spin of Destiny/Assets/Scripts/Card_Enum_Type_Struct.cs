@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Enum_Card 
+public struct Card_Enum_Type
 {
-   Chariot,
-   Tower,
-   World,
-   Star,
-   Devil,
-   Lovers
+    public Enum_Card value;
+    public char type;
     
 }

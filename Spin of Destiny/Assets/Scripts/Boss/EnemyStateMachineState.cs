@@ -54,7 +54,7 @@ public class Turn_Controller : MonoBehaviour
         // Unhide UI
         // able player controller
 
-        foreach (Tarot i in BSController.Cards)
+        foreach (Tarot_Controllers i in BSController.Controllers)
         {
             i.enabled = false;
 
@@ -72,7 +72,7 @@ public class Turn_Controller : MonoBehaviour
         //hide UI
         //enable boss controller
 
-        foreach (Tarot i in BSController.Cards)
+        foreach (Tarot_Controllers i in BSController.Controllers)
         {
             i.enabled = true;
 

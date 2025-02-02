@@ -2,28 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lovers : MonoBehaviour
+public class Lovers_ATK : Tarot_Controllers
 {
     [Header("Shadow/s")]
-    public GameObject shadowPrefab;
+    private GameObject shadowPrefab;
     public List<GameObject> shadows = new List<GameObject>();
-    public int nShadows = 3;
+    private int nShadows = 3;
 
     [Header("Spawn")]
-    public Vector2 spawnPos = Vector2.zero;
+    private Vector2 spawnPos = Vector2.zero;
     private Vector2 lastPos = Vector2.zero;
 
 
     [Header("player")]
-    public GameObject player;
+    private GameObject player;
 
 
-    public float intervaltest = 0f;
+    private float intervaltest = 0f;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+        shadowPrefab =  (GameObject)Resources.Load("Shadow", typeof(GameObject));
+
         SpawnShadow();
         nShadows--;
 

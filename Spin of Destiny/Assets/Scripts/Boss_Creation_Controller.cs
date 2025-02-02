@@ -6,29 +6,73 @@ public class Boss_Creation_Controller : MonoBehaviour
 {
     public Card_Selection_Controller CSController;
     public GameObject boss;
-    public List<Tarot> Cards;
-
-
+    public List<Tarot_Controllers> Controllers;
 
     private void OnEnable()
     {
-        foreach (Enum_Card i in CSController.cards)
+
+        findCard();
+        
+
+    }
+
+
+    private void findCard()
+    {
+
+        foreach (Card_Enum_Type card in CSController.cards)
         {
-            switch (i)
+            switch (card.value)
             {
                 case Enum_Card.Chariot:
-                    boss.AddComponent<Chariot>();
-                    Chariot temp = boss.GetComponent<Chariot>();
-                    Cards.Add(temp);
-                    temp.enabled = false;
+
+                    Chariot ch = new Chariot();
+
+                    ch.chooseController(card.type, boss, Controllers);
+
                     break;
 
 
                 case Enum_Card.Tower:
-                    boss.AddComponent<Tower>();
-                    Tower temp1 = boss.GetComponent<Tower>();
-                    Cards.Add(temp1);
-                  
+
+                    Tower tw = new Tower();
+
+                    tw.chooseController(card.type, boss, Controllers);
+
+                    break;
+
+                case Enum_Card.World:
+
+                    World wr = new World();
+
+                    wr.chooseController(card.type, boss, Controllers);
+
+                    break;
+
+
+                case Enum_Card.Star:
+
+                    Star st = new Star();
+
+                    //st.chooseController(card.type, boss, Controllers);
+
+                    break;
+
+                case Enum_Card.Devil:
+
+                    Devil dv = new Devil();
+
+                    dv.chooseController(card.type, boss, Controllers);
+
+                    break;
+
+
+                case Enum_Card.Lovers:
+
+                    Lovers lv = new Lovers();
+
+                    lv.chooseController(card.type, boss, Controllers);
+
                     break;
 
 
@@ -36,16 +80,8 @@ public class Boss_Creation_Controller : MonoBehaviour
         }
 
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
 
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
+
 }
