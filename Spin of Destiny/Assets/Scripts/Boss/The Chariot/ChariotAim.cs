@@ -6,13 +6,14 @@ using UnityEngine.WSA;
 
 public class ChariotAim : MonoBehaviour
 {
-    private GameObject player;
-    public GameObject Boss;
-
-    public Vector2 lastPosition;
-
+    [Header("To Init")]
     private LineRenderer myLR;
+    public GameObject player;
+    public GameObject boss;
 
+
+    [Header("Aim")]
+    public Vector2 lastPosition;
     public bool stopAim = false;
     private float timer = 0f;
     private float scanDuration = 1.5f;
@@ -22,8 +23,6 @@ public class ChariotAim : MonoBehaviour
     {
         myLR = GetComponent<LineRenderer>();
         myLR.positionCount = 2;
-        player = GameObject.Find("Player");
-        Boss = GameObject.Find("Boss");
     }
 
     // Update is called once per frame
@@ -56,7 +55,7 @@ public class ChariotAim : MonoBehaviour
     private void setPoints()
     {
 
-        myLR.SetPosition(0, Boss.transform.position);
+        myLR.SetPosition(0, boss.transform.position);
         myLR.SetPosition(1, player.transform.position);
 
     }

@@ -6,13 +6,15 @@ using UnityEngine;
 
 public class Chariot_ATK: Tarot_Controllers
 {
+    [Header("To Init")]
     private Rigidbody2D myRb;
-
-    public Vector2 targetPos;
-    public GameObject prefabRedLine;
-    private ChariotAim aimLine;
-
+    private Vector2 targetPos;
     private Vector2 safeZone;
+    private Enemy_Controller mainController;
+
+    [Header("Aim Prefab")]
+    private GameObject prefabRedLine;
+    private ChariotAim aimLine;
 
 
     [Header("ChargeAttack")]
@@ -43,15 +45,23 @@ public class Chariot_ATK: Tarot_Controllers
     void Start()
     {
         myRb = GetComponent<Rigidbody2D>();
-
-        prefabRedLine = (GameObject)Resources.Load("BossAim", typeof(GameObject));
-        GameObject temp = Instantiate(prefabRedLine,this.transform);
-
-        aimLine = temp.GetComponent<ChariotAim>();
-        aimLine.enabled = true;
+        mainController = GetComponent<Enemy_Controller>();
+        generateAim();
 
         safeZone = transform.localPosition;
 
+
+    }
+
+    private void generateAim()
+    {
+        prefabRedLine = (GameObject)Resources.Load("BossAim", typeof(GameObject));
+        GameObject temp = Instantiate(prefabRedLine, this.transform);
+
+        aimLine = temp.GetComponent<ChariotAim>();
+        aimLine.player = mainController.thePlayer;
+        aimLine.boss = this.gameObject;
+        aimLine.enabled = true;
 
     }
 
