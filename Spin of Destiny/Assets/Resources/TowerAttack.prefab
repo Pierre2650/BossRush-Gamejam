@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6001908581117124735}
   - component: {fileID: 6138098528849033438}
   m_Layer: 0
-  m_Name: ShadowAttack
+  m_Name: TowerAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 698087946, guid: 79cbb7a0874e7af47bc0a3e23774baf6, type: 3}
+  m_Sprite: {fileID: -6725712562847944435, guid: 041f9c9f03432d847b05f4723563d24d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

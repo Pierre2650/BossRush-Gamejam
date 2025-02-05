@@ -184,7 +184,6 @@ public class Devil_ATK : Tarot_Controllers
 
     private IEnumerator waitOnSpawn()
     {
-        Debug.Log("wait on spawn called");
         yield return new WaitForSeconds(2f);
         isAttacking = true;
         nJumps = 3;
