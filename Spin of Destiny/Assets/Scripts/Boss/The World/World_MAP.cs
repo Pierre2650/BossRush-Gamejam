@@ -16,7 +16,7 @@ public class World_MAP : Tarot_Controllers
     // Start is called before the first frame update
     void Start()
     {
-        orbPrefab = (GameObject)Resources.Load("TheWorldOrb", typeof(GameObject));
+        orbPrefab = (GameObject)Resources.Load("World_MAP_Orb", typeof(GameObject));
 
         spawnOrb();
     }

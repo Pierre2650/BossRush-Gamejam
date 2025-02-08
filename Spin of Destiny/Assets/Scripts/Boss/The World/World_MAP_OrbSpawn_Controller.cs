@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrbSpawn_Controller : MonoBehaviour
+public class Word_MAP_OrbSpawn_Controller : MonoBehaviour
 {
     private Rigidbody2D myRb;
 

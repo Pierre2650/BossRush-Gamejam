@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4062829995440176390}
   - component: {fileID: 4638520098402301226}
   m_Layer: 0
-  m_Name: TheWorldOrb
+  m_Name: World_MAP_Orb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

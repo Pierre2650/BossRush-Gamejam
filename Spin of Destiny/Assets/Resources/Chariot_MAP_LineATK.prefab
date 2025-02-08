@@ -134,7 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3967229892482931350}
   m_Layer: 0
-  m_Name: Chariot_MAP_LineAttack
+  m_Name: Chariot_MAP_LineATK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

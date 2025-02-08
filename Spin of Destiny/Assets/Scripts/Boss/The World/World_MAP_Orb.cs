@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldOrb : MonoBehaviour
+public class World_MAP_Orb : MonoBehaviour
 {
     private GameObject turnbased;
     private Turn_Controller Turn_Controller;
@@ -24,7 +24,7 @@ public class WorldOrb : MonoBehaviour
     {
         turnbased = GameObject.Find("TurnBase_Manager");
         Turn_Controller = turnbased.GetComponent<Turn_Controller>();
-        miniOrbsPrefab = (GameObject)Resources.Load("orbSpawn", typeof(GameObject));
+        miniOrbsPrefab = (GameObject)Resources.Load("World_MAP_orbSpawn", typeof(GameObject));
     }
 
     // Update is called once per frame

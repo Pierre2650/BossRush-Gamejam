@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Chariot_MAP_Line_Controller : MonoBehaviour
 {
+    [Header("To Init")]
+    private SpriteRenderer mySprR;
+
+
     [Header("Player")]
     public GameObject player;
 
@@ -23,27 +28,29 @@ public class Chariot_MAP_Line_Controller : MonoBehaviour
 
     [Header("Charge")]
     private GameObject chargePrefab;
+    public GameObject charge;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        mySprR = GetComponent<SpriteRenderer>();
         chargePrefab = (GameObject)Resources.Load("Chariot_MAP_Charge", typeof(GameObject));
-        
+
+        startCharge();
+
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void startCharge()
     {
+        mySprR.enabled = true; 
+
+        setDirection();
+
+        StartCoroutine(stretch());
 
 
-
-        /*if (Input.GetKeyDown(KeyCode.Z)) {
-
-            setDirection();
-
-            StartCoroutine(stretch());
-        }*/
-        
     }
 
     private void setDirection()
@@ -59,7 +66,7 @@ public class Chariot_MAP_Line_Controller : MonoBehaviour
                 startSize = new Vector2(-1, 5);
                 endSize = new Vector2(39, 5);
 
-                stretchDur = 0.5f;
+                stretchDur = 0.3f;
 
                 break;
             case 1:
@@ -69,7 +76,7 @@ public class Chariot_MAP_Line_Controller : MonoBehaviour
                 startSize = new Vector2(1, 5);
                 endSize = new Vector2(-39, 5);
 
-                stretchDur = 0.5f;
+                stretchDur = 0.3f;
 
                 break;
             case 2:
@@ -82,7 +89,7 @@ public class Chariot_MAP_Line_Controller : MonoBehaviour
                 startSize = new Vector2(5, 1);
                 endSize = new Vector2(5, 23);
 
-                stretchDur = 0.3f;
+                stretchDur = 0.2f;
 
                 break;
             case 3:
@@ -95,14 +102,14 @@ public class Chariot_MAP_Line_Controller : MonoBehaviour
                 startSize = new Vector2(5, -1);
                 endSize = new Vector2(5, -23);
 
-                stretchDur = 0.3f;
+                stretchDur = 0.2f;
 
                 break;
         }
     
     }
 
-    public IEnumerator stretch()
+    private IEnumerator stretch()
     {
         float percetageDur;
 
@@ -123,7 +130,29 @@ public class Chariot_MAP_Line_Controller : MonoBehaviour
         }
 
 
-        yield return new WaitForSeconds(0.5f);
+
+        yield return new WaitForSeconds(0.25f);
+
+
+        float temp = 1;
+
+        mySprR.enabled = false;
+
+        yield return new WaitForSeconds(temp/4);
+
+        mySprR.enabled = true;
+
+        yield return new WaitForSeconds(temp/4);
+
+        mySprR.enabled = false;
+
+        yield return new WaitForSeconds(temp / 4);
+
+        mySprR.enabled = true;
+
+        yield return new WaitForSeconds(temp / 4);
+
+        mySprR.enabled = false;
 
         spawnCharge();
 
@@ -148,9 +177,10 @@ public class Chariot_MAP_Line_Controller : MonoBehaviour
         }
         
 
-        GameObject temp = Instantiate(chargePrefab, tempPos, transform.rotation, transform.parent.transform.parent);
-        Chariot_MAP_Charge_Controller tempController = temp.GetComponent<Chariot_MAP_Charge_Controller>();
+        charge = Instantiate(chargePrefab, tempPos, transform.rotation, transform.parent.transform.parent);
+        Chariot_MAP_Charge_Controller tempController = charge.GetComponent<Chariot_MAP_Charge_Controller>();
         tempController.direction = dir;
+        tempController.Line = transform.parent.gameObject;
 
 
     }

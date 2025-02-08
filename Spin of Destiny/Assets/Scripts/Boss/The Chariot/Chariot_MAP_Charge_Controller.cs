@@ -8,6 +8,9 @@ public class Chariot_MAP_Charge_Controller : MonoBehaviour
     private Rigidbody2D myRb;
 
 
+    [Header("Line")]
+    public GameObject Line;
+
 
     [Header("Mouvement")]
     public char direction = 'L';
@@ -61,8 +64,9 @@ public class Chariot_MAP_Charge_Controller : MonoBehaviour
     void Update()
     {
         toDestroyElapsedT += Time.deltaTime;
-        if (toDestroyElapsedT > 3f )
+        if (toDestroyElapsedT > 2f )
         {
+            Destroy(Line);
             Destroy(this.gameObject);
         }
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1809488679175430190}
   - component: {fileID: 2747505562817748019}
   m_Layer: 0
-  m_Name: orbSpawn
+  m_Name: World_MAP_orbSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
