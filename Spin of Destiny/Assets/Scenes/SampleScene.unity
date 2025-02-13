@@ -7654,7 +7654,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationDur: 2.5
-  rotationAcceleration: 2
   curve:
     serializedVersion: 2
     m_Curve:
@@ -7679,6 +7678,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  rotationAcceleration: 1
+  changeSpeedDur: 2.5
   orbs:
   - {fileID: 1258676839}
   - {fileID: 754847448}
@@ -7688,6 +7689,9 @@ MonoBehaviour:
   - {fileID: 1562539638}
   - {fileID: 865650913}
   - {fileID: 1898830492}
+  orbsMoveDistance: 2
+  orbsMoveSpeed: 1
+  worldConroller: {fileID: 935546745}
 --- !u!1 &285506787
 GameObject:
   m_ObjectHideFlags: 0
@@ -8375,7 +8379,7 @@ Transform:
   m_GameObject: {fileID: 566783358}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.21, y: -5.91, z: 0}
+  m_LocalPosition: {x: -1.62, y: 0.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8629,8 +8633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2255dba62251f10448c30495ef11e635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDur: 0
-  moveAcceleration: 2
   curve:
     serializedVersion: 2
     m_Curve:
@@ -8655,6 +8657,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  dadController: {fileID: 181075134}
 --- !u!1 &773965288
 GameObject:
   m_ObjectHideFlags: 0
@@ -8990,8 +8993,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2255dba62251f10448c30495ef11e635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDur: 0
-  moveAcceleration: 2
   curve:
     serializedVersion: 2
     m_Curve:
@@ -9016,6 +9017,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  dadController: {fileID: 181075134}
 --- !u!1 &895368941
 GameObject:
   m_ObjectHideFlags: 0
@@ -9278,7 +9280,7 @@ Transform:
   m_GameObject: {fileID: 935546737}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.38, y: -3.05, z: 0}
+  m_LocalPosition: {x: -1.38, y: 6.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9422,7 +9424,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.25, y: 0}
+  m_Offset: {x: 0, y: 1.07}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5146732, y: 0.13043001}
@@ -9455,12 +9457,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935546737}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da855ce7829041c46a9b0618dc484746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  isAttacking: 0
+  circleOrbs: {fileID: 181075132}
 --- !u!1 &935557434
 GameObject:
   m_ObjectHideFlags: 0
@@ -9682,8 +9686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2255dba62251f10448c30495ef11e635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDur: 0
-  moveAcceleration: 2
   curve:
     serializedVersion: 2
     m_Curve:
@@ -9708,6 +9710,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  dadController: {fileID: 181075134}
 --- !u!1 &1140385744
 GameObject:
   m_ObjectHideFlags: 0
@@ -10279,8 +10282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2255dba62251f10448c30495ef11e635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDur: 0
-  moveAcceleration: 2
   curve:
     serializedVersion: 2
     m_Curve:
@@ -10305,6 +10306,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  dadController: {fileID: 181075134}
 --- !u!1 &1366091101
 GameObject:
   m_ObjectHideFlags: 0
@@ -10488,8 +10490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2255dba62251f10448c30495ef11e635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDur: 0
-  moveAcceleration: 2
   curve:
     serializedVersion: 2
     m_Curve:
@@ -10514,6 +10514,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  dadController: {fileID: 181075134}
 --- !u!1 &1660657882
 GameObject:
   m_ObjectHideFlags: 0
@@ -10650,8 +10651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2255dba62251f10448c30495ef11e635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDur: 0
-  moveAcceleration: 2
   curve:
     serializedVersion: 2
     m_Curve:
@@ -10676,6 +10675,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  dadController: {fileID: 181075134}
 --- !u!1 &1761312930
 GameObject:
   m_ObjectHideFlags: 0
@@ -12630,8 +12630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2255dba62251f10448c30495ef11e635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDur: 0
-  moveAcceleration: 2
   curve:
     serializedVersion: 2
     m_Curve:
@@ -12656,6 +12654,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  dadController: {fileID: 181075134}
 --- !u!1 &1926081989
 GameObject:
   m_ObjectHideFlags: 0
@@ -12792,8 +12791,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2255dba62251f10448c30495ef11e635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDur: 0
-  moveAcceleration: 2
   curve:
     serializedVersion: 2
     m_Curve:
@@ -12818,6 +12815,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  dadController: {fileID: 181075134}
 --- !u!1 &2037122392
 GameObject:
   m_ObjectHideFlags: 0

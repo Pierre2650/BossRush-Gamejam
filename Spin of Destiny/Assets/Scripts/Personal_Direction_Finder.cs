@@ -5,13 +5,13 @@ using UnityEngine;
 public class Personal_Direction_Finder
 {
 
-    private Vector2 selfRef, target;
+    public Vector2 selfRef;
+    public Vector2 target;
     private float precision;
 
-    public Personal_Direction_Finder(Vector2 aSelfRef, Vector2 aTarget , float aPrecision)
+    public Personal_Direction_Finder(Vector2 aSelfRef, float aPrecision)
     {
         selfRef = aSelfRef;
-        target = aTarget;
         precision = aPrecision;
 
     }

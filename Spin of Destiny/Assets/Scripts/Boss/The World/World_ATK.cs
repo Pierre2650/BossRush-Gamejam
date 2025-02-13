@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class World_ATK : MonoBehaviour
@@ -29,7 +30,26 @@ public class World_ATK : MonoBehaviour
 
 
     [Header("ATK")]
-    private bool isAttacking = true;
+    public bool isAttacking = false;
+    public GameObject circleOrbs;
+    private World_ATK_Circle_Orbs_Controller circleOrbsController;
+    
+
+    private float atkIntervalElased = 4f;
+    private float atkInterval = 3f;
+
+    private bool switchMouv = false;
+    private int nbATK = 2;
+
+    //Attack Phase
+    private int phase = 1;
+
+    [Header("MegaOrb")]
+    //ATK phase 3
+    private GameObject MegaOrbPrefab;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,13 +57,23 @@ public class World_ATK : MonoBehaviour
         mainController = GetComponent<Enemy_Controller>();
         player = mainController.thePlayer;
 
-        stateMachine();
+        MegaOrbPrefab = (GameObject)Resources.Load("World_ATK_MegaOrb", typeof(GameObject));
+
+        spawnPrefab();
+
+        StartCoroutine(waitToJump());
+    }
+
+
+    private void spawnPrefab()
+    {
+        circleOrbsController = circleOrbs.GetComponent<World_ATK_Circle_Orbs_Controller>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(this.transform.position, player.transform.position) > maxD && isAttacking)
+        if (Vector3.Distance(this.transform.position, player.transform.position) > maxD && phase == 1)
         {
             P2 = player.transform.position;
         }
@@ -55,6 +85,89 @@ public class World_ATK : MonoBehaviour
 
         }
 
+        if (isAttacking)
+        {
+            
+             atkIntervalElased += Time.deltaTime;
+            
+
+            if (atkIntervalElased > atkInterval)
+            {
+
+
+                if (nbATK == 0)
+                {
+                    isAttacking = false;
+                    StartCoroutine(attackPhase2());
+                    //finish attack
+                }
+                else {
+
+                    attackPhase1();
+
+                    atkIntervalElased = 0f;
+                    nbATK--;
+
+                }
+
+
+            }
+
+        }
+
+
+
+    }
+
+    private void attackPhase1()
+    {
+
+        if (switchMouv)
+        {
+            circleOrbsController.approachAllOrbs(1);
+            switchMouv = !switchMouv;
+
+
+        }
+
+        else
+        {
+            circleOrbsController.moveAwayAllOrbs(1);
+            switchMouv = !switchMouv;
+        }
+
+    }
+
+    private IEnumerator attackPhase2()
+    {
+        int nbMoveTimes = 2;
+
+        circleOrbsController.orbsMoveDistance = 2.5f;
+        circleOrbsController.rotationAcceleration = 2.5f;
+
+        yield return new WaitForSeconds(2f);
+
+        circleOrbsController.moveAwayAllOrbs(nbMoveTimes);
+        StartCoroutine(reset(nbMoveTimes));
+
+    }
+
+    private IEnumerator reset(int nbMoveTimes)
+    {
+        //end attack phase 2
+        yield return new WaitForSeconds(5f);
+        circleOrbsController.approachAllOrbs(nbMoveTimes);
+
+        yield return new WaitForSeconds(3f);
+        circleOrbsController.orbsMoveDistance = 2f;
+        circleOrbsController.rotationAcceleration = 1f;
+
+        yield return new WaitForSeconds(1f);
+
+        //go to spawn start phase 3
+        phase = 3;
+
+        StartCoroutine(waitToJump());
 
 
     }
@@ -74,51 +187,56 @@ public class World_ATK : MonoBehaviour
             goJump = false;
             t = 0f;
 
-            if (isAttacking)
+            if (phase == 1)
             {
                 nJumps--;
-                //showAttack();
+                StartCoroutine(circleOrbsController.showOrbs());
             }
-            else
-            {
-                StartCoroutine(waitOnSpawn());
 
+            if (phase == 3) {
+                circleOrbsController.allOrbsToCenter();
+                StartCoroutine(waitToMegaOrb());
+                phase = 0;
             }
+           
         }
 
     }
 
-    private void stateMachine()
-    {
-        if (nJumps == 0)
-        {
-            isAttacking = false;
-
-        }
-
-        StartCoroutine(waitToJump());
-    }
+   
     private IEnumerator waitToJump()
     {
         yield return new WaitForSeconds(0.5f);
 
         P0 = transform.position;
-        P1 = new Vector3(P2.x, 12f);
-
-        if (!isAttacking)
+    
+        if (phase == 3)
         {
             P2 = startPos;
+
         }
 
+        P1 = new Vector3(P2.x, 12f);
 
         goJump = true;
     }
 
-    private IEnumerator waitOnSpawn()
+    private IEnumerator waitToMegaOrb()
     {
-        yield return new WaitForSeconds(2f);
-        isAttacking = true;
-        nJumps = 1;
-        stateMachine();
+        yield return new WaitForSeconds(1.1f);
+
+        Vector2 spawnPos = new Vector2(transform.position.x, transform.position.y + 1f);
+
+        GameObject temp = Instantiate(MegaOrbPrefab, spawnPos, transform.rotation,transform.parent);
+        World_ATK_MegaOrb tempController = temp.GetComponent<World_ATK_MegaOrb>();
+        tempController.player = player;
+        tempController.headCOntroller = this;
+
+    }
+
+
+    public void restartStateMachine()
+    {
+
     }
 }

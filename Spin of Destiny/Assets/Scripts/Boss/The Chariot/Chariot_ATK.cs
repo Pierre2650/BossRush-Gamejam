@@ -19,7 +19,10 @@ public class Chariot_ATK: Tarot_Controllers
 
     [Header("ChargeAttack")]
     private float chargeSpeed = 40f;
+
+    private Personal_Direction_Finder dirFinder;
     private Vector2 chargeDirection;
+
     private bool startStop = false;
     private float stopElapsedT;
     private float chargeStopDuration = 0.1f;
@@ -47,6 +50,8 @@ public class Chariot_ATK: Tarot_Controllers
         myRb = GetComponent<Rigidbody2D>();
         mainController = GetComponent<Enemy_Controller>();
         generateAim();
+
+        dirFinder = new Personal_Direction_Finder(transform.position, 0.01f);
 
         safeZone = transform.localPosition;
 
@@ -77,7 +82,11 @@ public class Chariot_ATK: Tarot_Controllers
             nCharges--;
 
             isCharging = true;
-            findChargeDirection();
+
+            dirFinder.selfRef = transform.position;
+            dirFinder.target = targetPos;
+
+            chargeDirection = dirFinder.findDirToTarget();
         }
 
 
@@ -192,92 +201,6 @@ public class Chariot_ATK: Tarot_Controllers
         nCharges = 3;
 
     }
-
-    private void findChargeDirection()
-    {
-        /*calculate the nearest direction to the Boss,
-         * 1. take current Player position
-         * 2. add a cos sin  vector from the possible direction to the player position
-         * 3. compare the distance from this new vector to the Boss , to the distance from the current "nearest" cos sin  vector to the Boss
-         */
-
-
-
-        Vector2 posToTest, currentNpos;
-
-        //Optimized Version 
-        //  divide pi cirlcle on 4 
-        //  find where section we are
-        //  only find the neares position in this section
-
-        float[] startEnd = findPISection();
-
-
-        for (float i = startEnd[0]; i < startEnd[1]; i = i + 0.01f)
-        {
-            posToTest = new Vector2(transform.position.x + Mathf.Cos(i), transform.position.y + Mathf.Sin(i));
-            currentNpos = new Vector2(transform.position.x + chargeDirection.x, transform.position.y + chargeDirection.y);
-
-
-            if (Vector2.Distance(posToTest, targetPos) < Vector2.Distance(currentNpos, targetPos))
-            {
-                chargeDirection = new Vector2(Mathf.Cos(i), Mathf.Sin(i));
-            }
-        }
-
-
-
-
-
-    }
-
-    private float[] findPISection()
-    {
-        float[] startEnd = new float[2];
-
-
-        if (targetPos.x > transform.position.x && targetPos.y > transform.position.y)
-        {
-            // Debug.Log("cross hair on X Positive, Y Positive");
-
-            startEnd[0] = 0;
-            startEnd[1] = (Mathf.PI / 2);
-
-        }
-        else if (targetPos.x < transform.position.x && targetPos.y > transform.position.y)
-        {
-            // Debug.Log("cross hair on X Negative, Y Positive");
-
-            startEnd[0] = (Mathf.PI / 2);
-            startEnd[1] = (Mathf.PI);
-        }
-        else if (targetPos.x < transform.position.x && targetPos.y < transform.position.y)
-        {
-            // Debug.Log("cross hair on X Negative, Y Negative");
-            startEnd[0] = (Mathf.PI);
-            startEnd[1] = ((3 * Mathf.PI) / 2);
-        }
-        else if (targetPos.x > transform.position.x && targetPos.y < transform.position.y)
-        {
-            //Debug.Log("cross hair on X Positive, Y Negative");
-
-            startEnd[0] = ((3 * Mathf.PI) / 2);
-            startEnd[1] = (Mathf.PI * 2);
-
-        }
-        else
-        {
-            // Debug.Log("Not in PI cercle?");
-
-            startEnd[0] = 0;
-            startEnd[1] = (Mathf.PI * 2);
-
-        }
-
-        return startEnd;
-
-    }
-
 
     
 
