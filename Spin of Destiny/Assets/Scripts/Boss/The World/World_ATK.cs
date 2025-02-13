@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class World_ATK : MonoBehaviour
+public class World_ATK : Tarot_Controllers
 {
 
     private Vector2 startPos;
@@ -31,15 +31,15 @@ public class World_ATK : MonoBehaviour
 
     [Header("ATK")]
     public bool isAttacking = false;
-    public GameObject circleOrbs;
+    private GameObject circleOrbsPrefab;
     private World_ATK_Circle_Orbs_Controller circleOrbsController;
     
-
     private float atkIntervalElased = 4f;
     private float atkInterval = 3f;
 
     private bool switchMouv = false;
-    private int nbATK = 2;
+    //Multiple nb of atks by 2
+    private int nbATK = 6;
 
     //Attack Phase
     private int phase = 1;
@@ -57,17 +57,21 @@ public class World_ATK : MonoBehaviour
         mainController = GetComponent<Enemy_Controller>();
         player = mainController.thePlayer;
 
+        circleOrbsPrefab = (GameObject)Resources.Load("Word_ATK_CircleOrbs", typeof(GameObject));
         MegaOrbPrefab = (GameObject)Resources.Load("World_ATK_MegaOrb", typeof(GameObject));
 
         spawnPrefab();
-
         StartCoroutine(waitToJump());
     }
 
 
     private void spawnPrefab()
     {
-        circleOrbsController = circleOrbs.GetComponent<World_ATK_Circle_Orbs_Controller>();
+        Vector2 prefabStartPos = new Vector2 (transform.position.x, transform.position.y + 0.9f);
+
+        GameObject temp = Instantiate(circleOrbsPrefab, prefabStartPos, transform.rotation, transform);
+        circleOrbsController = temp.GetComponent<World_ATK_Circle_Orbs_Controller>();
+        circleOrbsController.worldConroller = this;
     }
 
     // Update is called once per frame
@@ -142,8 +146,10 @@ public class World_ATK : MonoBehaviour
     {
         int nbMoveTimes = 2;
 
-        circleOrbsController.orbsMoveDistance = 2.5f;
-        circleOrbsController.rotationAcceleration = 2.5f;
+        //Accelerate mouv roation and change mouv distance step
+        circleOrbsController.orbsMoveDistance = 2.5f;;
+
+        StartCoroutine(circleOrbsController.changeRotationSpeed(2.5f));
 
         yield return new WaitForSeconds(2f);
 
@@ -155,12 +161,14 @@ public class World_ATK : MonoBehaviour
     private IEnumerator reset(int nbMoveTimes)
     {
         //end attack phase 2
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
         circleOrbsController.approachAllOrbs(nbMoveTimes);
 
         yield return new WaitForSeconds(3f);
-        circleOrbsController.orbsMoveDistance = 2f;
-        circleOrbsController.rotationAcceleration = 1f;
+
+        //Reset orbs Speed and orb mouv distance
+        circleOrbsController.orbsMoveDistance = 2.2f;
+        StartCoroutine(circleOrbsController.changeRotationSpeed(1f));
 
         yield return new WaitForSeconds(1f);
 
@@ -230,13 +238,16 @@ public class World_ATK : MonoBehaviour
         GameObject temp = Instantiate(MegaOrbPrefab, spawnPos, transform.rotation,transform.parent);
         World_ATK_MegaOrb tempController = temp.GetComponent<World_ATK_MegaOrb>();
         tempController.player = player;
-        tempController.headCOntroller = this;
+        tempController.headController = this;
 
     }
 
 
     public void restartStateMachine()
     {
+       phase = 1;
+        nbATK = 6;
+       StartCoroutine( waitToJump());
 
     }
 }

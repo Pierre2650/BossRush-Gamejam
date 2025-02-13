@@ -9,13 +9,13 @@ public class World_ATK_Circle_Orbs_Controller : MonoBehaviour
 
     [Header("Rotation")]
     private float rotationElapsedT = 0f;
-    public float rotationDur = 2.5f;
+    private float rotationDur = 2.5f;
     public AnimationCurve curve;
 
     [Header("Rotation Speed")]
     public float rotationAcceleration = 1;
     private float changeSpeedElapsedT = 0f;
-    public float changeSpeedDur = 0.5f;
+    public float changeSpeedDur = 0.25f;
 
 
     [Header("Orbs")]
@@ -25,7 +25,7 @@ public class World_ATK_Circle_Orbs_Controller : MonoBehaviour
     private float showObsElapsedT = 0f;
     private float showObsIntervalDur = 0.1f;
        
-    public float orbsMoveDistance = 2;
+    public float orbsMoveDistance = 2.2f;
     public float orbsMoveSpeed = 1;
 
     [Header("Head Controller")]
@@ -39,7 +39,6 @@ public class World_ATK_Circle_Orbs_Controller : MonoBehaviour
     void Start()
     {
         StartCoroutine(rotate());
-        //StartCoroutine(showOrbs());
     }
 
     // Update is called once per frame
@@ -113,8 +112,7 @@ public class World_ATK_Circle_Orbs_Controller : MonoBehaviour
         World_ATK_Circle_Single_Orb_Controller tempController;
 
         foreach (GameObject orb in orbs) {
-            // orb.transform.localPosition = orb.transform.localPosition * 2;
-
+  
             tempController = orb.GetComponent<World_ATK_Circle_Single_Orb_Controller>();
             StartCoroutine(tempController.moveAwayAOrb(nbTimes));
 
@@ -128,7 +126,7 @@ public class World_ATK_Circle_Orbs_Controller : MonoBehaviour
 
         foreach (GameObject orb in orbs)
         {
-            // orb.transform.localPosition = orb.transform.localPosition * 2;
+  
 
             tempController = orb.GetComponent<World_ATK_Circle_Single_Orb_Controller>();
             StartCoroutine(tempController.approachAOrb(nbTimes));
@@ -143,7 +141,7 @@ public class World_ATK_Circle_Orbs_Controller : MonoBehaviour
 
         foreach (GameObject orb in orbs)
         {
-            // orb.transform.localPosition = orb.transform.localPosition * 2;
+
 
             tempController = orb.GetComponent<World_ATK_Circle_Single_Orb_Controller>();
             StartCoroutine(tempController.goToCenter());

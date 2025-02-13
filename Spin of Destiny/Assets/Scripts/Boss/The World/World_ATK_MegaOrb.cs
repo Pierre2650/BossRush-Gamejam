@@ -37,7 +37,7 @@ public class World_ATK_MegaOrb : MonoBehaviour
 
 
     [Header("Main Controller")]
-    public World_ATK headCOntroller;
+    public World_ATK headController;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +45,6 @@ public class World_ATK_MegaOrb : MonoBehaviour
         myLR = GetComponent<LineRenderer>();
         myRB = GetComponent<Rigidbody2D>();
 
-        dirFinder = new Personal_Direction_Finder(transform.position, 0.05f);
 
         StartCoroutine(start());
     }
@@ -157,7 +156,7 @@ public class World_ATK_MegaOrb : MonoBehaviour
     private IEnumerator moveUp()
     {
         float percetageDur, duration, elapsedT;
-        duration = 1f;
+        duration = 0.5f;
         elapsedT = 0f;
 
         Vector2 start = transform.localPosition;
@@ -177,7 +176,7 @@ public class World_ATK_MegaOrb : MonoBehaviour
 
         }
 
-
+        dirFinder = new Personal_Direction_Finder(transform.position, 0.05f);
         isAiming = true;
         StartCoroutine(waitToThrow());
 
@@ -253,7 +252,7 @@ public class World_ATK_MegaOrb : MonoBehaviour
     private IEnumerator toDestroy()
     {
         yield return new WaitForSeconds(2f);
-        headCOntroller.restartStateMachine();
+        headController.restartStateMachine();
         Destroy(this.gameObject);
     }
 
