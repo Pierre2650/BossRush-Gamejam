@@ -9,7 +9,7 @@ public class Tower_MAP : Tarot_Controllers
     private GameObject Grid;
     private GameObject newMap;
     private Tilemap towerMap;
-    private int maxX = 16, maxY = 9;
+    //private int maxX = 16, maxY = 9;
 
 
     [Header("Obstacle Generation")]

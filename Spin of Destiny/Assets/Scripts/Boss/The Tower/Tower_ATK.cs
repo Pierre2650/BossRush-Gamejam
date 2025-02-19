@@ -85,9 +85,6 @@ public class Tower_ATK : Tarot_Controllers
 
         nTowers--;
 
-        Debug.Log("temp =  " +temp);
-
-
         GameObject tempShadow = Instantiate(towerPrefab, spawnPos[temp], transform.rotation, transform.parent);
         Single_Tower_Controller tempController = tempShadow.GetComponent<Single_Tower_Controller>();
         tempController.player = player;
