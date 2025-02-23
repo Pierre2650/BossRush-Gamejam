@@ -1516,7 +1516,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_37
+      name: MiniStar_0
       rect:
         serializedVersion: 2
         x: 417
@@ -1537,7 +1537,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_38
+      name: MiniStar_1
       rect:
         serializedVersion: 2
         x: 432
@@ -1558,7 +1558,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_39
+      name: MiniStar_2
       rect:
         serializedVersion: 2
         x: 450
@@ -1705,90 +1705,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_57
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 144
-        width: 17
-        height: 33
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ebcd40fa1158840d0800000000000000
-      internalID: -3438352004500104002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_58
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 145
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 61d43cf3bfed389e0800000000000000
-      internalID: -1620206270235325162
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_59
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 159
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9fa669b2bd76affa0800000000000000
-      internalID: -5766182181867721991
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_60
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 159
-        width: 16
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 44b28e909eb278ca0800000000000000
-      internalID: -6014790497436423356
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Purple Effect and Bullet 16x16_61
       rect:
         serializedVersion: 2
@@ -1894,27 +1810,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_66
-      rect:
-        serializedVersion: 2
-        x: 447
-        y: 133
-        width: 18
-        height: 44
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a07c7f8c1d1b7a730800000000000000
-      internalID: 4010369507774678794
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Purple Effect and Bullet 16x16_71
       rect:
         serializedVersion: 2
@@ -2015,69 +1910,6 @@ TextureImporter:
       bones: []
       spriteID: 4e3878ad22231a160800000000000000
       internalID: 7034959218206016484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_79
-      rect:
-        serializedVersion: 2
-        x: 258
-        y: 145
-        width: 11
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4d85af7961754eb80800000000000000
-      internalID: -8366466453196875564
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_80
-      rect:
-        serializedVersion: 2
-        x: 266
-        y: 151
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: adf017c3db4130e80800000000000000
-      internalID: -8213698492398235686
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_81
-      rect:
-        serializedVersion: 2
-        x: 276
-        y: 146
-        width: 11
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4aa2e43fada5e0d50800000000000000
-      internalID: 6705396791632603812
       vertices: []
       indices: 
       edges: []
@@ -2272,27 +2104,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_98
-      rect:
-        serializedVersion: 2
-        x: 234
-        y: 143
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0d4d282a00bb7f8a0800000000000000
-      internalID: -6271338344689249072
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Purple Effect and Bullet 16x16_99
       rect:
         serializedVersion: 2
@@ -2356,7 +2167,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_102
+      name: STAR_1
       rect:
         serializedVersion: 2
         x: 400
@@ -2482,7 +2293,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_108
+      name: STAR_0
       rect:
         serializedVersion: 2
         x: 386
@@ -2503,7 +2314,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_109
+      name: STAR_2
       rect:
         serializedVersion: 2
         x: 420
@@ -2939,27 +2750,6 @@ TextureImporter:
       bones: []
       spriteID: ebaeae689db938bf0800000000000000
       internalID: -323243389666792770
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_130
-      rect:
-        serializedVersion: 2
-        x: 496
-        y: 101
-        width: 16
-        height: 27
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ad33c77e7651d42c0800000000000000
-      internalID: -4445873721135320102
       vertices: []
       indices: 
       edges: []
@@ -3406,132 +3196,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_152
-      rect:
-        serializedVersion: 2
-        x: 481
-        y: 81
-        width: 14
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f303ba6884838ef40800000000000000
-      internalID: 5757914007741345855
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_153
-      rect:
-        serializedVersion: 2
-        x: 511
-        y: 79
-        width: 18
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4f5d421f7f15c40d0800000000000000
-      internalID: -3437282290246035980
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_154
-      rect:
-        serializedVersion: 2
-        x: 516
-        y: 100
-        width: 11
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1c3d73a23412bc460800000000000000
-      internalID: 7262935396419883969
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_155
-      rect:
-        serializedVersion: 2
-        x: 530
-        y: 97
-        width: 13
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 430dee61c506ca8b0800000000000000
-      internalID: -5139627126098571212
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_156
-      rect:
-        serializedVersion: 2
-        x: 546
-        y: 97
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a869e73649c7107c0800000000000000
-      internalID: -4106864408418937206
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_157
-      rect:
-        serializedVersion: 2
-        x: 562
-        y: 99
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3f7069daacce42e90800000000000000
-      internalID: -7051250761315514381
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Purple Effect and Bullet 16x16_158
       rect:
         serializedVersion: 2
@@ -3742,69 +3406,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_170
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 79
-        width: 17
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9ec26cf0ba2ff0740800000000000000
-      internalID: 5120578117861518569
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_171
-      rect:
-        serializedVersion: 2
-        x: 337
-        y: 80
-        width: 15
-        height: 15
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a29363ac783d12a40800000000000000
-      internalID: 5341783213204715818
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_172
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 70
-        width: 17
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ff49dd92d769058b0800000000000000
-      internalID: -5165463308276493057
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Purple Effect and Bullet 16x16_173
       rect:
         serializedVersion: 2
@@ -3884,90 +3485,6 @@ TextureImporter:
       bones: []
       spriteID: 72e73603c5170bbc0800000000000000
       internalID: -3769388247346348505
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_177
-      rect:
-        serializedVersion: 2
-        x: 496
-        y: 80
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 08eb5e62e93074290800000000000000
-      internalID: -7906346643033309568
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_178
-      rect:
-        serializedVersion: 2
-        x: 529
-        y: 81
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 75bd1b2d3fc99aae0800000000000000
-      internalID: -1537525226744456361
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_179
-      rect:
-        serializedVersion: 2
-        x: 543
-        y: 79
-        width: 18
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d4564eb078e25d320800000000000000
-      internalID: 2582021118921827661
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_180
-      rect:
-        serializedVersion: 2
-        x: 560
-        y: 69
-        width: 16
-        height: 27
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bd3616425e2e70c30800000000000000
-      internalID: 4325675440898401243
       vertices: []
       indices: 
       edges: []
@@ -4162,90 +3679,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_195
-      rect:
-        serializedVersion: 2
-        x: 304
-        y: 63
-        width: 17
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 24176b8e661c7dcd0800000000000000
-      internalID: -2533343617637519038
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_196
-      rect:
-        serializedVersion: 2
-        x: 321
-        y: 63
-        width: 15
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d13c4df124977e7f0800000000000000
-      internalID: -583364301812350179
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_197
-      rect:
-        serializedVersion: 2
-        x: 337
-        y: 68
-        width: 12
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a004ab6d5149ef6c0800000000000000
-      internalID: -4107682988597559286
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_198
-      rect:
-        serializedVersion: 2
-        x: 343
-        y: 73
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8b5b3b929ede1c3f0800000000000000
-      internalID: -882162466305100360
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Purple Effect and Bullet 16x16_199
       rect:
         serializedVersion: 2
@@ -4325,111 +3758,6 @@ TextureImporter:
       bones: []
       spriteID: 8fe9d0e2f7341ed00800000000000000
       internalID: 1000154805765512952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_203
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 64
-        width: 17
-        height: 15
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b7da737481b543ce0800000000000000
-      internalID: -1426415022137430661
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_204
-      rect:
-        serializedVersion: 2
-        x: 497
-        y: 64
-        width: 15
-        height: 15
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 97f58f8743ca2ad80800000000000000
-      internalID: -8240835026766766215
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_205
-      rect:
-        serializedVersion: 2
-        x: 515
-        y: 66
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 23a1284191b478ce0800000000000000
-      internalID: -1403070187812283854
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_206
-      rect:
-        serializedVersion: 2
-        x: 531
-        y: 66
-        width: 11
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3cba7a987297c21b0800000000000000
-      internalID: -5680031819300885565
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_207
-      rect:
-        serializedVersion: 2
-        x: 549
-        y: 68
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: de7f8cd36b7127f00800000000000000
-      internalID: 1112978129402001389
       vertices: []
       indices: 
       edges: []
@@ -4619,48 +3947,6 @@ TextureImporter:
       bones: []
       spriteID: a0fdc31e25cbe0350800000000000000
       internalID: 5984928018974170890
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_220
-      rect:
-        serializedVersion: 2
-        x: 305
-        y: 49
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3361a99e75841b5c0800000000000000
-      internalID: -4201497434941417933
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_221
-      rect:
-        serializedVersion: 2
-        x: 321
-        y: 49
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8d223c0e254f4dc10800000000000000
-      internalID: 2077553964920021720
       vertices: []
       indices: 
       edges: []
@@ -5165,90 +4451,6 @@ TextureImporter:
       bones: []
       spriteID: cbcf8b3f811b3b720800000000000000
       internalID: 2860824909036715196
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_246
-      rect:
-        serializedVersion: 2
-        x: 303
-        y: 32
-        width: 17
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 11fb018e117e0eb80800000000000000
-      internalID: -8367434043560509679
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_247
-      rect:
-        serializedVersion: 2
-        x: 319
-        y: 32
-        width: 17
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5d81aabdc5c8f7710800000000000000
-      internalID: 1693226315364833493
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_248
-      rect:
-        serializedVersion: 2
-        x: 335
-        y: 32
-        width: 17
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3df075159e18b55a0800000000000000
-      internalID: -6531483995478749229
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_249
-      rect:
-        serializedVersion: 2
-        x: 351
-        y: 27
-        width: 17
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 10bfe43337ad06d40800000000000000
-      internalID: 5575696527001582337
       vertices: []
       indices: 
       edges: []
@@ -5829,7 +5031,7 @@ TextureImporter:
         width: 10
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -5850,7 +5052,7 @@ TextureImporter:
         width: 10
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -5871,7 +5073,7 @@ TextureImporter:
         width: 11
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -5892,7 +5094,7 @@ TextureImporter:
         width: 14
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -5913,7 +5115,7 @@ TextureImporter:
         width: 11
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -5934,7 +5136,7 @@ TextureImporter:
         width: 11
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -5942,6 +5144,216 @@ TextureImporter:
       bones: []
       spriteID: 60cb52d447f354640b5a67524ade15ec
       internalID: -1289895426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: test_0
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 82
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad5173549e47fa42a64dde21c7c11ca
+      internalID: -664661606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: test_1
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 81
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f43baf0868ae4e4aa2e36e69280866a
+      internalID: -210781874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: test_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2a5f95f4a953c340ab7c96c7a774ccb
+      internalID: -291700321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: test_3
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 82
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 919842484c367e54e9c0b1da94af8763
+      internalID: 73913406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: test_4
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef90fbc40e375514da1619e8013e19f0
+      internalID: -431361001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: test_5
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 81
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07cc078328412d84195acea68fda33f5
+      internalID: 1942986023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mini_Stars_particle_0
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 144
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 559815378c388454ab3ebffe2ac82c58
+      internalID: 1489018449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mini_Stars_particle_1
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 144
+        width: 15
+        height: 16
+      alignment: 9
+      pivot: {x: 0.499999, y: 0.533329}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe568f0acbf95234dbc42ead7cf04b76
+      internalID: 1731674716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mini_Stars_particle_2
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 144
+        width: 15
+        height: 16
+      alignment: 9
+      pivot: {x: 0.49999797, y: 0.51428413}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 632ec88c4ff2aeb448e856c002a7a1ff
+      internalID: -8577874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mini_Stars_particle_3
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 144
+        width: 15
+        height: 16
+      alignment: 9
+      pivot: {x: 0.50507814, y: 0.50952244}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6abcf42e702d4c49bb6297f3074097a
+      internalID: 158852292
       vertices: []
       indices: 
       edges: []
@@ -5963,7 +5375,17 @@ TextureImporter:
       A_3: -2783852041731700387
       A_4: 2061047473
       A_5: -2022243102
+      MiniStar_0: -2886276588234504289
+      MiniStar_1: -5178580489646258133
+      MiniStar_2: 7383711884930542308
+      Mini_Stars_particle_0: 1731674716
+      Mini_Stars_particle_1: 1731674716
+      Mini_Stars_particle_2: -8577874
+      Mini_Stars_particle_3: 158852292
       Purple Effect and Bullet 16x16_97: -1349370602
+      STAR_0: -742778087786236747
+      STAR_1: -735108343921175016
+      STAR_2: 3293752677073872809
       Star_0: 4284138451081895533
       Star_1: -1519864993975375715
       StartCible_0: -1079268469
@@ -5978,6 +5400,12 @@ TextureImporter:
       loversAtk_5: -1289895426
       orbSpawn_0: 179376056702028132
       orbSpawn_1: -853300907
+      test_0: -664661606
+      test_1: -210781874
+      test_2: -291700321
+      test_3: 73913406
+      test_4: -431361001
+      test_5: 1942986023
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

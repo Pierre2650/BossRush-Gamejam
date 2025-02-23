@@ -48,25 +48,21 @@ public class Player_controller : MonoBehaviour
         { SceneManager.LoadScene("SampleScene"); }
 
 
-        
-    }
+        insideObstacleDebug();
 
-   
-
-
-    private void FixedUpdate()
-    {
         setlastMouvDir();
 
 
-        if (!mouvConstrained ) { 
-            
+        if (!mouvConstrained)
+        {
+
 
             if (!debugZone)
             {
                 mouvement();
             }
-            else {
+            else
+            {
 
                 moveFromforbiddenZone();
 
@@ -74,12 +70,14 @@ public class Player_controller : MonoBehaviour
         }
 
 
-        insideObstacleDebug();
+       
 
 
 
 
     }
+
+
 
     private void setlastMouvDir()
     {
@@ -99,22 +97,20 @@ public class Player_controller : MonoBehaviour
      
         // Box parameters
         Vector2 position = new Vector2(transform.position.x, transform.position.y + 0.2f);  // Center of the box
-        Vector2 size = new Vector2(0.3f, 0.45f); // Size of the box (width x height)
+        float size = 0.1f; // Size of the box (width x height)
 
 
-        Collider2D overlap = Physics2D.OverlapBox(position, size, 0f , LayerMask.GetMask("Obstacles"));
-
+        Collider2D overlap = Physics2D.OverlapCircle(position, size, LayerMask.GetMask("Obstacles"));
+        
      
         if (overlap && !debugZone ) {
+            Debug.Log(overlap);
 
+           myBxC.isTrigger = true;
+           debugZone = true;
             
-            myBxC.isTrigger = true;
-            debugZone = true;
-            
 
-        }
-
-        if (!overlap && debugZone ) 
+        }else if (!overlap && debugZone ) 
         {
             debugZone = false;
             myBxC.isTrigger = false;
@@ -208,12 +204,13 @@ public class Player_controller : MonoBehaviour
     void OnDrawGizmos()
     {
         // Box parameters
+        // Box parameters
         Vector2 position = new Vector2(transform.position.x, transform.position.y + 0.2f);  // Center of the box
-        Vector2 size = new Vector2(0.3f, 0.45f); // Size of the box (width x height)
+        float size = 0.1f; // Size of the box (width x height)
 
         // Draw the box using Gizmos
         Gizmos.color = Color.green;  // Color of the Gizmo
-        Gizmos.DrawWireCube(position, size);
+        Gizmos.DrawWireSphere(position, size);
     }
 
 

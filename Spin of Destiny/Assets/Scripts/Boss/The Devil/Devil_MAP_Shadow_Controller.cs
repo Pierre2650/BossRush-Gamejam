@@ -241,7 +241,7 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
         pullChain.Clear();
     }
 
-    private void destroyChain()
+    public void destroyChain()
     {
         chainHJController.destroyChain();
     }

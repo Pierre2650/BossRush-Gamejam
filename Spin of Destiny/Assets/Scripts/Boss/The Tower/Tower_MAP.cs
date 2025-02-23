@@ -41,6 +41,7 @@ public class Tower_MAP : Tarot_Controllers
 
         obstacle = Resources.Load<Tile>("obstacle");
 
+        mainController = GetComponent<Enemy_Controller>();
         player = mainController.thePlayer;
 
 
