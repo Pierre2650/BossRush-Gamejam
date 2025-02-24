@@ -52,19 +52,14 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
     {
         spawnDir = (player.transform.position - new Vector3(transform.position.x, transform.position.y - 0.46f)).normalized;
 
-
-        if (Input.GetKeyDown(KeyCode.Z) ){
-            //chainPlayer = true;
-           
-        }
-
-
         if (chainPlayer)
         {
             //check is arrived at last position
             if (Vector2.Distance(SpawnChainPos, player.transform.position) < 0.5f )
             {
                 index = pullChain.Count - 1;
+                Debug.Log("index inside update chainPLayer = "+ index);
+
                 if (index > 0)
                 {
                     dirToShadow = pullChain[index].GetComponent<Devil_Map_Single_Chain_Controller>().directionToPlayer * -1;
@@ -88,6 +83,9 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
             //check is arrived at last position
             if (Vector2.Distance(player.transform.position, transform.position) < 6.5f) {
 
+                //index = pullChain.Count - 1;
+
+                Debug.Log("index inside update attractPLayer = " + index);
 
                 //free Player
                 player.GetComponent<Player_controller>().freeMouvement();
@@ -217,13 +215,17 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
 
         if (changeChain)
         {
-           index--;
+            index--;
+            Debug.Log("index inside pullPLayer() = " + index);
+
 
             Devil_Map_Single_Chain_Controller tempController = pullChain[index].GetComponent<Devil_Map_Single_Chain_Controller>();
 
             dirToShadow = tempController.directionToPlayer * -1;
 
             changeChain = false;
+
+            
 
         }
 

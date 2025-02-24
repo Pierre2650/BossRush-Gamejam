@@ -10,19 +10,29 @@ public class Devil : IControllerFinder
         {
             case 'A':
                 boss.AddComponent<Devil_ATK>();
-                Devil_ATK temp = boss.GetComponent<Devil_ATK>();
-                Controllers.Add(temp);
+                Devil_ATK tempA = boss.GetComponent<Devil_ATK>();
+                Controllers.Add(tempA);
 
                 //temp.enabled = false;
                 break;
 
 
-            case 'B':
+           // case 'B':
 
-                break;
+             //   break;
 
 
             case 'M':
+                boss.AddComponent<Devil_MAP>();
+                Devil_MAP tempM = boss.GetComponent<Devil_MAP>();
+                Controllers.Add(tempM);
+
+                break;
+
+            default:
+                boss.AddComponent<Devil_MAP>();
+                Devil_MAP tempD = boss.GetComponent<Devil_MAP>();
+                Controllers.Add(tempD);
 
                 break;
 

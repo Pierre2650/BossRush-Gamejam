@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Star_ATK : MonoBehaviour
+public class Star_ATK : Tarot_Controllers
 {
     
     [Header("Boss Controller")]
     private Enemy_Controller mainController;
 
+    [Header("Bounce Walls")]
+    private GameObject grid;
+    private GameObject mapPrefab;
 
     private Vector2 startPos;
 
@@ -21,11 +24,18 @@ public class Star_ATK : MonoBehaviour
     private bool toSpawn = false;
 
     [Header("MainStar")]
-    public GameObject mainStarPrefab;
+    private GameObject mainStarPrefab;
     // Start is called before the first frame update
     void Start()
     {
         mainController = GetComponent<Enemy_Controller>();
+        grid = mainController.Grid;
+
+        mainStarPrefab = (GameObject)Resources.Load("Star_ATK_Main_Star", typeof(GameObject));
+        mapPrefab = (GameObject)Resources.Load("Star_ATK_Bounce_Walls", typeof(GameObject));
+
+        Instantiate(mapPrefab, grid.transform);
+
         startPos = transform.position;
         StartCoroutine(waitToAttack());
         
@@ -43,14 +53,23 @@ public class Star_ATK : MonoBehaviour
 
    private IEnumerator waitToAttack()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
+
+
+        spawnMainStar();
+
+
+        transform.gameObject.SetActive(false);
+
+    }
+
+
+    private void spawnMainStar()
+    {
         GameObject temp = Instantiate(mainStarPrefab, transform.position, transform.rotation, transform.parent);
         Star_ATK_Main_Star_Controller tempController = temp.GetComponent<Star_ATK_Main_Star_Controller>();
         tempController.theBoss = this.gameObject;
         tempController.player = mainController.thePlayer;
-
-
-        transform.gameObject.SetActive(false);
 
     }
 
@@ -60,7 +79,7 @@ public class Star_ATK : MonoBehaviour
     }
     private IEnumerator waitToJumpSpawn()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
 
         setControlPoints();
         toSpawn = true;
@@ -82,6 +101,7 @@ public class Star_ATK : MonoBehaviour
             
             t = 0f;
             toSpawn = false;
+            StartCoroutine(waitToAttack());
 
 
         }
@@ -92,6 +112,6 @@ public class Star_ATK : MonoBehaviour
     {
         P0 = transform.position;
         P2 = startPos;
-        P1 = new Vector3(P2.x, 11f);
+        P1 = new Vector3(P0.x, 11f);
     }
 }

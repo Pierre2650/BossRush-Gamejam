@@ -7,6 +7,7 @@ public class Enemy_Controller : MonoBehaviour
 
     public int Health = 100;
     public GameObject thePlayer;
+    public GameObject Grid;
 
 
 

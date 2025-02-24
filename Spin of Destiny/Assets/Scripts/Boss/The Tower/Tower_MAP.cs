@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Tower_MAP : Tarot_Controllers
 {
     [Header("Init")]
     private GameObject Grid;
-    private GameObject newMap;
+    private GameObject newMapPrefab;
     private Tilemap towerMap;
     //private int maxX = 16, maxY = 9;
 
@@ -32,16 +33,16 @@ public class Tower_MAP : Tarot_Controllers
     // Start is called before the first frame update
     void Start()
     {
-        //change by with tag
-        Grid = GameObject.Find("Grid");
+        mainController = GetComponent<Enemy_Controller>();
 
-        newMap =  (GameObject)Resources.Load("TowerMap", typeof(GameObject));
-        GameObject temp = Instantiate(newMap,Grid.transform);
+        Grid = mainController.Grid;
+        newMapPrefab =  (GameObject)Resources.Load("Tower_MAP_Map", typeof(GameObject));
+        GameObject temp = Instantiate(newMapPrefab,Grid.transform);
+        temp.layer = 7;
         towerMap = temp.GetComponent<Tilemap>();
 
         obstacle = Resources.Load<Tile>("obstacle");
-
-        mainController = GetComponent<Enemy_Controller>();
+        
         player = mainController.thePlayer;
 
 
@@ -94,7 +95,7 @@ public class Tower_MAP : Tarot_Controllers
 
             do { 
                 spawnPos = generateSpawnPos(spawnZone);
-                Debug.Log("zone = "+spawnZone+" Pos = "+spawnPos+"  Temp = "+temp);
+                //Debug.Log("zone = "+spawnZone+" Pos = "+spawnPos+"  Temp = "+temp);
                 temp++;
             }
             while (spawnPos == playerPos && temp < 200 && Vector3Int.Distance(lastObstPos, spawnPos) < 6);

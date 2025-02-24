@@ -196,6 +196,7 @@ public class Player_controller : MonoBehaviour
 
     private void  moveFromforbiddenZone()
     {
+        Debug.Log("Moving form forbidden zone");
         myRb.velocity = lastMouvDir;
 
     }

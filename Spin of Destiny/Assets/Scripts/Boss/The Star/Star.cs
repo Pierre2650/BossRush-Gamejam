@@ -9,20 +9,30 @@ public class Star : IControllerFinder
         switch (t)
         {
             case 'A':
-                
-                break;
-
-
-            case 'B':
+                boss.AddComponent<Star_ATK>();
+                Star_ATK tempA = boss.GetComponent<Star_ATK>();
+                Controllers.Add(tempA);
 
                 break;
+
+
+           // case 'B':
+
+            //    break;
 
 
             case 'M':
 
                 boss.AddComponent<Star_MAP>();
-                Star_MAP temp = boss.GetComponent<Star_MAP>();
-                Controllers.Add(temp);
+                Star_MAP tempM = boss.GetComponent<Star_MAP>();
+                Controllers.Add(tempM);
+
+                break;
+
+            default:
+                boss.AddComponent<Star_MAP>();
+                Star_MAP tempD = boss.GetComponent<Star_MAP>();
+                Controllers.Add(tempD);
 
                 break;
 

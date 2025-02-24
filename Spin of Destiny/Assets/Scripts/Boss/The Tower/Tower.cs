@@ -9,21 +9,33 @@ public class Tower : IControllerFinder
         switch (t)
         {
             case 'A':
-                
-                break;
-
-
-            case 'B':
+                boss.AddComponent<Tower_ATK>();
+                Tower_ATK tempA = boss.GetComponent<Tower_ATK>();
+                Controllers.Add(tempA);
 
                 break;
+
+
+           // case 'B':
+
+            //    break;
 
 
             case 'M':
                 boss.AddComponent<Tower_MAP>();
+                Tower_MAP tempM = boss.GetComponent<Tower_MAP>();
+                Controllers.Add(tempM);
+
+               // temp.enabled = false;
+
+                break;
+
+            default:
+
+                boss.AddComponent<Tower_MAP>();
                 Tower_MAP temp = boss.GetComponent<Tower_MAP>();
                 Controllers.Add(temp);
 
-               // temp.enabled = false;
 
                 break;
 

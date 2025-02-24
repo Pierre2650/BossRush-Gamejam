@@ -22,14 +22,15 @@ public class Chariot_ATK: Tarot_Controllers
 
     private Personal_Direction_Finder dirFinder;
     private Vector2 chargeDirection;
+    private bool isCharging = false;
+    private int nCharges = 3;
 
+
+    [Header("ChargeAttack")]
     private bool startStop = false;
     private float stopElapsedT;
     private float chargeStopDuration = 0.1f;
-    private bool isCharging = false;
-
-    private int  nCharges = 3;
-
+    
     [Header("Vulnerability")]
     private bool isVulnerable;
     private bool isWaiting = false;
@@ -90,11 +91,13 @@ public class Chariot_ATK: Tarot_Controllers
         }
 
 
+       
+
         if (isCharging) {
 
 
             //check is arrived at last position
-            if (Vector2.Distance(transform.position, aimLine.lastPosition) < 0.5 && !startStop)
+            if (Vector2.Distance(transform.position, aimLine.lastPosition) <= 0.55 && !startStop)
             {
                 startStop = true;
 
@@ -103,28 +106,23 @@ public class Chariot_ATK: Tarot_Controllers
             if (startStop) {
                 stopCharge();
             }
-        }
 
-        if (isWaiting) {
-            wait();
-        
-        }
-
-
-       
-    }
-
-
-    private void FixedUpdate()
-    {
-        if (isCharging)
-        {
             myRb.velocity = chargeDirection * chargeSpeed;
         }
         else
         {
             myRb.velocity = Vector2.zero;
+
         }
+
+        if (isWaiting)
+        {
+            wait();
+
+        }
+
+
+       
     }
 
     private void startAim()

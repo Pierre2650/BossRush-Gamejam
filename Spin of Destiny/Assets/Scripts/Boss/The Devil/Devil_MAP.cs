@@ -5,11 +5,6 @@ using static UnityEditor.PlayerSettings;
 
 public class Devil_MAP : Tarot_Controllers
 {
-
-    [Header("Pacing")]
-    public float stfu;
-
-
     [Header("The Player")]
     private Enemy_Controller main_controller;
     private GameObject player;
@@ -20,13 +15,13 @@ public class Devil_MAP : Tarot_Controllers
     private Devil_MAP_Shadow_Controller plShadowController;
 
     [Header("Spawn Pos")]
-    public Vector2 pos;
+    private Vector2 pos;
     private Vector2 lastSpawnPos = Vector2.zero;
 
 
     [Header("Mark")]
-    public Sprite[] masks = new Sprite[2];
-    public GameObject maskPrefab;
+    private Sprite[] masks = new Sprite[2];
+    private GameObject maskPrefab;
     private GameObject mask;
     private SpriteRenderer maskRenderer;
 
@@ -34,7 +29,12 @@ public class Devil_MAP : Tarot_Controllers
     void Start()
     {
         plShadowPrefab = (GameObject)Resources.Load("Devil_MAP_Player_Shadow", typeof(GameObject));
+        
         maskPrefab = (GameObject)Resources.Load("Devil_MAP_Mark", typeof(GameObject));
+
+        masks[0] = Resources.Load<Sprite>("Devil_Mask_0");
+        masks[1] = Resources.Load<Sprite>("Devil_Mask_1");
+
         main_controller = GetComponent<Enemy_Controller>();
         player = main_controller.thePlayer;
 
@@ -44,10 +44,6 @@ public class Devil_MAP : Tarot_Controllers
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            spawnPlayerShadow();
-        }
         
     }
 
@@ -182,6 +178,9 @@ public class Devil_MAP : Tarot_Controllers
     {
         yield return new WaitForSeconds(11f);
         removePlayerShadow();
+
+        yield return new WaitForSeconds(5f);
+        StartCoroutine(waitToStart());
     }
 
 

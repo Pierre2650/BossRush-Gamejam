@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class World_MAP_Orb : MonoBehaviour
 {
-    private GameObject turnbased;
-    private Turn_Controller Turn_Controller;
 
     [Header("Evolution")]
     private float evoElapsedTime = 0f;
@@ -22,8 +20,7 @@ public class World_MAP_Orb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        turnbased = GameObject.Find("TurnBase_Manager");
-        Turn_Controller = turnbased.GetComponent<Turn_Controller>();
+
         miniOrbsPrefab = (GameObject)Resources.Load("World_MAP_orbSpawn", typeof(GameObject));
     }
 

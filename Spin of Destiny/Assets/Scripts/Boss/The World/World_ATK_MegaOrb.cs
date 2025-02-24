@@ -148,8 +148,6 @@ public class World_ATK_MegaOrb : MonoBehaviour
 
         StartCoroutine(moveUp());
 
-        //isAiming = true;
-        //StartCoroutine(waitToThrow());
 
     }
 
