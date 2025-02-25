@@ -144,7 +144,7 @@ public class Devil_MAP : Tarot_Controllers
 
     private IEnumerator countdownToPull()
     {
-        yield return new WaitForSeconds(3f);
+         yield return new WaitForSeconds(3f);
 
         markPlayer();
 
@@ -154,6 +154,7 @@ public class Devil_MAP : Tarot_Controllers
 
         changeMask(i);
 
+        
         float dur = 2f;
         
         yield return new WaitForSeconds(dur/4);

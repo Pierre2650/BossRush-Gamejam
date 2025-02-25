@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
-public class MeshDevilAtkZone : MonoBehaviour
+public class Devil_ATK_Mesh_AtkZone : MonoBehaviour
 {
     public MeshRenderer myMshR;
     public Devil_ATK controller;

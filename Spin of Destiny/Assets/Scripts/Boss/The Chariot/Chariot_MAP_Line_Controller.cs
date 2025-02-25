@@ -131,7 +131,7 @@ public class Chariot_MAP_Line_Controller : MonoBehaviour
 
 
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(1f);
 
 
         float temp = 1;

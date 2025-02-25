@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Devil_Scythe_Controller : MonoBehaviour
+public class Devil_ATK_Scythe_Controller : MonoBehaviour
 {
     [Header("Attack Zone")]
     private Vector2 Dir = Vector2.zero;
@@ -17,13 +17,13 @@ public class Devil_Scythe_Controller : MonoBehaviour
 
 
     [Header("Parent")]
-    private MeshDevilAtkZone meshController;
+    private Devil_ATK_Mesh_AtkZone meshController;
 
     // Start is called before the first frame update
 
     private void Awake()
     {
-        meshController = transform.parent.GetComponent<MeshDevilAtkZone>();
+        meshController = transform.parent.GetComponent<Devil_ATK_Mesh_AtkZone>();
         this.gameObject.SetActive(false);
     }
 

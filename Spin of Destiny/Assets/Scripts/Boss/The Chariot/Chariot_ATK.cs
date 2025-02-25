@@ -35,7 +35,7 @@ public class Chariot_ATK: Tarot_Controllers
     private bool isVulnerable;
     private bool isWaiting = false;
     private float vulnerableElapsedT;
-    private float vulnerableDuration = 1.5f;
+    private float vulnerableDuration = 2.5f;
 
 
     [Header("Invulnerability")]

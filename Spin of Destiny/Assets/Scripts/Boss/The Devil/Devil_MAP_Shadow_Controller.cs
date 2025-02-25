@@ -21,7 +21,7 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
     private Vector2 SpawnChainPos;
 
     private float spawnIntervalElapsed = 0;
-    private float spawnIntervalDur = 0.02f;
+    private float spawnIntervalDur = 0.02f; 
 
     public List<GameObject> pullChain = new List<GameObject>();
     private int index;
@@ -58,9 +58,8 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
             if (Vector2.Distance(SpawnChainPos, player.transform.position) < 0.5f )
             {
                 index = pullChain.Count - 1;
-                Debug.Log("index inside update chainPLayer = "+ index);
 
-                if (index > 0)
+                if (index >= 0)
                 {
                     dirToShadow = pullChain[index].GetComponent<Devil_Map_Single_Chain_Controller>().directionToPlayer * -1;
                 }
@@ -80,17 +79,15 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
         } else if (attractPlayer) {
 
 
-            //check is arrived at last position
+            //check is pulled at last Chain at distance < 6.5
             if (Vector2.Distance(player.transform.position, transform.position) < 6.5f) {
 
-                //index = pullChain.Count - 1;
-
-                Debug.Log("index inside update attractPLayer = " + index);
+                
 
                 //free Player
                 player.GetComponent<Player_controller>().freeMouvement();
 
-                Debug.Log("Attrac PLayer = false");
+                Debug.Log("Attrac Player = false");
                 attractPlayer = false;
 
 
@@ -158,7 +155,7 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
         aim();
         Rigidbody2D rigidbody = chainParent.GetComponentInChildren<Rigidbody2D>();
 
-        //set rigidbody(first chain has to have ancho body
+        //set rigidbody(first chain has to have anchor  rigid body
 
         GameObject temp = Instantiate(chainPrefab, SpawnChainPos, chainParent.transform.rotation, chainParent.transform);
         chainHJController.chain.Add(temp);
@@ -203,6 +200,7 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
         player.GetComponent<HingeJoint2D>().enabled = true;
 
         chainHJController.aim = false;
+
         destroyPullChain();
     }
 
@@ -213,18 +211,23 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
         //on limit destroy chain
         //change dir
 
-        if (changeChain)
-        {
-            index--;
-            Debug.Log("index inside pullPLayer() = " + index);
 
+        if (changeChain && pullChain.Count > 0 )
+        {
+
+            index--;
+
+
+            Debug.Log("pullChain.count = "+ pullChain.Count);
 
             Devil_Map_Single_Chain_Controller tempController = pullChain[index].GetComponent<Devil_Map_Single_Chain_Controller>();
 
             dirToShadow = tempController.directionToPlayer * -1;
 
-            changeChain = false;
 
+            
+
+            changeChain = false;
             
 
         }
