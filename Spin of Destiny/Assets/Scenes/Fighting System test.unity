@@ -202,7 +202,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.54545456, y: 0.47058824}
     oldSize: {x: 0.6875, y: 1.0625}
-    newSize: {x: 0.14, y: 0.28}
+    newSize: {x: 0.6875, y: 1.0625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -285,7 +285,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.14, y: 0.28}
+  m_Size: {x: 0.6875, y: 1.0625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -327,6 +327,7 @@ MonoBehaviour:
   secondaryWeapon2: {fileID: 1446174998}
   secondaryOffset2: 1
   secondaryCooldown2: 2
+  isMouseUsed: 0
   canAttack: 1
 --- !u!114 &55451721
 MonoBehaviour:
@@ -340,9 +341,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac5b709f4a20604fb5be57387f3e571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myRb: {fileID: 0}
+  myAni: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  moveInput: {x: 0, y: 0}
   speed: 8
+  targetSpeed: 0
   accelerationValue: 10
   decelerationValue: 8
+  accelRate: 0
 --- !u!1 &81819601
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  currentHealth: 0
   healthBar: {fileID: 0}
 --- !u!212 &81819604
 SpriteRenderer:
@@ -924,7 +932,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wp: {fileID: 0}
   damage: 8
+  direction: {x: 0, y: 0}
+  offset: 0
+  player: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  animator: {fileID: 0}
   box: {fileID: 770224372}
+  isAttacking: 0
+  holding: 0
 --- !u!61 &770224372
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1073,6 +1088,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wp: {fileID: 0}
   damage: 3
+  direction: {x: 0, y: 0}
+  offset: 0
+  player: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  animator: {fileID: 0}
   bulletNumber: 3
   bulletOffset: 0.2
   bullet: {fileID: 5587921598949745295, guid: c1ea0d86a1b47374ebcfdaf49c24047f, type: 3}
@@ -1410,6 +1430,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wp: {fileID: 0}
   damage: 20
+  direction: {x: 0, y: 0}
+  offset: 0
+  player: {fileID: 0}
+  startPos: {x: 0, y: 0}
+  animator: {fileID: 0}
   box: {fileID: 2142401808}
   spear: {fileID: 770224370}
 --- !u!70 &2142401808

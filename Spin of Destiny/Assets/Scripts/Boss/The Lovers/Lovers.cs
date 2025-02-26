@@ -9,9 +9,9 @@ public class Lovers : IControllerFinder
         switch (t)
         {
             case 'A':
-                boss.AddComponent<Lovers_ATK>();
-                Lovers_ATK temp = boss.GetComponent<Lovers_ATK>();
-                Controllers.Add(temp);
+                //boss.AddComponent<Lovers_ATK>();
+                //Lovers_ATK temp = boss.GetComponent<Lovers_ATK>();
+                //Controllers.Add(temp);
 
                 //temp.enabled = false;
                 break;

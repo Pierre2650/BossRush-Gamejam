@@ -171,20 +171,22 @@ public class Devil_ATK : Tarot_Controllers
         yield return new WaitForSeconds(0.5f);
 
         P0 = transform.position;
+
         P1 = new Vector3(P2.x, 11f);
 
         if (!isAttacking)
         {
             P2 = startPos;
+            P1 = new Vector3(P0.x, 11f);
         }
 
+        
 
         goJump = true;
     }
 
     private IEnumerator waitOnSpawn()
     {
-        Debug.Log("wait on spawn called");
         yield return new WaitForSeconds(2f);
         isAttacking = true;
         nJumps = 3;

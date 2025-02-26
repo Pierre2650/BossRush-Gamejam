@@ -10,20 +10,28 @@ public class Chariot : IControllerFinder
         {
             case 'A':
                 boss.AddComponent<Chariot_ATK>();
-                Chariot_ATK temp = boss.GetComponent<Chariot_ATK>();
-                Controllers.Add(temp);
+                Chariot_ATK tempA = boss.GetComponent<Chariot_ATK>();
+                Controllers.Add(tempA);
 
                 //temp.enabled = false;
                 break;
 
+            // case 'B':
 
-            case 'B':
-               
+            //   break;
+
+            case 'M' :
+                boss.AddComponent<Chariot_MAP>();
+                Chariot_MAP tempM = boss.GetComponent<Chariot_MAP>();
+                Controllers.Add(tempM);
                 break;
 
 
-            case 'M':
-                
+            default :
+                boss.AddComponent<Chariot_MAP>();
+                Chariot_MAP tempD = boss.GetComponent<Chariot_MAP>();
+                Controllers.Add(tempD);
+
                 break;
 
 

@@ -12,8 +12,6 @@ public class Boss_Creation_Controller : MonoBehaviour
     {
 
         findCard();
-        
-
     }
 
 
@@ -54,7 +52,7 @@ public class Boss_Creation_Controller : MonoBehaviour
 
                     Star st = new Star();
 
-                    //st.chooseController(card.type, boss, Controllers);
+                    st.chooseController(card.type, boss, Controllers);
 
                     break;
 

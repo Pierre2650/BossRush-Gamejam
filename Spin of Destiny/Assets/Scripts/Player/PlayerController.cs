@@ -16,6 +16,12 @@ public class PlayerController : MonoBehaviour
     public float decelerationValue;
     private float accelRate;
 
+    [Header("Debuff")]
+    private bool mouvConstrained = false;
+
+    //private Vector2 lastMouvDir = Vector2.zero;
+    //private bool debugZone = false;
+
     void Awake(){
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
@@ -66,4 +72,32 @@ public class PlayerController : MonoBehaviour
         Vector2 speedDiff = new Vector2(maxSpeed*target.x,maxSpeed*target.y)-rb2d.linearVelocity;
         rb2d.AddForce(speedDiff * accelerationRate,ForceMode2D.Force);
     }
+
+    /*private void insideObstacleDebug()
+    {
+     
+        // Box parameters
+        Vector2 position = new Vector2(transform.position.x, transform.position.y + 0.2f);  // Center of the box
+        float size = 0.1f; // Size of the box (width x height)
+
+
+        Collider2D overlap = Physics2D.OverlapCircle(position, size, LayerMask.GetMask("Obstacles"));
+        
+     
+        if (overlap && !debugZone ) {
+            Debug.Log(overlap);
+
+           myBxC.isTrigger = true;
+           debugZone = true;
+            
+
+        }else if (!overlap && debugZone ) 
+        {
+            debugZone = false;
+            myBxC.isTrigger = false;
+
+            myRb.velocity = Vector2.zero;
+
+        }
+    }*/
 }

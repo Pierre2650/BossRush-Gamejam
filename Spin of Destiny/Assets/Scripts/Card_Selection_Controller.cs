@@ -26,23 +26,30 @@ public class Card_Selection_Controller : MonoBehaviour
         
     }
 
-    public void addCard(Card_Enum_Type card)
-    {
-        cards.Add(card);
-    }
+   
 
 
     public bool checkConditions(char t)
     {
+        bool result = true;
+        result = checkIfATKExist(t);
+
+        return result;
+    }
+
+
+    private bool checkIfATKExist(char t)
+    {
         foreach (Card_Enum_Type card in cards)
         {
-            if(card.type == 'A' && t == 'A')
+            if (card.type == 'A' && t == 'A')
             {
                 return false;
             }
         }
 
         return true;
+
     }
              
 

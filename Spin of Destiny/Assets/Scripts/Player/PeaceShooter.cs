@@ -41,8 +41,13 @@ public class PeaceShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-       followCross();
+        //Change this everywhere
+        //followCross();
+
+        NearDirToCross = (chTransform.position - transform.position).normalized;
+
+        transform.right = NearDirToCross;
+
 
         if (Input.GetMouseButton(0) && !atkOnColdown)
         {

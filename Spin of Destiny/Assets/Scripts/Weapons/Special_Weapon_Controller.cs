@@ -64,7 +64,11 @@ public class Special_Weapon_Controller : MonoBehaviour
     {
         switch (weapon) {
             case Enum_Weapons.Sword:
+<<<<<<< HEAD
                 gameObject.AddComponent<Sword>();
+=======
+                this.gameObject.AddComponent<Sword>();
+>>>>>>> main
                 break;
         
         }

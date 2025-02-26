@@ -11,7 +11,7 @@ public class Card_Controller : MonoBehaviour
 
     [Header("CardDefine")]
     public Enum_Card value;
-    public char type;
+    private char type;
 
 
     public Card_Selection_Controller selectionController;
@@ -55,12 +55,6 @@ public class Card_Controller : MonoBehaviour
         //clickable = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -70,28 +64,17 @@ public class Card_Controller : MonoBehaviour
 
             StartCoroutine(onClick());
 
-            //selectType();
+            selectType();
            
+            Card_Enum_Type temp = new Card_Enum_Type();
+            temp.value = value;
+            temp.type = type;
 
-            //Temporary condition
-            if (selectionController.checkConditions(type)) { 
+            selectionController.cards.Add(temp);
 
-
-                Card_Enum_Type temp = new Card_Enum_Type();
-                temp.value = value;
-                temp.type = type;
-
-                selectionController.addCard(temp);
-
-                clickable = false;
-            }
-            else
-            {
-                Debug.Log("A already exist");
-            }
+            clickable = false;
 
         }
-
 
     }
 
@@ -105,7 +88,22 @@ public class Card_Controller : MonoBehaviour
             generateType();
             temp++;
 
-        }while (!selectionController.checkConditions(type) && temp < 200);
+            if (temp > 50)
+            {
+                Debug.Log("SelectType loop force break");
+                break;
+            }
+
+        }while (!selectionController.checkConditions(type));
+
+        Debug.Log("Card Type = " + type);
+
+
+        if (selectionController.cards.Count == selectionController.numberOfCards - 1 && selectionController.checkConditions('A'))
+        {
+            type = 'A';
+            Debug.Log("Card Type changed to A " + type);
+        }
     }
 
 

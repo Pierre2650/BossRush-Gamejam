@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Tower_MAP : Tarot_Controllers
 {
     [Header("Init")]
     private GameObject Grid;
-    private GameObject newMap;
+    private GameObject newMapPrefab;
     private Tilemap towerMap;
-    private int maxX = 16, maxY = 9;
+    //private int maxX = 16, maxY = 9;
 
 
     [Header("Obstacle Generation")]
@@ -22,20 +23,27 @@ public class Tower_MAP : Tarot_Controllers
     private Vector3Int lastObstPos = Vector3Int.zero;
 
     [Header("Player")]
-    private GameObject Player;
+    private GameObject player;
     private Vector3Int playerPos;
+
+    [Header("Controller")]
+    private Enemy_Controller mainController;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        Grid = GameObject.Find("Grid");
-        newMap =  (GameObject)Resources.Load("TowerMap", typeof(GameObject));
-        GameObject temp = Instantiate(newMap,Grid.transform);
+        mainController = GetComponent<Enemy_Controller>();
+
+        Grid = mainController.Grid;
+        newMapPrefab =  (GameObject)Resources.Load("Tower_MAP_Map", typeof(GameObject));
+        GameObject temp = Instantiate(newMapPrefab,Grid.transform);
+        temp.layer = 7;
         towerMap = temp.GetComponent<Tilemap>();
 
         obstacle = Resources.Load<Tile>("obstacle");
-
-        Player = GameObject.Find("Player");
+        
+        player = mainController.thePlayer;
 
 
     }
@@ -87,7 +95,7 @@ public class Tower_MAP : Tarot_Controllers
 
             do { 
                 spawnPos = generateSpawnPos(spawnZone);
-                Debug.Log("zone = "+spawnZone+" Pos = "+spawnPos+"  Temp = "+temp);
+                //Debug.Log("zone = "+spawnZone+" Pos = "+spawnPos+"  Temp = "+temp);
                 temp++;
             }
             while (spawnPos == playerPos && temp < 200 && Vector3Int.Distance(lastObstPos, spawnPos) < 6);
@@ -154,8 +162,8 @@ public class Tower_MAP : Tarot_Controllers
 
     private void setPlayerPos()
     {
-        int x = (int)Player.transform.position.x;
-        int y = (int)Player.transform.position.y;
+        int x = (int)player.transform.position.x;
+        int y = (int)player.transform.position.y;
 
 
         Vector3Int temp = new Vector3Int(x,y,0);
