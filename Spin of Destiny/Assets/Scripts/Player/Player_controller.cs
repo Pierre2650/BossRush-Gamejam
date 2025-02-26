@@ -7,13 +7,17 @@ public class Player_controller : MonoBehaviour
     //SelfComponents
     public Rigidbody2D myRb;
     private Animator myAni;
-
-    [Header("Mouvement Manager")]
     public float xAxis = 0;
     public float yAxis = 0;
     private char lastDir = 's';
     [SerializeField] private float speed = 0;
 
+
+
+
+    void Awake(){
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -41,8 +45,7 @@ public class Player_controller : MonoBehaviour
     private void FixedUpdate()
     {
         mouvement();
-        
-
+    
     
     }
 
@@ -51,23 +54,24 @@ public class Player_controller : MonoBehaviour
     {
         myAni.SetFloat("horizontal", xAxis);
         myAni.SetFloat("vertical", yAxis);
-        myAni.SetFloat("speed", myRb.velocity.sqrMagnitude);
-
-
-
+        myAni.SetFloat("speed", myRb.linearVelocity.sqrMagnitude);
 
     }
 
     private void mouvementInput()
     {
+        
+        
         if (Input.GetKey(KeyCode.D))
         {
             xAxis = 1;
+            transform.right = Vector2.right;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             xAxis = -1;
+            transform.right = Vector2.left;
         }
 
         if (Input.GetKey(KeyCode.W))
@@ -85,8 +89,8 @@ public class Player_controller : MonoBehaviour
     {
         if (xAxis == 0 && yAxis == 0)
         {
-            myRb.velocity = Vector2.zero;
-
+            myRb.linearVelocity = Vector2.zero;
+            
         }
         else
         {
@@ -94,11 +98,12 @@ public class Player_controller : MonoBehaviour
 
             temp.Normalize();
 
-            myRb.velocity = temp * speed;
+            myRb.linearVelocity = temp * speed;
+
+            
         }
-
-
     }
+
 
 
 

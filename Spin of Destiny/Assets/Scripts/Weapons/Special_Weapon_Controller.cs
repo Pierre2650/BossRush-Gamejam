@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Special_Weapon_Controller : MonoBehaviour
@@ -67,7 +64,7 @@ public class Special_Weapon_Controller : MonoBehaviour
     {
         switch (weapon) {
             case Enum_Weapons.Sword:
-                this.AddComponent<Sword>();
+                gameObject.AddComponent<Sword>();
                 break;
         
         }

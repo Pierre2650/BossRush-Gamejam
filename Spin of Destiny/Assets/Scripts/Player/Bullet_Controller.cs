@@ -33,7 +33,7 @@ public class Bullet_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        myRb.velocity = direction * speed;
+        myRb.linearVelocity = direction * speed;
         
     }
 

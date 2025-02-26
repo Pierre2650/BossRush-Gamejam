@@ -60,13 +60,13 @@ public class OrbSpawn_Controller : MonoBehaviour
         {
             pathFinding(player.transform.position);
 
-            myRb.velocity = mouvDirection * speed;
+            myRb.linearVelocity = mouvDirection * speed;
 
 
         }
         else
         {
-            myRb.velocity = mouvDirection * speed;
+            myRb.linearVelocity = mouvDirection * speed;
             goStraight = true;
         }
 
