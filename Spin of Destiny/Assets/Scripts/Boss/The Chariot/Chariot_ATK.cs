@@ -107,34 +107,12 @@ public class Chariot_ATK: Tarot_Controllers
                 stopCharge();
             }
 
-<<<<<<< HEAD
-        if (isWaiting) {
-            wait();
-        
-        }
-
-
-       
-    }
-
-
-    private void FixedUpdate()
-    {
-        if (isCharging)
-        {
-            myRb.linearVelocity = chargeDirection * chargeSpeed;
-        }
-        else
-        {
-            myRb.linearVelocity = Vector2.zero;
-=======
             myRb.velocity = chargeDirection * chargeSpeed;
         }
         else
         {
             myRb.velocity = Vector2.zero;
 
->>>>>>> main
         }
 
         if (isWaiting)
