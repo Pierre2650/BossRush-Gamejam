@@ -5,16 +5,18 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Slider mainSlider;
-    public Slider subSlider;
+    //public Slider subSlider;
     public float animationTime;
-    public float showTime;
+    //public float showTime;
     
     public void setMaxHealth(float health)  {
         mainSlider.maxValue = health;
+        mainSlider.value = health;
     }
 
 
-    IEnumerator looseHealthRoutine(float healthLost){
+    public IEnumerator looseHealthRoutine(float healthLost){
+        print("lalalal");
         float t = 0;
         float currentHealh = mainSlider.value;
         float newHealth = mainSlider.value-healthLost;
@@ -26,7 +28,7 @@ public class HealthBar : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(showTime);
+        /*yield return new WaitForSeconds(showTime);
 
         t=0;
         while(t<animationTime){
@@ -34,6 +36,6 @@ public class HealthBar : MonoBehaviour
             subSlider.value = currentHealh-currentLoose;
             t+=Time.deltaTime;
             yield return null;
-        }
+        }*/
     }
 }

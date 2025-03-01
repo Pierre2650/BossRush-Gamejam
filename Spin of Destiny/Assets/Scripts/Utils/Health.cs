@@ -8,10 +8,11 @@ public class Health : MonoBehaviour
 
     void Start(){
         currentHealth = maxHealth;
-        //healthBar.setMaxHealth(maxHealth);
+        healthBar.setMaxHealth(maxHealth);
     }
     public void takeDamage(float dmg){
         currentHealth -= dmg;
+        StartCoroutine(healthBar.looseHealthRoutine(dmg));
         Debug.Log("" + currentHealth);
     }
 

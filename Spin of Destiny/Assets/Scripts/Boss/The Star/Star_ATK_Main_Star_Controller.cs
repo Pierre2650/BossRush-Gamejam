@@ -72,7 +72,7 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
             speed += 2;
 
             dir = (player.transform.position - transform.position).normalized;
-            myRB.velocity = dir * speed;
+            myRB.linearVelocity = dir * speed;
 
 
 
@@ -110,7 +110,7 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
         myLR.enabled = false;
 
         dir = (player.transform.position - transform.position).normalized;
-        myRB.velocity = dir * speed;
+        myRB.linearVelocity = dir * speed;
 
     }
 
@@ -170,7 +170,7 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
 
     private void stopBounce()
     {
-        myRB.velocity = Vector2.zero;
+        myRB.linearVelocity = Vector2.zero;
         speed = 20;
 
         theBoss.transform.position = transform.position;

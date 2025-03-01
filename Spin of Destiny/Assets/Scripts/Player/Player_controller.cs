@@ -80,10 +80,10 @@ public class Player_controller : MonoBehaviour
     private void setlastMouvDir()
     {
 
-        if (myRb.velocity != Vector2.zero)
+        if (myRb.linearVelocity != Vector2.zero)
         {
 
-            lastMouvDir = myRb.velocity;
+            lastMouvDir = myRb.linearVelocity;
 
         }
 
@@ -113,7 +113,7 @@ public class Player_controller : MonoBehaviour
             debugZone = false;
             myBxC.isTrigger = false;
 
-            myRb.velocity = Vector2.zero;
+            myRb.linearVelocity = Vector2.zero;
 
         }
         
@@ -178,7 +178,7 @@ public class Player_controller : MonoBehaviour
 
     public void restrainMouvement()
     {
-        myRb.velocity = Vector2.zero;
+        myRb.linearVelocity = Vector2.zero;
         mouvConstrained = true;
 
         myBxC.excludeLayers = LayerMask.GetMask("Obstacles");
@@ -187,7 +187,7 @@ public class Player_controller : MonoBehaviour
 
     public void freeMouvement()
     {
-        myRb.velocity = Vector2.zero;
+        myRb.linearVelocity = Vector2.zero;
         mouvConstrained = false;
         myBxC.excludeLayers = LayerMask.GetMask("Nothing");
     }
@@ -196,7 +196,7 @@ public class Player_controller : MonoBehaviour
     private void  moveFromforbiddenZone()
     {
         Debug.Log("Moving form forbidden zone");
-        myRb.velocity = lastMouvDir;
+        myRb.linearVelocity = lastMouvDir;
 
     }
 

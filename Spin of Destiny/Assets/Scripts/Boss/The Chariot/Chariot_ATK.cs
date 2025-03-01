@@ -107,11 +107,11 @@ public class Chariot_ATK: Tarot_Controllers
                 stopCharge();
             }
 
-            myRb.velocity = chargeDirection * chargeSpeed;
+            myRb.linearVelocity = chargeDirection * chargeSpeed;
         }
         else
         {
-            myRb.velocity = Vector2.zero;
+            myRb.linearVelocity = Vector2.zero;
 
         }
 
