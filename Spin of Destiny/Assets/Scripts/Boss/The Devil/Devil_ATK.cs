@@ -20,9 +20,13 @@ public class Devil_ATK : Tarot_Controllers
     private int nJumps = 3 ;
 
 
+    [Header("Boss Controller")]
+    private Enemy_Controller Main_controller;
+
 
     [Header("The Player")]
     public GameObject player;
+
 
 
     [Header("Scythe Cosmetic")]
@@ -43,7 +47,10 @@ public class Devil_ATK : Tarot_Controllers
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        Main_controller = GetComponent<Enemy_Controller>();
+
+        player = Main_controller.thePlayer;
+
         fakeScythePrefab = (GameObject)Resources.Load("Devil_ATK_Scythe_Cosmetic", typeof(GameObject));
         meshPrefab = (GameObject)Resources.Load("Devil_ATK_AttackZone", typeof(GameObject));
 

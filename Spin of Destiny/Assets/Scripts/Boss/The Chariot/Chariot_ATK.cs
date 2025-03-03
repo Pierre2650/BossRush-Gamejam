@@ -61,6 +61,7 @@ public class Chariot_ATK: Tarot_Controllers
 
     private void generateAim()
     {
+       
         prefabRedLine = (GameObject)Resources.Load("BossAim", typeof(GameObject));
         GameObject temp = Instantiate(prefabRedLine, this.transform);
 
@@ -78,16 +79,10 @@ public class Chariot_ATK: Tarot_Controllers
     {
         if (aimLine.stopAim && !isCharging && nCharges > 0)
         {
-            targetPos = aimLine.lastPosition;
+            //Start Charge
 
-            nCharges--;
+            startCharge();
 
-            isCharging = true;
-
-            dirFinder.selfRef = transform.position;
-            dirFinder.target = targetPos;
-
-            chargeDirection = dirFinder.findDirToTarget();
         }
 
 
@@ -107,6 +102,7 @@ public class Chariot_ATK: Tarot_Controllers
                 stopCharge();
             }
 
+            //Mouvement to last person player
             myRb.velocity = chargeDirection * chargeSpeed;
         }
         else
@@ -125,6 +121,22 @@ public class Chariot_ATK: Tarot_Controllers
        
     }
 
+
+    private void startCharge()
+    {
+
+        targetPos = aimLine.lastPosition;
+
+        nCharges--;
+
+        isCharging = true;
+
+        dirFinder.selfRef = transform.position;
+        dirFinder.target = targetPos;
+
+        chargeDirection = dirFinder.findDirToTarget();
+
+    }
     private void startAim()
     {
         //instantiate
