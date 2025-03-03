@@ -56,7 +56,7 @@ public class Chariot_MAP_Charge_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
-        myRb.velocity = dir * speed;
+        myRb.linearVelocity = dir * speed;
         
     }
 

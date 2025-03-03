@@ -35,7 +35,7 @@ public class Chariot_ATK: Tarot_Controllers
     private bool isVulnerable;
     private bool isWaiting = false;
     private float vulnerableElapsedT;
-    private float vulnerableDuration = 2.5f;
+    private float vulnerableDuration = 1.5f;
 
 
     [Header("Invulnerability")]
@@ -61,7 +61,6 @@ public class Chariot_ATK: Tarot_Controllers
 
     private void generateAim()
     {
-       
         prefabRedLine = (GameObject)Resources.Load("BossAim", typeof(GameObject));
         GameObject temp = Instantiate(prefabRedLine, this.transform);
 
@@ -79,10 +78,16 @@ public class Chariot_ATK: Tarot_Controllers
     {
         if (aimLine.stopAim && !isCharging && nCharges > 0)
         {
-            //Start Charge
+            targetPos = aimLine.lastPosition;
 
-            startCharge();
+            nCharges--;
 
+            isCharging = true;
+
+            dirFinder.selfRef = transform.position;
+            dirFinder.target = targetPos;
+
+            chargeDirection = dirFinder.findDirToTarget();
         }
 
 
@@ -102,12 +107,11 @@ public class Chariot_ATK: Tarot_Controllers
                 stopCharge();
             }
 
-            //Mouvement to last person player
-            myRb.velocity = chargeDirection * chargeSpeed;
+            myRb.linearVelocity = chargeDirection * chargeSpeed;
         }
         else
         {
-            myRb.velocity = Vector2.zero;
+            myRb.linearVelocity = Vector2.zero;
 
         }
 
@@ -121,22 +125,6 @@ public class Chariot_ATK: Tarot_Controllers
        
     }
 
-
-    private void startCharge()
-    {
-
-        targetPos = aimLine.lastPosition;
-
-        nCharges--;
-
-        isCharging = true;
-
-        dirFinder.selfRef = transform.position;
-        dirFinder.target = targetPos;
-
-        chargeDirection = dirFinder.findDirToTarget();
-
-    }
     private void startAim()
     {
         //instantiate

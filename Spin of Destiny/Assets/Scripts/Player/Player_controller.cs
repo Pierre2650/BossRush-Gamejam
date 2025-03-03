@@ -9,8 +9,6 @@ public class Player_controller : MonoBehaviour
     public Rigidbody2D myRb;
     private BoxCollider2D myBxC;
     private Animator myAni;
-
-    [Header("Mouvement Manager")]
     public float xAxis = 0;
     public float yAxis = 0;
     [SerializeField] private float speed = 0;
@@ -82,10 +80,10 @@ public class Player_controller : MonoBehaviour
     private void setlastMouvDir()
     {
 
-        if (myRb.velocity != Vector2.zero)
+        if (myRb.linearVelocity != Vector2.zero)
         {
 
-            lastMouvDir = myRb.velocity;
+            lastMouvDir = myRb.linearVelocity;
 
         }
 
@@ -115,7 +113,7 @@ public class Player_controller : MonoBehaviour
             debugZone = false;
             myBxC.isTrigger = false;
 
-            myRb.velocity = Vector2.zero;
+            myRb.linearVelocity = Vector2.zero;
 
         }
         
@@ -128,23 +126,24 @@ public class Player_controller : MonoBehaviour
     {
         myAni.SetFloat("horizontal", xAxis);
         myAni.SetFloat("vertical", yAxis);
-        myAni.SetFloat("speed", myRb.velocity.sqrMagnitude);
-
-
-
+        myAni.SetFloat("speed", myRb.linearVelocity.sqrMagnitude);
 
     }
 
     private void mouvementInput()
     {
+        
+        
         if (Input.GetKey(KeyCode.D))
         {
             xAxis = 1;
+            transform.right = Vector2.right;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             xAxis = -1;
+            transform.right = Vector2.left;
         }
 
         if (Input.GetKey(KeyCode.W))
@@ -162,8 +161,8 @@ public class Player_controller : MonoBehaviour
     {
         if (xAxis == 0 && yAxis == 0 )
         {
-            myRb.velocity = Vector2.zero;
-
+            myRb.linearVelocity = Vector2.zero;
+            
         }
         else
         {
@@ -171,15 +170,15 @@ public class Player_controller : MonoBehaviour
 
             temp.Normalize();
 
-            myRb.velocity = temp * speed;
+            myRb.linearVelocity = temp * speed;
+
+            
         }
-
-
     }
 
     public void restrainMouvement()
     {
-        myRb.velocity = Vector2.zero;
+        myRb.linearVelocity = Vector2.zero;
         mouvConstrained = true;
 
         myBxC.excludeLayers = LayerMask.GetMask("Obstacles");
@@ -188,7 +187,7 @@ public class Player_controller : MonoBehaviour
 
     public void freeMouvement()
     {
-        myRb.velocity = Vector2.zero;
+        myRb.linearVelocity = Vector2.zero;
         mouvConstrained = false;
         myBxC.excludeLayers = LayerMask.GetMask("Nothing");
     }
@@ -197,7 +196,7 @@ public class Player_controller : MonoBehaviour
     private void  moveFromforbiddenZone()
     {
         Debug.Log("Moving form forbidden zone");
-        myRb.velocity = lastMouvDir;
+        myRb.linearVelocity = lastMouvDir;
 
     }
 
@@ -213,6 +212,7 @@ public class Player_controller : MonoBehaviour
         Gizmos.color = Color.green;  // Color of the Gizmo
         Gizmos.DrawWireSphere(position, size);
     }
+
 
 
 

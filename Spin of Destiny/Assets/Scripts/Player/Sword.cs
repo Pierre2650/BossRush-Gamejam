@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -40,7 +39,7 @@ public class Sword : MonoBehaviour
             attackMouv = StartCoroutine(attack());
         }
 
-        if (playerController.myRb.velocity != Vector2.zero && attackMouv == null)
+        if (playerController.myRb.linearVelocity != Vector2.zero && attackMouv == null)
         {
             setDirection();
         }

@@ -74,10 +74,10 @@ public class World_ATK_MegaOrb : MonoBehaviour
         //throw
         
           if(throwOrb){
-            myRB.velocity = dir * speed;
+            myRB.linearVelocity = dir * speed;
           
          }else{
-           myRB.velocity = Vector2.zero;
+           myRB.linearVelocity = Vector2.zero;
          }
          
     }

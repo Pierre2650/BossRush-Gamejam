@@ -232,7 +232,7 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
 
         }
 
-        plRB.velocity = dirToShadow * speed;
+        plRB.linearVelocity = dirToShadow * speed;
 
 
     }

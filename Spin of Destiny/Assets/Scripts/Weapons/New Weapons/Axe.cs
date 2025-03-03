@@ -1,0 +1,48 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class Axe : Weapon
+{
+    
+    public Collider2D box; 
+     public GameObject spear;
+    void OnEnable()
+    {
+        box = GetComponent<Collider2D>();
+        box.enabled = false;
+        animator = GetComponent<Animator>();
+        startPos = transform.position;
+        
+    } 
+    
+    public override void attack(InputAction.CallbackContext context){
+        StartCoroutine("AttackCoroutine");
+    }
+
+    public IEnumerator AttackCoroutine(){
+        transform.right = direction;	
+        box.enabled = true;
+        animator.Play("axe_Clip");
+        yield return null;
+        print(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+        float waitingTime = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;//animator.GetCurrentAnimatorStateInfo(0).length;
+        float t = 0;
+        while(t< waitingTime){
+            yield return null;
+            t+=Time.deltaTime;
+        }
+        box.enabled = false;
+        spear.SetActive(true);
+        gameObject.SetActive(false);
+        wp.canAttack = true;
+    }
+    
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Health enemyHealth = other.GetComponent<Health>();
+        if(other.tag!="Player"&& enemyHealth!=null){
+            enemyHealth.takeDamage(damage);
+        }
+    }
+}
