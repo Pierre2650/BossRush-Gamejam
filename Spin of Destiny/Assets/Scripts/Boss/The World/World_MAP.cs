@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class World_MAP : Tarot_Controllers
+public class World_MAP : MonoBehaviour
 {
     private GameObject orbPrefab;
     private GameObject orb = null;

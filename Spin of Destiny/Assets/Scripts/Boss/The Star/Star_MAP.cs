@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
-public class Star_MAP : Tarot_Controllers
+public class Star_MAP : MonoBehaviour
 {
     [Header("FallingStar")]
     private int  nbStars = 20;

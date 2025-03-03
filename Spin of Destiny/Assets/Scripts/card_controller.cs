@@ -47,7 +47,6 @@ public class Card_Controller : MonoBehaviour
     private void Awake()
     {
         spriteComponent = GetComponent<SpriteRenderer>();
-
     }
 
     private void OnEnable()

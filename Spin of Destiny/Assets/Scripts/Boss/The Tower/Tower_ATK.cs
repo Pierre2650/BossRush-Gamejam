@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower_ATK : Tarot_Controllers
+public class Tower_ATK : MonoBehaviour
 {
     [Header("Tower/s")]
     private GameObject towerPrefab;

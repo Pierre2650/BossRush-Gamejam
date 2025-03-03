@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class World_ATK : Tarot_Controllers
+public class World_ATK : MonoBehaviour
 {
 
     private Vector2 startPos;

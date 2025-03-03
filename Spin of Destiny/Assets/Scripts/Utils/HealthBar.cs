@@ -16,7 +16,6 @@ public class HealthBar : MonoBehaviour
 
 
     public IEnumerator looseHealthRoutine(float healthLost){
-        print("lalalal");
         float t = 0;
         float currentHealh = mainSlider.value;
         float newHealth = mainSlider.value-healthLost;

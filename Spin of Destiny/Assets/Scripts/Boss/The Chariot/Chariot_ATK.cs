@@ -4,10 +4,12 @@ using System.Security.Cryptography;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class Chariot_ATK: Tarot_Controllers
+public class Chariot_ATK: MonoBehaviour
 {
     [Header("To Init")]
     private Rigidbody2D myRb;
+
+    //direction
     private Vector2 targetPos;
     private Vector2 safeZone;
     private Enemy_Controller mainController;
@@ -27,7 +29,7 @@ public class Chariot_ATK: Tarot_Controllers
 
 
     [Header("ChargeAttack")]
-    private bool startStop = false;
+    private bool startStop = false; //start to stop the charge
     private float stopElapsedT;
     private float chargeStopDuration = 0.1f;
     
@@ -76,34 +78,22 @@ public class Chariot_ATK: Tarot_Controllers
     // Update is called once per frame
     void Update()
     {
-        if (aimLine.stopAim && !isCharging && nCharges > 0)
+        
+        if (!aimLine.isAiming && !isCharging && nCharges > 0)
         {
-            targetPos = aimLine.lastPosition;
-
-            nCharges--;
-
-            isCharging = true;
-
-            dirFinder.selfRef = transform.position;
-            dirFinder.target = targetPos;
-
-            chargeDirection = dirFinder.findDirToTarget();
+            startCharges();
         }
-
 
        
 
         if (isCharging) {
-
-
             //check is arrived at last position
-            if (Vector2.Distance(transform.position, aimLine.lastPosition) <= 0.55 && !startStop)
+            if (Vector2.Distance(transform.position, aimLine.lastPosition) <= 0.55 && !startStop)// max distance reached
             {
                 startStop = true;
-
             }
 
-            if (startStop) {
+            if (startStop) {// is stoping 
                 stopCharge();
             }
 
@@ -125,9 +115,18 @@ public class Chariot_ATK: Tarot_Controllers
        
     }
 
-    private void startAim()
+    private void startCharges()
     {
-        //instantiate
+        targetPos = aimLine.lastPosition;
+
+        nCharges--;
+
+        isCharging = true;
+
+        dirFinder.selfRef = transform.position;
+        dirFinder.target = targetPos;
+
+        chargeDirection = dirFinder.findDirToTarget();
     }
 
 
@@ -146,7 +145,7 @@ public class Chariot_ATK: Tarot_Controllers
             }
             else
             {
-                aimLine.stopAim = false;
+                aimLine.isAiming = true;
             }
 
             isCharging = false;
@@ -168,7 +167,6 @@ public class Chariot_ATK: Tarot_Controllers
         {
 
             isWaiting = false;
-            nCharges--;
             StartCoroutine(backToSafety());
             vulnerableElapsedT = 0;
         }
@@ -194,7 +192,7 @@ public class Chariot_ATK: Tarot_Controllers
 
         }
         backToSafetyElapsed = 0;
-        aimLine.stopAim = false;
+        aimLine.isAiming = true;
         
         nCharges = 3;
 

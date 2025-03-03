@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
-public class Devil_MAP : Tarot_Controllers
+public class Devil_MAP : MonoBehaviour
 {
     [Header("The Player")]
     private Enemy_Controller main_controller;

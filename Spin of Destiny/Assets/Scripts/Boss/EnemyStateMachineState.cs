@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Obsolete("not used anymore")]
 public class Turn_Controller : MonoBehaviour
 {
     public bool isPlayersTurn = true;
@@ -54,7 +56,7 @@ public class Turn_Controller : MonoBehaviour
         // Unhide UI
         // able player controller
 
-        foreach (Tarot_Controllers i in BSController.Controllers)
+        foreach (MonoBehaviour i in BSController.Controllers)
         {
             i.enabled = false;
 
@@ -72,7 +74,7 @@ public class Turn_Controller : MonoBehaviour
         //hide UI
         //enable boss controller
 
-        foreach (Tarot_Controllers i in BSController.Controllers)
+        foreach (MonoBehaviour i in BSController.Controllers)
         {
             i.enabled = true;
 

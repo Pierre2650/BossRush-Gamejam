@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Star_ATK : Tarot_Controllers
+public class Star_ATK : MonoBehaviour
 {
     public SpriteRenderer mySprR;
     

@@ -14,7 +14,7 @@ public class ChariotAim : MonoBehaviour
 
     [Header("Aim")]
     public Vector2 lastPosition;
-    public bool stopAim = false;
+    public bool isAiming = false;
     private float timer = 0f;
     private float scanDuration = 1.5f;
 
@@ -29,7 +29,7 @@ public class ChariotAim : MonoBehaviour
     void Update()
     {
 
-        if (!stopAim)
+        if (isAiming)
         {
             myLR.enabled = true;
             setPoints();
@@ -40,7 +40,7 @@ public class ChariotAim : MonoBehaviour
                 lastPosition = player.transform.position;
                 timer = 0f;
 
-                stopAim = true;
+                isAiming = false;
 
 
             }
