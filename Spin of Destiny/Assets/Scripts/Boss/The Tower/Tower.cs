@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tower : IControllerFinder
 {
-    public void chooseController(char t, GameObject boss, List<Tarot_Controllers> Controllers)
+    public void chooseController(char t, GameObject boss, List<MonoBehaviour> Controllers)
     {
         switch (t)
         {

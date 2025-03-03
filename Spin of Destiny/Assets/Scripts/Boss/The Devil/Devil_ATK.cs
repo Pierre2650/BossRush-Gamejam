@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Devil_ATK : Tarot_Controllers
+public class Devil_ATK : MonoBehaviour
 {
     private Vector2 startPos;
 
@@ -11,8 +11,8 @@ public class Devil_ATK : Tarot_Controllers
     private float t = 0f;
     private Vector3 P0;
     private Vector3 P1;
-    private Vector3 P2;
-    private float maxD = 3.2f;
+    private Vector3 P2; // jump end position
+    public float maxD = 3.2f;
 
 
     [Header("Jump")]

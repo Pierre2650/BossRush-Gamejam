@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chariot_MAP : Tarot_Controllers
+public class Chariot_MAP : MonoBehaviour
 {
     [Header("Boss Controller")]
     private Enemy_Controller MainController;

@@ -6,7 +6,7 @@ public class Boss_Creation_Controller : MonoBehaviour
 {
     public Card_Selection_Controller CSController;
     public GameObject boss;
-    public List<Tarot_Controllers> Controllers;
+    public List<MonoBehaviour> Controllers;
 
     private void OnEnable()
     {

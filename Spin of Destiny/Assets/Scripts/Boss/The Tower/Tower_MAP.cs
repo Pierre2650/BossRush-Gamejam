@@ -1,10 +1,11 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class Tower_MAP : Tarot_Controllers
+public class Tower_MAP : MonoBehaviour
 {
     [Header("Init")]
     private GameObject Grid;
