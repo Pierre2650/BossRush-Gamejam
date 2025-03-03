@@ -20,25 +20,24 @@ public class Chariot_ATK: MonoBehaviour
 
 
     [Header("ChargeAttack")]
-    private float chargeSpeed = 40f;
-
+    public float chargeSpeed = 40f;
+    public int damage;
     private Personal_Direction_Finder dirFinder;
     private Vector2 chargeDirection;
     private bool isCharging = false;
-    private int nCharges = 3;
+    public int nCharges = 3;
 
 
     [Header("ChargeAttack")]
     private bool startStop = false; //start to stop the charge
     private float stopElapsedT;
-    private float chargeStopDuration = 0.1f;
+    public float chargeStopDuration = 0.1f;
     
     [Header("Vulnerability")]
     private bool isVulnerable;
     private bool isWaiting = false;
     private float vulnerableElapsedT;
     private float vulnerableDuration = 1.5f;
-
 
     [Header("Invulnerability")]
     private float backToSafetyElapsed = 0;
@@ -208,6 +207,14 @@ public class Chariot_ATK: MonoBehaviour
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(safeZone, 0.25f);
 
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag=="Player"){
+            Health playerHealth = other.GetComponent<Health>();
+            playerHealth.takeDamage(damage);
+        }
     }
 
 
