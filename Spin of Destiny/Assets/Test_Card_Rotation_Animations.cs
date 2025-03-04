@@ -21,10 +21,24 @@ public class Test_Card_Rotation_Animations : MonoBehaviour
     public AnimationCurve curve;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
-        
+        generateCardsPosition();
+
     }
+
+
+    private void OnEnable()
+    {
+        StartCoroutine(rotate());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
+   
 
     // Update is called once per frame
     void Update()
@@ -32,11 +46,25 @@ public class Test_Card_Rotation_Animations : MonoBehaviour
         if (Input.GetKey(KeyCode.Z))
         {
             //generateCardsPosition();
-            StartCoroutine(rotate());
+            //
+        }
+
+        if (cards.Count > 0) { 
+
+            //cardsRotationCorrection();
         }
         
     }
 
+    private void cardsRotationCorrection()
+    {
+        foreach( GameObject c in cards)
+        {
+            c.transform.eulerAngles = Vector3.zero;
+            //c.transform.eulerAngles = -transform.eulerAngles;
+
+        }
+    }
 
     private void generateCardsPosition()
     {
@@ -69,8 +97,13 @@ public class Test_Card_Rotation_Animations : MonoBehaviour
         Vector3 end = new Vector3(0, 0, -360);
 
 
-        while (rotationElapsedT < rotationDur / rotationAcceleration)
+        while (true)
         {
+            if(rotationElapsedT > rotationDur)
+            {
+                rotationElapsedT = 0;
+            }
+
             percetageDur = rotationElapsedT / (rotationDur / rotationAcceleration);
 
             transform.eulerAngles = Vector3.Lerp(start, end, curve.Evaluate(percetageDur));
@@ -83,31 +116,11 @@ public class Test_Card_Rotation_Animations : MonoBehaviour
         }
 
 
-        rotationElapsedT = 0f;
+        //rotationElapsedT = 0f;
 
-        StartCoroutine(rotate());
-
-    }
-
-    private void OnDrawGizmos()
-    {
-
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, 0.2f);
-
-
-        if (circlePoints.Count > 0)
-        {
-
-            for(int i = 0; i < circlePoints.Count; i++)
-            {
-                Gizmos.color = Color.magenta;
-                Gizmos.DrawWireSphere(circlePoints[i], 0.2f);
-            }
-        }
-        
-
-
+        //StartCoroutine(rotate());
 
     }
+
+   
 }

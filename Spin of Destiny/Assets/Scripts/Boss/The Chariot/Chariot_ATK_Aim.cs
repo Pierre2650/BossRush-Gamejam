@@ -14,7 +14,7 @@ public class ChariotAim : MonoBehaviour
 
     [Header("Aim")]
     public Vector2 lastPosition;
-    public bool isAiming = false;
+    public bool isAiming;
     private float timer = 0f;
     private float scanDuration = 1.5f;
 
@@ -23,6 +23,7 @@ public class ChariotAim : MonoBehaviour
     {
         myLR = GetComponent<LineRenderer>();
         myLR.positionCount = 2;
+        isAiming = true;
     }
 
     // Update is called once per frame
