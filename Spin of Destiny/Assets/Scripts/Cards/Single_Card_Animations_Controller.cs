@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Security.Cryptography;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
+using static UnityEngine.Rendering.GPUSort;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class Test_Card_Mix_animation : MonoBehaviour
+public class Single_Card_Animations_Controller : MonoBehaviour
 {
 
     [Header("Berzier Mouvement")]
@@ -15,18 +18,26 @@ public class Test_Card_Mix_animation : MonoBehaviour
     private bool isSpreading = false;
 
 
-    [Header("SIze Change")]
+    [Header("Size Change")]
     private float szChangeDur = 0.4f;
     private float szChangeElapsedT = 0;
 
     public AnimationCurve curve;
 
 
-    [Header("Test")]
+    [Header("Position Change")]
     public Vector2 posToGo;
     public GameObject newParent;
     private float changePosElapsedT = 0;
     private float changePosDur = 0.5f;
+
+
+    [Header("Rotation Correction")]
+    private float correctionElapsedT = 0;
+
+
+    [Header("Deck")]
+    public Cards_Deck_Controller deckController;
 
     // Update is called once per frame
     void Update()
@@ -56,7 +67,7 @@ public class Test_Card_Mix_animation : MonoBehaviour
         setControlPoints();
 
         isSpreading = true;
-        StartCoroutine(waitToStop(delay));
+        StartCoroutine(waitToStopSpread(delay));
 
     }
     private void spread()
@@ -92,7 +103,7 @@ public class Test_Card_Mix_animation : MonoBehaviour
         StartCoroutine(changeSize(size));
 
     }
-    public IEnumerator changeSize(Vector2 end)
+    private IEnumerator changeSize(Vector2 end)
     {
         float percetageDur;
 
@@ -112,6 +123,7 @@ public class Test_Card_Mix_animation : MonoBehaviour
 
         }
 
+        transform.localScale = end;
 
         szChangeElapsedT = 0f;
 
@@ -120,7 +132,7 @@ public class Test_Card_Mix_animation : MonoBehaviour
 
 
 
-    private IEnumerator waitToStop(float i)
+    private IEnumerator waitToStopSpread(float i)
     {
 
         yield return new WaitForSeconds(0.05f + i);
@@ -151,20 +163,67 @@ public class Test_Card_Mix_animation : MonoBehaviour
 
         }
 
-
+        transform.position = pos;
         changePosElapsedT = 0f;
 
 
 
         transform.parent = newParent.transform;
 
-        if (selection) { 
-            transform.eulerAngles = Vector3.zero; 
+        if (selection)
+        {
+            StartCoroutine(correctRotation());
+
         }
-        
+
 
 
     }
 
-   
+    private IEnumerator correctRotation()
+    {
+        float percetageDur;
+
+        if(transform.eulerAngles.z < 0)
+        {
+            transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z * -1);
+
+        }
+
+        Vector3 start = transform.eulerAngles;
+        Vector3 end = Vector3.zero;
+
+
+        while (correctionElapsedT < 0.2f)
+        {
+            percetageDur = correctionElapsedT / 0.2f;
+
+            transform.eulerAngles = Vector3.Lerp(start, end, curve.Evaluate(percetageDur));
+
+
+            correctionElapsedT += Time.deltaTime;
+            yield return null;
+
+        }
+
+        transform.eulerAngles = end;
+        correctionElapsedT = 0f;
+
+        
+        deckController.switchToPlayableCards();
+
+        disableFalseCard();
+
+        
+
+    }
+
+    private void disableFalseCard()
+    {
+        this.gameObject.SetActive(false);
+        
+    }
+
+
+
 }

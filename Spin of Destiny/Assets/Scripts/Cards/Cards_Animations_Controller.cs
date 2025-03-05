@@ -11,7 +11,7 @@ public class Cards_Animations_Controller : MonoBehaviour
 {
     [Header("Rotating Card")]
     public GameObject rotatingCards;
-    private Test_Card_Rotation_Animations rtCardsController;
+    private Cards_Rotation_Animation_Controller rtCardsController;
 
     [Header("Deck of Cards")]
     public GameObject deck;
@@ -20,32 +20,18 @@ public class Cards_Animations_Controller : MonoBehaviour
 
     public AnimationCurve curve;
 
-    [Header("Playable Cards")]
-    public Vector2[] playableCardsPos;
-    public List<GameObject> playableCards;
-
     [Header("Move Right")]
     public float goRightDur;
     private float goRightElapsedT = 0;
     public AnimationCurve goRightCurve;
 
-    [Header("Move to new Pos")]
-    public float changePosDur;
-    private float changePosElapsedT = 0;
-
-
-
-
-
-    private List<GameObject> test = new List<GameObject>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
-        rtCardsController = rotatingCards.GetComponent<Test_Card_Rotation_Animations>();
+        rtCardsController = rotatingCards.GetComponent<Cards_Rotation_Animation_Controller>();
         deckController = deck.GetComponent<Cards_Deck_Controller>();
-
         deckStartPos = deck.transform.position;
         
     }
@@ -59,23 +45,7 @@ public class Cards_Animations_Controller : MonoBehaviour
             StartCoroutine(moveRight());
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-
-            StartCoroutine(selectPlayableCards(3));
-        }
-
         
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            foreach(GameObject g in test)
-            {
-                Debug.Log("Transform. Euler angles Z = " + g.transform.eulerAngles.z);
-
-            }
-            
-        }
     }
 
 
@@ -128,6 +98,7 @@ public class Cards_Animations_Controller : MonoBehaviour
 
         }
 
+        StartCoroutine(selectPlayableCards(3));
     }
 
     private void deckToRotation()
@@ -144,12 +115,12 @@ public class Cards_Animations_Controller : MonoBehaviour
         
         GameObject card = deckController.cards[rand];
         
-        Vector2 pos = rtCardsController.circlePoints[21];
+        Vector2 pos = rtCardsController.cardAdditionPos;
 
         rtCardsController.cards.Add(card);
         deckController.cards.Remove(card);
 
-        Test_Card_Mix_animation tempCard = card.GetComponent<Test_Card_Mix_animation>();
+        Single_Card_Animations_Controller tempCard = card.GetComponent<Single_Card_Animations_Controller>();
         tempCard.posToGo = pos;
         tempCard.newParent = rotatingCards;
 
@@ -162,16 +133,16 @@ public class Cards_Animations_Controller : MonoBehaviour
     private IEnumerator selectPlayableCards(int nbCards)
     {
 
-        //yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(3f);
         int i = 0;
 
-        
+
         int randIndex = Random.Range(0, 3);
 
         while (deckController.cards.Count < nbCards)
         {
             //make the pos  random
-            cardToTable(playableCardsPos[i]);
+            cardToTable(deckController.playableCardsPos[i]);
 
             i++;
 
@@ -181,30 +152,53 @@ public class Cards_Animations_Controller : MonoBehaviour
 
     }
 
+   
+
 
     private void cardToTable(Vector2 pos)
     {
         int randCard = Random.Range(0, deckController.cards.Count);
-        int randExistingCard = Random.Range(0, playableCards.Count);
 
-
-        GameObject playable = playableCards[randExistingCard];
-        playable.transform.position = pos;
-        playableCards.Remove(playable);
-
+       
         GameObject card = rtCardsController.cards[randCard];
 
         deckController.cards.Add(card);
-        test.Add(card);
         rtCardsController.cards.Remove(card);
         
 
-        Test_Card_Mix_animation tempCard = card.GetComponent<Test_Card_Mix_animation>();
+        Single_Card_Animations_Controller tempCard = card.GetComponent<Single_Card_Animations_Controller>();
         tempCard.posToGo = pos;
         tempCard.newParent = deck;
         
         tempCard.increase();
         StartCoroutine(tempCard.moveToPos(pos,true));
+
+
+    }
+
+
+    public void everythingBackInPlace()
+    {
+        //1. Deck back to start position
+        //2. all the cards on Deck Game object
+
+        deck.transform.position = deckStartPos;
+
+        foreach(GameObject card in rtCardsController.cards)
+        {
+            card.transform.parent = deck.transform;
+            deckController.cards.Add(card);
+        }
+        rtCardsController.cards.Clear();
+
+
+        foreach (GameObject card in deckController.cards)
+        {
+            card.transform.eulerAngles = Vector3.zero;
+            card.transform.position = deckStartPos;
+            card.SetActive(true);
+        }
+
 
 
     }

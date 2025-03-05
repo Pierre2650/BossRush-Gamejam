@@ -13,36 +13,34 @@ public class Card_Controller : MonoBehaviour
     public Enum_Card value;
     private char type;
 
+    private Card_Enum_Type valueTypeTuple  = new Card_Enum_Type();
+
 
     public Card_Selection_Controller selectionController;
 
+    [Header("Sprites")]
+    public Sprite[] sprites;
+
+    [Header("Animations Parameters")]
+    private bool onHover = false;
     public bool clickable = false;
-
-    [Header("animations")]
     private bool onObject = false;
-    //Curve for type f mouvement
-    [SerializeField] private AnimationCurve curve;
-    [SerializeField] private AnimationCurve curveForStart;
+    private Coroutine currentAnim;
+    public AnimationCurve curve;
 
-    //handle sprites by searching them
-    [Header("Animations")]
-    //public float delay = 0;
-    //private float startAnimationElapsed = 0;
-    //private float startAnimationD = 0.2f;
-
+    [Header("Hover Animations")]
     private float onHoverElapsedT = 0;
     private float onHoverDuration = 0.16f;
 
+    [Header("flip Animations")]
     private float flipAnimationElapsed = 0;
-    private float flipAnimationD = 0.3f;
+    private float flipAnimationD = 0.1f;
 
+    [Header("Click Animations")]
     private float onClickElapsed = 0;
     private float onClickAnimationD = 0.1f;
 
-    private bool onHover = false;
-    private Coroutine currentAnim;
-
-    public Vector2 endPos;
+  
 
     private void Awake()
     {
@@ -65,16 +63,17 @@ public class Card_Controller : MonoBehaviour
 
             selectType();
            
-            Card_Enum_Type temp = new Card_Enum_Type();
-            temp.value = value;
-            temp.type = type;
+            valueTypeTuple.value = value;
+            valueTypeTuple.type = type;
 
-            selectionController.cards.Add(temp);
+            //selectionController.cards.Add(temp);
 
             clickable = false;
 
         }
 
+
+     
     }
 
 
@@ -191,7 +190,7 @@ public class Card_Controller : MonoBehaviour
         }
         onClickElapsed = 0;
 
-        //vote_scrpt.choiceMade(value);
+        StartCoroutine(flipCard());
     }
 
 
@@ -251,37 +250,7 @@ public class Card_Controller : MonoBehaviour
 
     }
 
-    /*
-    private IEnumerator startAnimation()
-    {
-        yield return new WaitForSeconds(delay);
-
-        float percentageDur = 0;
-
-        Vector2 start = transform.localPosition;
-
-
-
-        while (startAnimationElapsed < startAnimationD)
-        {
-
-            percentageDur = startAnimationElapsed / startAnimationD;
-
-            transform.localPosition = Vector2.Lerp(start, endPos, curveForStart.Evaluate(percentageDur));
-
-            startAnimationElapsed += Time.deltaTime;
-            yield return null;
-
-        }
-
-        startAnimationElapsed = 0;
-
-        StartCoroutine(flipCard());
-
-
-
-    }
-    */
+   
 
 
     private IEnumerator flipCard()
@@ -307,7 +276,7 @@ public class Card_Controller : MonoBehaviour
         flipAnimationElapsed = 0;
 
         //change image
-        //spriteComponent.sprite = valueCard[1];
+        spriteComponent.sprite = sprites[1];
 
         while (flipAnimationElapsed < flipAnimationD)
         {
@@ -326,12 +295,11 @@ public class Card_Controller : MonoBehaviour
 
         flipAnimationElapsed = 0;
 
-        clickable = true;
+        selectionController.cards.Add(valueTypeTuple);
 
     }
 
-    //private IEnumerator endAnimation() { 
-    //}
+    
 
 
 }

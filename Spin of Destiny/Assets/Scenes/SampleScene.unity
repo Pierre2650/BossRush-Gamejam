@@ -7756,6 +7756,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &125031394
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7914,6 +7915,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &225809321
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8017,6 +8019,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 1
   selectionController: {fileID: 1761312931}
+  sprites:
+  - {fileID: 21300000, guid: d4101ddc997183f49a55bfaf4d22b37b, type: 3}
+  - {fileID: 21300000, guid: b09630cd38c241a40a68c62c5f3ac021, type: 3}
   clickable: 1
   curve:
     serializedVersion: 2
@@ -8042,31 +8047,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  curveForStart:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  endPos: {x: 0, y: 0}
 --- !u!61 &285506790
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8103,7 +8083,7 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.84375, y: 0.5, z: 0.84375, w: 0.5}
+    border: {x: 5.9375, y: 3.5, z: 5.875, w: 3.46875}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 4, y: 4}
     newSize: {x: 7.111111, y: 7.111111}
@@ -8157,7 +8137,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b09630cd38c241a40a68c62c5f3ac021, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4101ddc997183f49a55bfaf4d22b37b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8239,6 +8219,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &357907718
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8365,6 +8346,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &384988984
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8468,6 +8450,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 0
   selectionController: {fileID: 1761312931}
+  sprites:
+  - {fileID: 21300000, guid: d4101ddc997183f49a55bfaf4d22b37b, type: 3}
+  - {fileID: 21300000, guid: 568b6ee4ba1b98248a726f95d7de6d2c, type: 3}
   clickable: 1
   curve:
     serializedVersion: 2
@@ -8493,31 +8478,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  curveForStart:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  endPos: {x: 0, y: 0}
 --- !u!212 &402759478
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8562,7 +8522,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 568b6ee4ba1b98248a726f95d7de6d2c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4101ddc997183f49a55bfaf4d22b37b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8609,7 +8569,7 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.84375, y: 0.5, z: 0.84375, w: 0.5}
+    border: {x: 5.9375, y: 3.5, z: 5.875, w: 3.46875}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 4, y: 4}
     newSize: {x: 1.28, y: 1.28}
@@ -8644,7 +8604,7 @@ Transform:
   m_GameObject: {fileID: 429968812}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.02, y: -5.7, z: 0}
+  m_LocalPosition: {x: 21.57, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8942,7 +8902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc602b9e165cdd4bb595e62a8416951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circlePoints: []
+  cardAdditionPos: {x: 0, y: 0}
   cards: []
   radius: 4
   n: 22
@@ -9416,7 +9376,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 429968813}
@@ -9435,6 +9395,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 4
   selectionController: {fileID: 1761312931}
+  sprites:
+  - {fileID: 21300000, guid: d4101ddc997183f49a55bfaf4d22b37b, type: 3}
+  - {fileID: 21300000, guid: 50d468996d397c944b4ed66fe8d9dac9, type: 3}
   clickable: 1
   curve:
     serializedVersion: 2
@@ -9460,31 +9423,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  curveForStart:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  endPos: {x: 0, y: 0}
 --- !u!61 &773965291
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9521,9 +9459,9 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 5.9375, y: 3.5, z: 5.875, w: 3.46875}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.2461538, y: 3.8076923}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 1.72, y: 2.665}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -9575,7 +9513,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -126849652, guid: b880708e90c4a8940aebcda4b8223565, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4101ddc997183f49a55bfaf4d22b37b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9688,6 +9626,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &826092456
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9869,6 +9808,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!1 &884816611
 GameObject:
   m_ObjectHideFlags: 0
@@ -9940,6 +9880,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &884816614
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10134,6 +10075,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &921597485
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10218,7 +10160,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 429968813}
@@ -10237,6 +10179,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 2
   selectionController: {fileID: 1761312931}
+  sprites:
+  - {fileID: 21300000, guid: d4101ddc997183f49a55bfaf4d22b37b, type: 3}
+  - {fileID: -3875365971879782558, guid: 7e05120c4fdafb041aa6595cc8598be8, type: 3}
   clickable: 1
   curve:
     serializedVersion: 2
@@ -10262,31 +10207,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  curveForStart:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  endPos: {x: 0, y: 0}
 --- !u!61 &926178329
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10323,9 +10243,9 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 5.9375, y: 3.5, z: 5.875, w: 3.46875}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.2769232, y: 3.853846}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 1.72, y: 2.665}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -10377,7 +10297,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3875365971879782558, guid: 7e05120c4fdafb041aa6595cc8598be8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4101ddc997183f49a55bfaf4d22b37b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11064,6 +10984,17 @@ MonoBehaviour:
   - {fileID: 1983314430}
   - {fileID: 1256141910}
   - {fileID: 1380997039}
+  playableCardsPos:
+  - {x: -4, y: -5}
+  - {x: 0, y: -7}
+  - {x: 4, y: -5}
+  playableCards:
+  - {fileID: 402759475}
+  - {fileID: 285506787}
+  - {fileID: 926178326}
+  - {fileID: 1140385744}
+  - {fileID: 773965288}
+  - {fileID: 1142683190}
 --- !u!1 &1129917874
 GameObject:
   m_ObjectHideFlags: 0
@@ -11135,6 +11066,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &1129917877
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11309,6 +11241,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 3
   selectionController: {fileID: 1761312931}
+  sprites:
+  - {fileID: 21300000, guid: d4101ddc997183f49a55bfaf4d22b37b, type: 3}
+  - {fileID: 21300000, guid: b6ff259ef20bfa94c9675e907cb4d38e, type: 3}
   clickable: 1
   curve:
     serializedVersion: 2
@@ -11334,31 +11269,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  curveForStart:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  endPos: {x: 0, y: 0}
 --- !u!61 &1140385747
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11395,7 +11305,7 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.84375, y: 0.5, z: 0.84375, w: 0.5}
+    border: {x: 5.9375, y: 3.5, z: 5.875, w: 3.46875}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 4, y: 4}
     newSize: {x: 7.111111, y: 7.111111}
@@ -11449,7 +11359,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b6ff259ef20bfa94c9675e907cb4d38e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4101ddc997183f49a55bfaf4d22b37b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11489,7 +11399,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 429968813}
@@ -11508,6 +11418,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 5
   selectionController: {fileID: 1761312931}
+  sprites:
+  - {fileID: 21300000, guid: d4101ddc997183f49a55bfaf4d22b37b, type: 3}
+  - {fileID: 9116649567114451034, guid: 400291fcfba722b4fab640d77ea9abe3, type: 3}
   clickable: 1
   curve:
     serializedVersion: 2
@@ -11533,31 +11446,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  curveForStart:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  endPos: {x: 0, y: 0}
 --- !u!61 &1142683193
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11594,9 +11482,9 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 5.9375, y: 3.5, z: 5.875, w: 3.46875}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.2615385, y: 3.8}
+    oldSize: {x: 4, y: 4}
     newSize: {x: 1.72, y: 2.665}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -11648,7 +11536,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 9116649567114451034, guid: 400291fcfba722b4fab640d77ea9abe3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d4101ddc997183f49a55bfaf4d22b37b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11835,6 +11723,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &1256141913
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11961,6 +11850,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &1262827167
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12087,6 +11977,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &1347374601
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12484,6 +12375,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &1380997042
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12610,6 +12502,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &1387395649
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12736,6 +12629,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &1431171505
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12862,6 +12756,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &1464736697
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12988,6 +12883,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &1491743668
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13147,6 +13043,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &1645248223
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13235,6 +13132,7 @@ MonoBehaviour:
   numberOfCards: 3
   Game: {fileID: 498603164}
   thisObj: {fileID: 1005770005}
+  animationController: {fileID: 1761312933}
 --- !u!4 &1761312932
 Transform:
   m_ObjectHideFlags: 0
@@ -13288,17 +13186,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  playableCardsPos:
-  - {x: -4, y: -5}
-  - {x: 0, y: -7.5}
-  - {x: 4, y: -5}
-  playableCards:
-  - {fileID: 402759475}
-  - {fileID: 285506787}
-  - {fileID: 926178326}
-  - {fileID: 1140385744}
-  - {fileID: 773965288}
-  - {fileID: 1142683190}
   goRightDur: 1
   goRightCurve:
     serializedVersion: 2
@@ -13324,7 +13211,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  changePosDur: 0.3
 --- !u!1 &1778944326
 GameObject:
   m_ObjectHideFlags: 0
@@ -15897,6 +15783,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &1963314310
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16023,6 +15910,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &1983314433
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16287,6 +16175,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &2052869278
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16659,6 +16548,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   posToGo: {x: 0, y: 0}
   newParent: {fileID: 0}
+  deckController: {fileID: 1128150696}
 --- !u!212 &2136521346
 SpriteRenderer:
   m_ObjectHideFlags: 0

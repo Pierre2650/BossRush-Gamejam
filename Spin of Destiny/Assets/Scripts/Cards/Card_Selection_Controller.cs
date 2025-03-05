@@ -13,6 +13,9 @@ public class Card_Selection_Controller : MonoBehaviour
     public GameObject thisObj;
 
 
+    [Header("Cards Animation Manager")]
+    public Cards_Animations_Controller animationController;
+
     // Update is called once per frame
     void Update()
     {
@@ -20,6 +23,7 @@ public class Card_Selection_Controller : MonoBehaviour
         if (cards.Count == numberOfCards)
         {
             //startGame
+            animationController.everythingBackInPlace();
             startGame();
         }
         
