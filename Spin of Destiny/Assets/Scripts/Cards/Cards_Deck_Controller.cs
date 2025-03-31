@@ -44,6 +44,7 @@ public class Cards_Deck_Controller : MonoBehaviour
 
         GameObject playable = playableCards[randPlayablesCard];
         playable.transform.position = playableCardsPos[indexPlayableCardsSelected];
+        playable.GetComponent<Card_Controller>().setPos = playableCardsPos[indexPlayableCardsSelected];
 
         indexPlayableCardsSelected++;
 

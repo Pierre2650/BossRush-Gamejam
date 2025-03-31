@@ -16,7 +16,9 @@ public class Cards_Rotation_Animation_Controller : MonoBehaviour
     [Header("Rotation")]
     public float rotationDur;
     private float rotationElapsedT = 0;
-    public float rotationAcceleration;
+    public float rotationAcceleration = 1;
+
+    private Coroutine infiniteRotation;
 
 
     public AnimationCurve curve;
@@ -31,7 +33,7 @@ public class Cards_Rotation_Animation_Controller : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(rotate());
+        infiniteRotation = StartCoroutine(rotate());
     }
 
     private void OnDisable()
@@ -40,7 +42,36 @@ public class Cards_Rotation_Animation_Controller : MonoBehaviour
     }
 
     
-    
+    public void stopRoation()
+    {
+        // rotationAcceleration = 0.5f;
+        StartCoroutine(deAcceleration());
+    }
+
+    private IEnumerator deAcceleration()
+    {
+        float percetageDur , elapsed = 0;
+
+        float start = 1f;
+        float end = 0.5f;
+
+
+        while (elapsed < 1f)
+        {
+
+            percetageDur = elapsed / 1f ;
+
+            rotationAcceleration = Mathf.Lerp(start, end, curve.Evaluate(percetageDur));
+
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+
+        }
+
+        StopCoroutine(infiniteRotation);
+    }
 
     private void cardsRotationCorrection()
     {
@@ -64,6 +95,7 @@ public class Cards_Rotation_Animation_Controller : MonoBehaviour
 
     }
 
+   
 
     private IEnumerator rotate()
     {
@@ -75,12 +107,12 @@ public class Cards_Rotation_Animation_Controller : MonoBehaviour
 
         while (true)
         {
-            if(rotationElapsedT > rotationDur)
+            if(rotationElapsedT > (rotationDur/ rotationAcceleration))
             {
                 rotationElapsedT = 0;
             }
 
-            percetageDur = rotationElapsedT / rotationDur;
+            percetageDur = rotationElapsedT / (rotationDur/ rotationAcceleration);
 
             transform.eulerAngles = Vector3.Lerp(start, end, curve.Evaluate(percetageDur));
 

@@ -144,7 +144,6 @@ public class Single_Card_Animations_Controller : MonoBehaviour
     public IEnumerator moveToPos(Vector2 pos, bool selection)
     {
 
-
         float percetageDur;
 
         Vector2 start = transform.position;
@@ -182,31 +181,32 @@ public class Single_Card_Animations_Controller : MonoBehaviour
 
     private IEnumerator correctRotation()
     {
+       
+
         float percetageDur;
-
-        if(transform.eulerAngles.z < 0)
-        {
-            transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z * -1);
-
-        }
+        
 
         Vector3 start = transform.eulerAngles;
-        Vector3 end = Vector3.zero;
 
+        Vector3 end = new Vector3(0,0,360);
+
+        
 
         while (correctionElapsedT < 0.2f)
         {
             percetageDur = correctionElapsedT / 0.2f;
 
+          
             transform.eulerAngles = Vector3.Lerp(start, end, curve.Evaluate(percetageDur));
-
+      
 
             correctionElapsedT += Time.deltaTime;
             yield return null;
 
         }
 
-        transform.eulerAngles = end;
+        transform.eulerAngles = Vector3.zero;
+        
         correctionElapsedT = 0f;
 
         

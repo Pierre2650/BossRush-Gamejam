@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card_Controller : MonoBehaviour
 {
     [Header("InitComponents")]
     private SpriteRenderer spriteComponent;
+    private Image imageComponent;
+
+    public Vector2 setPos;
 
 
     [Header("CardDefine")]
@@ -21,6 +25,9 @@ public class Card_Controller : MonoBehaviour
     [Header("Sprites")]
     public Sprite[] sprites;
 
+    [Header("Text")]
+    public GameObject child;
+
     [Header("Animations Parameters")]
     private bool onHover = false;
     public bool clickable = false;
@@ -29,6 +36,8 @@ public class Card_Controller : MonoBehaviour
     public AnimationCurve curve;
 
     [Header("Hover Animations")]
+    private Vector2 hoverStart;
+    private Vector2 hoverEnd;
     private float onHoverElapsedT = 0;
     private float onHoverDuration = 0.16f;
 
@@ -40,11 +49,21 @@ public class Card_Controller : MonoBehaviour
     private float onClickElapsed = 0;
     private float onClickAnimationD = 0.1f;
 
-  
+
+    [Header("Zoom Animations")]
+    private float zoomElapsed = 0;
+    private float zoomAnimationD = 0.3f;
+
+
 
     private void Awake()
     {
         spriteComponent = GetComponent<SpriteRenderer>();
+        imageComponent = GetComponent<Image>();
+
+        hoverStart = transform.localScale;
+        hoverEnd = new  Vector2(transform.localScale.x + 0.25f, transform.localScale.y + 0.25f);
+        //hoverEnd = new Vector2(transform.localScale.x + 13f, transform.localScale.y + 13f);
     }
 
     private void OnEnable()
@@ -132,7 +151,7 @@ public class Card_Controller : MonoBehaviour
     {
         onObject = true;
 
-        if (!onHover && currentAnim == null)
+        if (!onHover && currentAnim == null && clickable)
         {
             currentAnim = StartCoroutine(onHoverAnimation());
             onHover = true;
@@ -143,14 +162,18 @@ public class Card_Controller : MonoBehaviour
     {
         onObject = false;
 
-        if (onHover)
+        if (onHover && clickable)
         {
             if (currentAnim != null)
             {
                 StopCoroutine(currentAnim);
                 currentAnim = null;
             }
-            currentAnim = StartCoroutine(offHoverAnimation());
+            
+
+             currentAnim = StartCoroutine(offHoverAnimation());
+            
+
             onHover = false;
         }
     }
@@ -170,6 +193,7 @@ public class Card_Controller : MonoBehaviour
             percentageDur = onClickElapsed / onClickAnimationD;
 
             spriteComponent.color = Color.Lerp(start, end, curve.Evaluate(percentageDur));
+            //imageComponent.color = Color.Lerp(start, end, curve.Evaluate(percentageDur));
 
             onClickElapsed += Time.deltaTime;
             yield return null;
@@ -183,6 +207,7 @@ public class Card_Controller : MonoBehaviour
             percentageDur = onClickElapsed / onClickAnimationD;
 
             spriteComponent.color = Color.Lerp(end, start, curve.Evaluate(percentageDur));
+            //imageComponent.color = Color.Lerp(end, start, curve.Evaluate(percentageDur));
 
             onClickElapsed += Time.deltaTime;
             yield return null;
@@ -190,6 +215,8 @@ public class Card_Controller : MonoBehaviour
         }
         onClickElapsed = 0;
 
+
+        selectionController.obscure();
         StartCoroutine(flipCard());
     }
 
@@ -200,16 +227,12 @@ public class Card_Controller : MonoBehaviour
 
         float percentageDur = 0;
 
-        Vector2 start = new Vector2(0.95f, 0.95f);
-        Vector2 end = new Vector2(1.2f, 1.2f);
-
-
         while (onHoverElapsedT < onHoverDuration)
         {
 
             percentageDur = onHoverElapsedT / onHoverDuration;
 
-            transform.localScale = Vector2.Lerp(start, end, curve.Evaluate(percentageDur));
+            transform.localScale = Vector2.Lerp(hoverStart, hoverEnd, curve.Evaluate(percentageDur));
 
             onHoverElapsedT += Time.deltaTime;
             yield return null;
@@ -227,16 +250,13 @@ public class Card_Controller : MonoBehaviour
 
         float percentageDur = 0;
 
-        Vector2 start = transform.localScale;
-        Vector2 end = new Vector2(0.95f, 0.95f);
-
 
         while (onHoverElapsedT < onHoverDuration)
         {
 
             percentageDur = onHoverElapsedT / onHoverDuration;
 
-            transform.localScale = Vector2.Lerp(start, end, curve.Evaluate(percentageDur));
+            transform.localScale = Vector2.Lerp(hoverEnd, hoverStart, curve.Evaluate(percentageDur));
 
             onHoverElapsedT += Time.deltaTime;
             yield return null;
@@ -277,6 +297,7 @@ public class Card_Controller : MonoBehaviour
 
         //change image
         spriteComponent.sprite = sprites[1];
+        //imageComponent.sprite = sprites[1];
 
         while (flipAnimationElapsed < flipAnimationD)
         {
@@ -295,11 +316,87 @@ public class Card_Controller : MonoBehaviour
 
         flipAnimationElapsed = 0;
 
-        selectionController.cards.Add(valueTypeTuple);
+        child.SetActive(enabled);
+
+        StartCoroutine(zoom_CenterCard());
+        
 
     }
 
-    
+
+    private IEnumerator zoom_CenterCard()
+    {
+        spriteComponent.sortingOrder = 2;
+        float percentageDur = 0;
+
+        Vector2 start = transform.localScale;
+        Vector2 end = new Vector2(3.5f, 3.5f);
+
+        Vector2 startPos = transform.position;
+        Vector2 endPos = new Vector2(-0.25f, 0);
+
+
+
+
+        while (zoomElapsed < zoomAnimationD)
+        {
+
+            percentageDur = zoomElapsed / zoomAnimationD;
+
+            transform.localScale = Vector2.Lerp(start, end, curve.Evaluate(percentageDur));
+            transform.position = Vector2.Lerp(startPos, endPos, curve.Evaluate(percentageDur));
+
+            zoomElapsed += Time.deltaTime;
+            yield return null;
+
+        }
+
+        zoomElapsed = 0;
+
+        yield return new WaitForSeconds(2f);
+        selectionController.unObscure();
+        StartCoroutine(zoomAwaycard());
+        
+
+    }
+
+    private IEnumerator zoomAwaycard()
+    {
+        float percentageDur = 0;
+
+        Vector2 start = transform.localScale;
+        Vector2 end = new Vector2(1, 1);
+
+        Vector2 startPos = transform.position;
+        Vector2 endPos = setPos;
+
+
+
+        while (zoomElapsed < zoomAnimationD)
+        {
+
+            percentageDur = zoomElapsed / zoomAnimationD;
+
+            transform.localScale = Vector2.Lerp(start, end, curve.Evaluate(percentageDur));
+            transform.position = Vector2.Lerp(startPos, endPos, curve.Evaluate(percentageDur));
+
+
+            zoomElapsed += Time.deltaTime;
+            yield return null;
+
+        }
+
+        zoomElapsed = 0;
+
+        spriteComponent.sortingOrder = 1;
+
+
+        selectionController.cards.Add(valueTypeTuple);
+
+   
+
+    }
+
 
 
 }

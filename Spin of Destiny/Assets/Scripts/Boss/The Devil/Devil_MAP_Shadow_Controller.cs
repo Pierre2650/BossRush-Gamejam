@@ -65,7 +65,7 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
                 }
 
                 //stop Player
-                player.GetComponent<Player_controller>().restrainMouvement();
+                //player.GetComponent<Player_controller>().restrainMouvement();
 
                 attractPlayer = true;
 

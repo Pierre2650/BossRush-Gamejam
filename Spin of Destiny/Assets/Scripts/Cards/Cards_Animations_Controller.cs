@@ -55,7 +55,7 @@ public class Cards_Animations_Controller : MonoBehaviour
         float percetageDur;
 
         Vector2 start = deck.transform.position;
-        Vector2 end = new Vector2(-8f, -4f);
+        Vector2 end = new Vector2(-8f, -5.5f);
 
         
 
@@ -150,8 +150,60 @@ public class Cards_Animations_Controller : MonoBehaviour
 
         }
 
+
+
+        StartCoroutine(stopRotation());
+
     }
 
+    private IEnumerator stopRotation()
+    {
+
+        yield return new WaitForSeconds(1.5f);
+
+        rtCardsController.stopRoation();
+
+
+        int i = 0;
+        List<int> temp = new List<int>();
+
+
+        while (i < rtCardsController.cards.Count)
+        {
+            //make the pos  random
+
+            cardsRearrengeEndRotation(temp);
+
+            i++;
+
+            yield return new WaitForSeconds(0.3f);
+
+        }
+
+
+
+    }
+
+
+    private void cardsRearrengeEndRotation(List<int> temp)
+    {
+        int randCard;
+        int debug = 0;
+        do
+        {
+            if(debug > 120)
+            {
+                Debug.Log("boucle infini on cardsRearrengeEndRotation()....  breaking out");
+                break;
+            }
+
+            randCard = Random.Range(0, rtCardsController.cards.Count);
+
+            debug++;
+        } while (temp.Contains(randCard));
+
+
+    }
    
 
 
@@ -175,6 +227,8 @@ public class Cards_Animations_Controller : MonoBehaviour
 
 
     }
+
+
 
 
     public void everythingBackInPlace()

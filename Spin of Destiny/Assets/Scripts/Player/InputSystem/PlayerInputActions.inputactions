@@ -66,10 +66,10 @@
                 {
                     "name": "up",
                     "id": "39477dcb-e9e7-49a8-90ed-7a07614f4e62",
-                    "path": "<Keyboard>/#(Z)",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";KeyBoard",
+                    "groups": ";KeyBoard;GamePad",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -88,7 +88,7 @@
                 {
                     "name": "left",
                     "id": "1faf1271-1523-4fb3-bd59-cb440c92caf4",
-                    "path": "<Keyboard>/#(Q)",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyBoard",
