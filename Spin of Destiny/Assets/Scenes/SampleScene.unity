@@ -8612,8 +8612,7 @@ Transform:
   m_LocalPosition: {x: -0, y: -1.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1001460970}
+  m_Children: []
   m_Father: {fileID: 429968813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &402759477
@@ -8634,7 +8633,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: d4101ddc997183f49a55bfaf4d22b37b, type: 3}
   - {fileID: 21300000, guid: a4947a841fbd26549a5e91cdc385d130, type: 3}
-  child: {fileID: 1001460969}
+  child: {fileID: 0}
   clickable: 1
   curve:
     serializedVersion: 2
@@ -8900,6 +8899,7 @@ Transform:
   - {fileID: 895368942}
   - {fileID: 480314420}
   - {fileID: 1372805939}
+  - {fileID: 566783360}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
@@ -9126,9 +9126,7 @@ GameObject:
   - component: {fileID: 566783359}
   - component: {fileID: 566783362}
   - component: {fileID: 566783361}
-  - component: {fileID: 566783364}
   - component: {fileID: 566783365}
-  - component: {fileID: 566783363}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -9280,7 +9278,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &566783363
+--- !u!114 &566783363 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 851365631478637370, guid: 1ca01a9499ef6024898958106fd543cf, type: 3}
   m_PrefabInstance: {fileID: 960394923}
@@ -9291,26 +9289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c12e11dc37da3d4e8b162ff40c29a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &572965636 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6741541428138243490, guid: 1ca01a9499ef6024898958106fd543cf, type: 3}
-  m_PrefabInstance: {fileID: 960394923}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 566783358}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 11b7d8466cfb3754ea5e5b7932b4aa2a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!233 &566783365
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -9337,6 +9315,11 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!224 &572965636 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6741541428138243490, guid: 1ca01a9499ef6024898958106fd543cf, type: 3}
+  m_PrefabInstance: {fileID: 960394923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &576984785
 GameObject:
   m_ObjectHideFlags: 0
@@ -11147,7 +11130,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935546737}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16dc42dc3e48ca24aa9d617d52a30c3d, type: 3}
   m_Name: 
@@ -11177,6 +11160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcde898bb9ab874408ba853387abe92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySprR: {fileID: 0}
 --- !u!114 &935546752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11331,7 +11315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5844644492847901529, guid: 1ca01a9499ef6024898958106fd543cf, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5844644492847901529, guid: 1ca01a9499ef6024898958106fd543cf, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -11403,11 +11387,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6741541428138243490, guid: 1ca01a9499ef6024898958106fd543cf, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -923
+      value: -721
       objectReference: {fileID: 0}
     - target: {fileID: 6741541428138243490, guid: 1ca01a9499ef6024898958106fd543cf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -446
+      value: -439
       objectReference: {fileID: 0}
     - target: {fileID: 6741541428138243490, guid: 1ca01a9499ef6024898958106fd543cf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -13532,6 +13516,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1372805946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372805938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1698373f2dc7e34479ce3e68c8e75e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthBar: {fileID: 566783363}
+  invincibilityTime: 0.2
 --- !u!1 &1380997039
 GameObject:
   m_ObjectHideFlags: 0
@@ -16883,41 +16882,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1794062897}
-    m_ColliderPaths:
-    - - X: 175000000
-        Y: 105000000
-      - X: -175000000
-        Y: 105000000
-      - X: -175000000
-        Y: -105000000
-      - X: 175000000
-        Y: -105000000
-    - - X: -165000000
-        Y: -95000000
-      - X: -165000000
-        Y: 95000000
-      - X: -75000000
-        Y: 95000000
-      - X: -75000000
-        Y: 35000000
-      - X: -65000000
-        Y: 35000000
-      - X: -65000000
-        Y: 25000000
-      - X: 35000000
-        Y: 25000000
-      - X: 35000000
-        Y: 35000000
-      - X: 45000000
-        Y: 35000000
-      - X: 45000000
-        Y: 95000000
-      - X: 165000000
-        Y: 95000000
-      - X: 165000000
-        Y: -95000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 17.499971, y: -10.5}
