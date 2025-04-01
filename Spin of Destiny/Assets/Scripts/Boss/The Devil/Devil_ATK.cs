@@ -20,9 +20,13 @@ public class Devil_ATK : MonoBehaviour
     private int nJumps = 3 ;
 
 
+    [Header("Boss Controller")]
+    private Enemy_Controller Main_controller;
+
 
     [Header("The Player")]
     public GameObject player;
+
 
 
     [Header("Scythe Cosmetic")]
@@ -34,7 +38,8 @@ public class Devil_ATK : MonoBehaviour
     private GameObject mesh;
 
     private Vector2 playerDir = Vector2.zero;
-    private MeshDevilAtkZone meshController;
+    private Devil_ATK_Mesh_AtkZone meshController;
+
     private bool isAttacking = true;
 
 
@@ -42,9 +47,12 @@ public class Devil_ATK : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        fakeScythePrefab = (GameObject)Resources.Load("DevilScythe_Cosmetic", typeof(GameObject));
-        meshPrefab = (GameObject)Resources.Load("AttackZone", typeof(GameObject));
+        Main_controller = GetComponent<Enemy_Controller>();
+
+        player = Main_controller.thePlayer;
+
+        fakeScythePrefab = (GameObject)Resources.Load("Devil_ATK_Scythe_Cosmetic", typeof(GameObject));
+        meshPrefab = (GameObject)Resources.Load("Devil_ATK_AttackZone", typeof(GameObject));
 
         spawnPrefabs();
 
@@ -61,7 +69,7 @@ public class Devil_ATK : MonoBehaviour
        fakeScythe = Instantiate(fakeScythePrefab, transform);
        mesh = Instantiate(meshPrefab, transform);
 
-       meshController = mesh.GetComponent<MeshDevilAtkZone>();
+       meshController = mesh.GetComponent<Devil_ATK_Mesh_AtkZone>();
        meshController.controller = this;
 
     }

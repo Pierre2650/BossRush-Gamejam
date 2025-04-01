@@ -176,7 +176,11 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
         speed = 20;
 
         theBoss.transform.position = transform.position;
-        theBoss.SetActive(true);
+
+        theBoss.GetComponent<Star_ATK>().mySprR.enabled = true;
+        //theBoss.SetActive(true);
+
+
         theBoss.GetComponent<Star_ATK>().startJumpSpawn();
 
         Destroy(this.gameObject);

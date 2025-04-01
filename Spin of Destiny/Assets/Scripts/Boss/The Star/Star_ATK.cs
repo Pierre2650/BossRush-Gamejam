@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Star_ATK : MonoBehaviour
 {
+    public SpriteRenderer mySprR;
     
     [Header("Boss Controller")]
     private Enemy_Controller mainController;
@@ -29,6 +30,8 @@ public class Star_ATK : MonoBehaviour
     void Start()
     {
         mainController = GetComponent<Enemy_Controller>();
+        mySprR = GetComponent<SpriteRenderer>();
+
         grid = mainController.Grid;
 
         mainStarPrefab = (GameObject)Resources.Load("Star_ATK_Main_Star", typeof(GameObject));
@@ -57,6 +60,8 @@ public class Star_ATK : MonoBehaviour
         spawnMainStar();
 
         transform.gameObject.SetActive(false);
+        //mySprR.enabled = false;
+
     }
 
 

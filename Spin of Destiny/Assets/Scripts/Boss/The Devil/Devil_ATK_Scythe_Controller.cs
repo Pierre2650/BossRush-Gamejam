@@ -2,27 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Devil_Scythe_Controller : MonoBehaviour
+public class Devil_ATK_Scythe_Controller : MonoBehaviour
 {
+    private SpriteRenderer mySprR;
+    private Sprite baseSprite;
+
     [Header("Attack Zone")]
     private Vector2 Dir = Vector2.zero;
 
 
     [Header("Animation")]
     private float swingElapsedT = 0f;
-    private float swingDuration = 0.1f;
+    private float swingDuration = 0.15f;
     private AnimationCurve curve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
     private Coroutine attackMouv = null;
 
 
+
+
+    [Header("Sprites")]
+    public Sprite scythEffect ;
+
+
+
     [Header("Parent")]
-    private MeshDevilAtkZone meshController;
+    private Devil_ATK_Mesh_AtkZone meshController;
 
     // Start is called before the first frame update
 
     private void Awake()
     {
-        meshController = transform.parent.GetComponent<MeshDevilAtkZone>();
+        mySprR = GetComponent<SpriteRenderer>();
+        baseSprite = mySprR.sprite;
+        scythEffect = Resources.Load<Sprite>("Devil_scythe_FX"); 
+        meshController = transform.parent.GetComponent<Devil_ATK_Mesh_AtkZone>();
         this.gameObject.SetActive(false);
     }
 
@@ -46,14 +59,15 @@ public class Devil_Scythe_Controller : MonoBehaviour
 
     private IEnumerator attack()
     {
+       
 
         float percentageDur = 0;
 
         Vector3 start = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
         Vector3 end = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 182);
 
-
-
+        mySprR.sprite = scythEffect;
+       
         while (swingElapsedT < swingDuration)
         {
 
@@ -61,7 +75,15 @@ public class Devil_Scythe_Controller : MonoBehaviour
 
             transform.eulerAngles = Vector3.Lerp(start, end, curve.Evaluate(percentageDur));
 
+
+
             swingElapsedT += Time.deltaTime;
+
+            if(swingElapsedT > 0.1f)
+            {
+                mySprR.sprite = baseSprite;
+            }
+
             yield return null;
 
         }
