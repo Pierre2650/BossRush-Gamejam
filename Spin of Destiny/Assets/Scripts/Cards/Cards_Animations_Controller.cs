@@ -55,7 +55,7 @@ public class Cards_Animations_Controller : MonoBehaviour
         float percetageDur;
 
         Vector2 start = deck.transform.position;
-        Vector2 end = new Vector2(-8f, -5.5f);
+        Vector2 end = new Vector2(-8f, -5.2f);
 
         
 
@@ -159,24 +159,26 @@ public class Cards_Animations_Controller : MonoBehaviour
     private IEnumerator stopRotation()
     {
 
-        yield return new WaitForSeconds(1.5f);
-
         rtCardsController.stopRoation();
+
+        yield return new WaitForSeconds(1f);
 
 
         int i = 0;
         List<int> temp = new List<int>();
 
 
+
+
         while (i < rtCardsController.cards.Count)
         {
             //make the pos  random
 
-            cardsRearrengeEndRotation(temp);
+            temp.Add(cardsRearrengeEndRotation(temp));
 
             i++;
 
-            yield return new WaitForSeconds(0.3f);
+           // yield return new WaitForSeconds(0.1f);
 
         }
 
@@ -185,10 +187,11 @@ public class Cards_Animations_Controller : MonoBehaviour
     }
 
 
-    private void cardsRearrengeEndRotation(List<int> temp)
+    private int cardsRearrengeEndRotation(List<int> temp)
     {
-        int randCard;
+        int randCard = 0;
         int debug = 0;
+
         do
         {
             if(debug > 120)
@@ -201,6 +204,17 @@ public class Cards_Animations_Controller : MonoBehaviour
 
             debug++;
         } while (temp.Contains(randCard));
+
+        GameObject card = rtCardsController.cards[randCard];
+
+        Single_Card_Animations_Controller tempCard = card.GetComponent<Single_Card_Animations_Controller>();
+
+
+        Vector2 pos = new Vector2(-0.15f, 5f);
+        StartCoroutine(tempCard.moveToPos(pos, false));
+        StartCoroutine(tempCard.correctLocalRotation());
+
+        return randCard;
 
 
     }

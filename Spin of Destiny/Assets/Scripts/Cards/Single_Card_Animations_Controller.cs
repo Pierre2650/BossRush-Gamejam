@@ -56,7 +56,7 @@ public class Single_Card_Animations_Controller : MonoBehaviour
     private void setControlPoints()
     {
         P0 = transform.position;
-        P2 = new Vector3(P0.x + 15, P0.y, 0);
+        P2 = new Vector3(P0.x + 13.6f, P0.y, 0);
         P1 = new Vector3(P0.x + 5.5f , P0.y -6, 0);
         
     }
@@ -176,7 +176,6 @@ public class Single_Card_Animations_Controller : MonoBehaviour
         }
 
 
-
     }
 
     private IEnumerator correctRotation()
@@ -218,10 +217,46 @@ public class Single_Card_Animations_Controller : MonoBehaviour
 
     }
 
+
+
+
     private void disableFalseCard()
     {
         this.gameObject.SetActive(false);
         
+    }
+
+    public IEnumerator correctLocalRotation()
+    {
+
+
+        float percetageDur;
+
+
+        Vector3 start = transform.eulerAngles;
+
+        Vector3 end = new Vector3(0, 0, 0);
+
+
+
+        while (correctionElapsedT < 0.2f)
+        {
+            percetageDur = correctionElapsedT / 0.2f;
+
+
+            transform.eulerAngles = Vector3.Lerp(start, end, curve.Evaluate(percetageDur));
+
+
+            correctionElapsedT += Time.deltaTime;
+            yield return null;
+
+        }
+
+        transform.eulerAngles = Vector3.zero;
+
+        correctionElapsedT = 0f;
+
+
     }
 
 
