@@ -48,19 +48,15 @@ public class Star_ATK : MonoBehaviour
         {
             jumpToSpawn();
         }
-        
     }
 
    private IEnumerator waitToAttack()
     {
         yield return new WaitForSeconds(2f);
 
-
         spawnMainStar();
 
-
         transform.gameObject.SetActive(false);
-
     }
 
 
@@ -70,20 +66,18 @@ public class Star_ATK : MonoBehaviour
         Star_ATK_Main_Star_Controller tempController = temp.GetComponent<Star_ATK_Main_Star_Controller>();
         tempController.theBoss = this.gameObject;
         tempController.player = mainController.thePlayer;
-
     }
 
     public void startJumpSpawn()
     {
         StartCoroutine(waitToJumpSpawn());
     }
+
     private IEnumerator waitToJumpSpawn()
     {
         yield return new WaitForSeconds(4f);
-
         setControlPoints();
         toSpawn = true;
-
     }
 
     private void jumpToSpawn()
@@ -92,18 +86,13 @@ public class Star_ATK : MonoBehaviour
         if (t < 1f)
         {
             transform.position = P1 + Mathf.Pow((1 - t), 2) * (P0 - P1) + Mathf.Pow(t, 2) * (P2 - P1);
-
             t = t + speed * Time.deltaTime;
-
         }
         else
         {
-            
             t = 0f;
             toSpawn = false;
             StartCoroutine(waitToAttack());
-
-
         }
 
     }

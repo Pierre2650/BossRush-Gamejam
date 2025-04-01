@@ -54,6 +54,7 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -159,3 +160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5278a1a92d9fde340aad25c238e0e938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 2
+  frequency: 0.2
+  damageRadius: 0.7

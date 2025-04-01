@@ -21,6 +21,12 @@ public class Chariot_MAP_Charge_Controller : MonoBehaviour
     [Header("Destroy Timer")]
     private float toDestroyElapsedT = 0f;
 
+    [Header("KnockBack")]
+    public float force;
+    public float slowTime;
+    public float slowFactor;
+    public float newAcceleration;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,5 +77,13 @@ public class Chariot_MAP_Charge_Controller : MonoBehaviour
         }
 
 
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag=="Player"){
+            PlayerController playerController = other.GetComponent<PlayerController>();
+            StartCoroutine(playerController.knockback(dir, slowFactor, force, slowTime, newAcceleration));
+        }
     }
 }

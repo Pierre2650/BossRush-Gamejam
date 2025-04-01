@@ -18,6 +18,9 @@ public class Word_MAP_OrbSpawn_Controller : MonoBehaviour
     private float toDestroyTimer = 0f;
     private  float toDestroyDuration = 4f;
 
+    [Header("damage")]
+    public float damage;
+
 
     private bool goStraight;
 
@@ -26,7 +29,6 @@ public class Word_MAP_OrbSpawn_Controller : MonoBehaviour
     {
         myRb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
-        
     }
 
     // Update is called once per frame
@@ -162,6 +164,14 @@ public class Word_MAP_OrbSpawn_Controller : MonoBehaviour
 
         return startEnd;
 
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Health playerHealth = collision.GetComponent<Health>();
+        if(collision.gameObject.tag == "Player"){
+            playerHealth.takeDamage(damage);
+        }
     }
 
 

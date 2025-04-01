@@ -32,6 +32,8 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
     private float spawnMiniElapsed = 0;
     private float spawnInterval = 0.15f;
 
+    public float damage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -194,6 +196,19 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
         myLR.SetPosition(1, temp );
 
     }
+
+     void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag=="Player"){
+            Health playerHealth = other.GetComponent<Health>();
+            if(!playerHealth.isInvincible){
+                playerHealth.takeDamage(damage);
+            }
+            
+
+        }
+    }
+
 
 
 }

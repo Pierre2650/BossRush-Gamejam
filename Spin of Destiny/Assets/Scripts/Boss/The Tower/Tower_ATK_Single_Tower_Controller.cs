@@ -24,6 +24,9 @@ public class Single_Tower_Controller : MonoBehaviour
 
     private bool isAttacking = false;
 
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +47,7 @@ public class Single_Tower_Controller : MonoBehaviour
             //check is arrived at last position
             if (Vector2.Distance(SpawnFlamesPos, lastPlayerPos) <= 1f)
             {
+
                 if (stopCoroutine == null)
                 {
                      stopCoroutine = StartCoroutine(stopAttack());
@@ -148,14 +152,9 @@ public class Single_Tower_Controller : MonoBehaviour
 
 
 
-    /*private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(lastSpawnPos, 0.25f);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(lastPlayerPos, 0.25f);
-
-    }*/
+    }
 
 }

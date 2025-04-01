@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -14,15 +15,17 @@ public class ChariotAim : MonoBehaviour
 
     [Header("Aim")]
     public Vector2 lastPosition;
-    public bool isAiming = false;
+    [HideInInspector]public bool isAiming;
     private float timer = 0f;
     private float scanDuration = 1.5f;
+    public float length;
 
     // Start is called before the first frame update
     void Start()
     {
         myLR = GetComponent<LineRenderer>();
         myLR.positionCount = 2;
+        isAiming = true;
     }
 
     // Update is called once per frame
@@ -37,9 +40,9 @@ public class ChariotAim : MonoBehaviour
 
             if (timer > scanDuration)
             {
+
                 lastPosition = player.transform.position;
                 timer = 0f;
-
                 isAiming = false;
 
 
@@ -56,7 +59,7 @@ public class ChariotAim : MonoBehaviour
     {
 
         myLR.SetPosition(0, boss.transform.position);
-        myLR.SetPosition(1, player.transform.position);
+        myLR.SetPosition(1, boss.transform.position + (player.transform.position - boss.transform.position).normalized * length);
 
     }
 

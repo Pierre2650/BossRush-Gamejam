@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[Obsolete("not used anymore")]
 public class Player_controller : MonoBehaviour
 {
     //SelfComponents

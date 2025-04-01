@@ -14,6 +14,13 @@ public class Shadow_Attack_Controller : MonoBehaviour
     private float toDestroyElapsed = 0f;
     private float toDestroyDur = 3f;
 
+    [Header("Damage")]
+    public float damage;
+    public float frequency = 0.2f;
+    public float damageRadius=1;
+    private float timer;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +31,17 @@ public class Shadow_Attack_Controller : MonoBehaviour
 
     private void Update()
     {
+        if(Time.time - timer >=frequency){
+            Damage.damageCircle(transform.position, damageRadius, LayerMask.GetMask("Player"), damage);
+        }
+
         toDestroyElapsed += Time.deltaTime;
         if (toDestroyElapsed > toDestroyDur)
         {
             Destroy(gameObject);
 
         }
+
     }
 
 
@@ -55,5 +67,11 @@ public class Shadow_Attack_Controller : MonoBehaviour
         animElapsed = 0;
       
 
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(transform.position, damageRadius);       
     }
 }

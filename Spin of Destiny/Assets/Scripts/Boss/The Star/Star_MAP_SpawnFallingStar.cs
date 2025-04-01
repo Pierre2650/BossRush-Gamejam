@@ -9,6 +9,9 @@ public class SpawnFallingStar : MonoBehaviour
     private Falling_Star_Controller star_Controller;
     private Vector2 starSpawnPos;
 
+    public float damage_zone_radius;
+    public float damage;
+
 
     
 
@@ -36,7 +39,9 @@ public class SpawnFallingStar : MonoBehaviour
 
         if (star_Controller.fallEnd)
         {
+            Damage.damageCircle(transform.position, damage_zone_radius, LayerMask.GetMask("Player"), damage);
             Destroy(this.gameObject);
+            
         }
     }
 

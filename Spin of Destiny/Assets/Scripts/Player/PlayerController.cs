@@ -13,11 +13,12 @@ public class PlayerController : MonoBehaviour
     public float speed = 0;
     float targetSpeed;
     public float accelerationValue;
+    private float accelerationBuffer;
     public float decelerationValue;
     private float accelRate;
 
     [Header("Debuff")]
-    private bool mouvConstrained = false;
+    [HideInInspector]public bool mouvConstrained = false;
 
     //private Vector2 lastMouvDir = Vector2.zero;
     //private bool debugZone = false;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     void Awake(){
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
+        mouvConstrained = false;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
         myRb = GetComponent<Rigidbody2D>();
         myAni = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        accelerationBuffer = accelerationValue;
     }
 
     // Update is called once per frame
@@ -51,19 +54,19 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate()
-    {     
-        applyForceToSpeed(targetSpeed, moveInput, myRb, accelRate);
+    {
+        if(!mouvConstrained || accelRate == decelerationValue){
+            applyForceToSpeed(targetSpeed, moveInput, myRb, accelRate);
+        }
         
     }
 
     public IEnumerator knockback(Vector2 dir, float slowFactor, float force, float slowTime, float newAcceleration){
         myRb.linearVelocity *= slowFactor;
         myRb.AddForce(dir*force, ForceMode2D.Impulse);
-        float tmp = accelerationValue;
         accelerationValue = newAcceleration;
         yield return new WaitForSeconds(slowTime);
-        accelerationValue = tmp;
-        print("end");
+        accelerationValue = accelerationBuffer;
     }
 
 
@@ -72,6 +75,7 @@ public class PlayerController : MonoBehaviour
         Vector2 speedDiff = new Vector2(maxSpeed*target.x,maxSpeed*target.y)-rb2d.linearVelocity;
         rb2d.AddForce(speedDiff * accelerationRate,ForceMode2D.Force);
     }
+
 
     /*private void insideObstacleDebug()
     {

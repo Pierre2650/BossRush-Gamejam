@@ -48,6 +48,8 @@ public class Star_ATK_Mini_Stars : MonoBehaviour
     [Header("child particles")]
     public GameObject particles;
     private Star_ATK_Mini_Particles_Controller  particlesController;
+    
+    public float damage;
 
     // Start is called before the first frame update
     void Start()
@@ -291,6 +293,18 @@ public class Star_ATK_Mini_Stars : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(P2, 0.25f);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag=="Player"){
+            Health playerHealth = other.GetComponent<Health>();
+            if(!playerHealth.isInvincible){
+                playerHealth.takeDamage(damage);
+            }
+            
+
+        }
     }
 
 }
