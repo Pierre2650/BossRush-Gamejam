@@ -17,7 +17,13 @@ public class Spear : Weapon
     bool isAttacking = false;
     bool holding = false;
     PlayerInputActions inputActions;
+    public Sprite spriteIdle;
 
+    void OnEnable(){
+        box.enabled = false;
+        isAttacking = false;
+        GetComponent<SpriteRenderer>().sprite = spriteIdle;
+    }
 
     void Start()
     {
@@ -31,7 +37,7 @@ public class Spear : Weapon
     } 
 
     void Update(){ 
-        if(inputActions.Player.Attack.ReadValue<float>()>0 && !isAttacking){
+        if(inputActions.Player.Attack.ReadValue<float>()>0 && !isAttacking && wp.canAttack){
             StartCoroutine("AttackCoroutine");
         }
     }
@@ -74,6 +80,7 @@ public class Spear : Weapon
         box.enabled = false;
         isAttacking = false;
         
+        GetComponent<SpriteRenderer>().sprite = spriteIdle;
     }
 
     /*public IEnumerator SpearAnimCoroutine(){

@@ -18,6 +18,8 @@ public class World_ATK_Circle_Single_Orb_Controller : MonoBehaviour
 
     private Vector2 startPos;
 
+    public float damage;
+
 
 
     private void Start()
@@ -142,5 +144,13 @@ public class World_ATK_Circle_Single_Orb_Controller : MonoBehaviour
     {
         transform.localPosition = startPos;
 
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+     
+        if(other.tag=="Player"){
+            Health playerHealth = other.GetComponent<Health>();
+            playerHealth.takeDamage(damage);
+        }
     }
 }

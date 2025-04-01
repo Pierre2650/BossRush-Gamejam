@@ -35,6 +35,13 @@ public class World_ATK_MegaOrb : MonoBehaviour
     private float throwElapsedT = 0f;
     private float throwDur = 0.7f;
 
+    public float expandFactor = 6;
+
+    [Header("Damage")]
+    public float frequency;
+    public float damage;
+    private float timer;
+
 
     [Header("Main Controller")]
     public World_ATK headController;
@@ -47,14 +54,12 @@ public class World_ATK_MegaOrb : MonoBehaviour
 
 
         StartCoroutine(start());
+        timer = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-
-
         if (isAiming)
         {
             aim();
@@ -65,6 +70,12 @@ public class World_ATK_MegaOrb : MonoBehaviour
         if (throwOrb) {
             checkMapLim();
         }
+
+        if(Time.time - timer >= frequency){
+            Damage.damageCircle(transform.position, GetComponent<CircleCollider2D>().radius *expandFactor, LayerMask.GetMask("Player"), damage);
+            timer = Time.time;
+        }
+        
 
     }
 
@@ -81,7 +92,6 @@ public class World_ATK_MegaOrb : MonoBehaviour
          }
          
     }
-
 
     private void checkMapLim()
     {
@@ -222,7 +232,7 @@ public class World_ATK_MegaOrb : MonoBehaviour
         float percetageDur;
 
         Vector2 start = transform.localScale;
-        Vector2 end = Vector2.one * 6;
+        Vector2 end = Vector2.one * expandFactor;
 
 
         while (throwElapsedT < throwDur)
@@ -270,6 +280,10 @@ public class World_ATK_MegaOrb : MonoBehaviour
 
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(temp, 0.25f);
+
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, GetComponent<CircleCollider2D>().radius*expandFactor);
 
     }
 

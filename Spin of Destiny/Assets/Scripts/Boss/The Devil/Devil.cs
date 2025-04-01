@@ -9,8 +9,8 @@ public class Devil : IControllerFinder
         switch (t)
         {
             case 'A':
-                boss.AddComponent<Devil_ATK>();
                 Devil_ATK tempA = boss.GetComponent<Devil_ATK>();
+                tempA.enabled = true;
                 Controllers.Add(tempA);
 
                 //temp.enabled = false;
@@ -23,15 +23,15 @@ public class Devil : IControllerFinder
 
 
             case 'M':
-                boss.AddComponent<Devil_MAP>();
                 Devil_MAP tempM = boss.GetComponent<Devil_MAP>();
+                tempM.enabled = true;
                 Controllers.Add(tempM);
 
                 break;
 
             default:
-                boss.AddComponent<Devil_MAP>();
                 Devil_MAP tempD = boss.GetComponent<Devil_MAP>();
+                tempD.enabled = true;
                 Controllers.Add(tempD);
 
                 break;

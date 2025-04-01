@@ -81,7 +81,7 @@ public class Devil_ATK : MonoBehaviour
 
         if (Vector3.Distance(this.transform.position, player.transform.position) > maxD && isAttacking)
         {
-            P2 = player.transform.position;
+            P2 = player.transform.position + new Vector3(Random.Range(0.1f, 0.4f), Random.Range(0.1f,0.4f));
         }
        
 

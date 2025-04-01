@@ -54,6 +54,7 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -162,6 +163,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dadController: {fileID: 21504801742381748}
+  damage: 0
 --- !u!95 &5913418245875743577
 Animator:
   serializedVersion: 7
@@ -238,6 +240,7 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -346,6 +349,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dadController: {fileID: 21504801742381748}
+  damage: 0
 --- !u!95 &2444324134866520395
 Animator:
   serializedVersion: 7
@@ -422,6 +426,7 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -530,6 +535,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dadController: {fileID: 21504801742381748}
+  damage: 0
 --- !u!95 &5733517988286107313
 Animator:
   serializedVersion: 7
@@ -606,6 +612,7 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -714,6 +721,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dadController: {fileID: 21504801742381748}
+  damage: 0
 --- !u!95 &2491627701386875175
 Animator:
   serializedVersion: 7
@@ -790,6 +798,7 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -898,6 +907,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dadController: {fileID: 21504801742381748}
+  damage: 0
 --- !u!95 &3735113632127648034
 Animator:
   serializedVersion: 7
@@ -974,6 +984,7 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1082,6 +1093,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dadController: {fileID: 21504801742381748}
+  damage: 0
 --- !u!95 &7589438947740784208
 Animator:
   serializedVersion: 7
@@ -1182,6 +1194,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   rotationAcceleration: 1
   changeSpeedDur: 1.5
+  damage: 3
   orbs:
   - {fileID: 3755463388781712392}
   - {fileID: 1790024915732984788}
@@ -1248,6 +1261,7 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1356,6 +1370,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dadController: {fileID: 21504801742381748}
+  damage: 0
 --- !u!95 &2821800972147347392
 Animator:
   serializedVersion: 7
@@ -1432,6 +1447,7 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1540,6 +1556,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dadController: {fileID: 21504801742381748}
+  damage: 0
 --- !u!95 &2171703695256586732
 Animator:
   serializedVersion: 7

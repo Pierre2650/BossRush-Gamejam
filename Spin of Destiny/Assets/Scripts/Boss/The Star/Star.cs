@@ -9,8 +9,8 @@ public class Star : IControllerFinder
         switch (t)
         {
             case 'A':
-                boss.AddComponent<Star_ATK>();
                 Star_ATK tempA = boss.GetComponent<Star_ATK>();
+                tempA.enabled = true;
                 Controllers.Add(tempA);
 
                 break;
@@ -22,16 +22,15 @@ public class Star : IControllerFinder
 
 
             case 'M':
-
-                boss.AddComponent<Star_MAP>();
                 Star_MAP tempM = boss.GetComponent<Star_MAP>();
+                tempM.enabled = true;
                 Controllers.Add(tempM);
 
                 break;
 
             default:
-                boss.AddComponent<Star_MAP>();
                 Star_MAP tempD = boss.GetComponent<Star_MAP>();
+                tempD.enabled = true;
                 Controllers.Add(tempD);
 
                 break;
