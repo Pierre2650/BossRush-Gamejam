@@ -1194,7 +1194,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   rotationAcceleration: 1
   changeSpeedDur: 1.5
-  damage: 3
+  damage: 5
   orbs:
   - {fileID: 3755463388781712392}
   - {fileID: 1790024915732984788}

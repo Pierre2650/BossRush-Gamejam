@@ -182,6 +182,7 @@ public class Cards_Animations_Controller : MonoBehaviour
 
         }
 
+        rotatingCards.GetComponent<PickableObj_Mouvement>().enabled = true;
 
 
     }

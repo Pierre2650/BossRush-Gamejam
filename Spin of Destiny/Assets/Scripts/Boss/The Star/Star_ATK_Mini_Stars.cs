@@ -11,7 +11,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class Star_ATK_Mini_Stars : MonoBehaviour
 {
     private ParticleSystem myPrtSys;
-
+    private CircleCollider2D myCC;
     [Header("The player")]
     public GameObject player;
 
@@ -55,6 +55,7 @@ public class Star_ATK_Mini_Stars : MonoBehaviour
     void Start()
     {
         myPrtSys = GetComponent<ParticleSystem>();
+        myCC = GetComponent<CircleCollider2D>();
         particlesController = particles.GetComponent<Star_ATK_Mini_Particles_Controller>();
         
 
@@ -74,6 +75,14 @@ public class Star_ATK_Mini_Stars : MonoBehaviour
             dirMark.transform.position = P2;
 
             attack();
+
+        }
+
+
+        if(Vector2.Distance(transform.position, P2) < 1 )
+        {
+            myCC.enabled = true;
+
 
         }
     }
@@ -97,6 +106,7 @@ public class Star_ATK_Mini_Stars : MonoBehaviour
             t = 0;
 
             //this.gameObject.SetActive(false);
+
             Destroy(this.gameObject);
 
         }
@@ -302,7 +312,8 @@ public class Star_ATK_Mini_Stars : MonoBehaviour
             if(!playerHealth.isInvincible){
                 playerHealth.takeDamage(damage);
             }
-            
+
+            Destroy(this.gameObject);
 
         }
     }

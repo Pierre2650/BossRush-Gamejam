@@ -13,23 +13,35 @@ public class HealthBar : MonoBehaviour
     Queue<IEnumerator> routines;
     bool isRunning;
 
+    Coroutine currentRoutine = null;
+
     void Update()
     {
-        while(routines.Count > 0){
-            runRoutine();
+        int temp = 0;
+
+        if (routines.Count > 0)
+        {
+            if (currentRoutine == null)
+            {
+                runRoutine();
+            }
         }
+
+       
     }
     
     public void setMaxHealth(float health)  {
         routines = new Queue<IEnumerator>();
-        isRunning = false;
+ 
         mainSlider.maxValue = health;
         mainSlider.value = health;
     }
 
     public void enQueueRoutine(float dmg) {
-        if(!isRunning){
-            StartCoroutine(looseHealthRoutine(dmg));
+ 
+        if(currentRoutine == null)
+        {
+            currentRoutine =  StartCoroutine(looseHealthRoutine(dmg));
         }
         else{
             routines.Enqueue(looseHealthRoutine(dmg));
@@ -37,34 +49,39 @@ public class HealthBar : MonoBehaviour
     }
 
     public void runRoutine() {
-        if(!isRunning){
-            StartCoroutine(routines.Dequeue());
-        }
+        
+        currentRoutine = StartCoroutine(routines.Dequeue());
+        
     }
 
 
     public IEnumerator looseHealthRoutine(float healthLost){
-        isRunning = true;
         float t = 0;
         float currentHealh = mainSlider.value;
         float newHealth = mainSlider.value-healthLost;
 
+        int temp = 0;
+
         while(t<animationTime){
+
+            if (temp > 500)
+            {
+                Debug.Log("While loop treshhold Reached on COROUTINE, breaking cycle");
+                Debug.Log("Local var t = "+t);
+                break;
+
+            }
+
+
             float currentLoose = t*healthLost/animationTime;
             mainSlider.value = currentHealh-currentLoose;
             t+=Time.deltaTime;
+
+            temp++;
             yield return null;
         }
-        isRunning = false;
 
-        /*yield return new WaitForSeconds(showTime);
+        currentRoutine = null;
 
-        t=0;
-        while(t<animationTime){
-            float currentLoose = t*healthLost/animationTime;
-            subSlider.value = currentHealh-currentLoose;
-            t+=Time.deltaTime;
-            yield return null;
-        }*/
     }
 }

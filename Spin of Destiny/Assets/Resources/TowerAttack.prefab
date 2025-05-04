@@ -119,7 +119,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3363602503995451904}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -160,6 +160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5278a1a92d9fde340aad25c238e0e938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 5
   frequency: 0.2
   damageRadius: 0.7

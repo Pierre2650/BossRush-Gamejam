@@ -52,6 +52,7 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f426a02118beb04694abeef08e2753f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scythEffect: {fileID: 0}
 --- !u!1 &3370246196449552057
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +112,7 @@ GameObject:
   - component: {fileID: 3572426646912528424}
   - component: {fileID: 1851951077112399696}
   - component: {fileID: 7163875471599260604}
+  - component: {fileID: 3020201657715886901}
   - component: {fileID: 1865059308149265572}
   m_Layer: 0
   m_Name: Devil_ATK_AttackZone
@@ -161,6 +164,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -186,6 +190,68 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!60 &3020201657715886901
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370246196449552057}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 3.7930157, y: 1.1944464}
+      - {x: 3.353199, y: 2.167603}
+      - {x: 2.8100283, y: 2.822706}
+      - {x: 2.1148033, y: 3.363374}
+      - {x: 1.2032844, y: 3.8206446}
+      - {x: -0.08079839, y: 4.0541816}
+      - {x: -0.04611385, y: 0.11510065}
+      - {x: -0.038355887, y: -3.9763155}
+      - {x: 0.63626444, y: -3.9278371}
+      - {x: 1.4828917, y: -3.7080069}
+      - {x: 2.3506484, y: -3.2586124}
+      - {x: 3.1381109, y: -2.5281389}
+      - {x: 3.656035, y: -1.7103466}
+      - {x: 3.9565606, y: -0.7020619}
+      - {x: 3.9890773, y: 0.2766983}
+  m_UseDelaunayMesh: 0
 --- !u!114 &1865059308149265572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,3 +268,4 @@ MonoBehaviour:
   controller: {fileID: 0}
   Dir: {x: 0, y: 0}
   child: {fileID: 1261665951170704576}
+  damage: 20

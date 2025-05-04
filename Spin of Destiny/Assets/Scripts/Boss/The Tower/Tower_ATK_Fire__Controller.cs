@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shadow_Attack_Controller : MonoBehaviour
+public class Tower_ATK_Fire_Controller : MonoBehaviour
 {
 
     [Header("Spawn Anim")]
@@ -31,7 +31,7 @@ public class Shadow_Attack_Controller : MonoBehaviour
 
     private void Update()
     {
-        if(Time.time - timer >=frequency){
+        if(Time.time - timer >= frequency){
             Damage.damageCircle(transform.position, damageRadius, LayerMask.GetMask("Player"), damage);
         }
 

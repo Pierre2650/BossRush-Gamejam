@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6773033933577034952}
   - component: {fileID: 9183001062148472022}
   m_Layer: 0
-  m_Name: BossAim
+  m_Name: Chariot_ATK_Aim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,6 +53,7 @@ LineRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -151,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b906c6176217c547a7d555d5c3bb4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Boss: {fileID: 0}
+  player: {fileID: 0}
+  boss: {fileID: 0}
   lastPosition: {x: 0, y: 0}
-  stopAim: 0
+  isAiming: 0
+  length: 4

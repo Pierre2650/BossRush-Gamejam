@@ -71,6 +71,7 @@ public class Devil_ATK : MonoBehaviour
 
        meshController = mesh.GetComponent<Devil_ATK_Mesh_AtkZone>();
        meshController.controller = this;
+       
 
     }
 

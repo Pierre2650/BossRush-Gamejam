@@ -17,7 +17,7 @@ public class ChariotAim : MonoBehaviour
     public Vector2 lastPosition;
     [HideInInspector]public bool isAiming;
     private float timer = 0f;
-    private float scanDuration = 1.5f;
+    private float aimDuration = 1.5f;
     public float length;
 
     // Start is called before the first frame update
@@ -36,15 +36,15 @@ public class ChariotAim : MonoBehaviour
         {
             myLR.enabled = true;
             setPoints();
-            timer += Time.deltaTime;
 
-            if (timer > scanDuration)
+
+            timer += Time.deltaTime;
+            if (timer > aimDuration)
             {
 
                 lastPosition = player.transform.position;
-                timer = 0f;
                 isAiming = false;
-
+                timer = 0f;
 
             }
 
@@ -59,8 +59,9 @@ public class ChariotAim : MonoBehaviour
     {
 
         myLR.SetPosition(0, boss.transform.position);
-        myLR.SetPosition(1, boss.transform.position + (player.transform.position - boss.transform.position).normalized * length);
+        Vector3 temp = (boss.transform.position + ((player.transform.position - boss.transform.position).normalized)*length);
 
+        myLR.SetPosition(1, temp);
     }
 
     public void setVisibleLine(bool visible)
@@ -68,4 +69,5 @@ public class ChariotAim : MonoBehaviour
         myLR.enabled = visible;
 
     }
+
 }

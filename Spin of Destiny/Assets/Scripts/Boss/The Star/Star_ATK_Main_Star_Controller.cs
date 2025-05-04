@@ -11,6 +11,7 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
     private LineRenderer myLR;
     private SpriteRenderer mySprR;
 
+    public CameraShake cameraSH;
 
     [Header("aim")]
     private bool aim = true;
@@ -40,7 +41,7 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
         myRB = GetComponent<Rigidbody2D>();
         myLR = GetComponent<LineRenderer>();
         mySprR = GetComponent<SpriteRenderer>();
-        miniPrefab = (GameObject)Resources.Load("Star_ATK_Mini_Stars", typeof(GameObject)); 
+        miniPrefab = (GameObject)Resources.Load("Star_ATK_Mini_Stars", typeof(GameObject));
         
         StartCoroutine(waitToStart());
 
@@ -60,7 +61,10 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        nbBouces--;
+        screenShake(collision.GetContact(0).point);
+
+
+            nbBouces--;
 
         if(nbBouces <= 0)
         {
@@ -85,6 +89,37 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
 
        
     }
+
+
+    private void screenShake(Vector2 contact)
+    {
+        char dir = 'N';
+
+        if (contact.y <= -9 && contact.x > -16 && contact.x < 16)
+        {
+            dir = 'D';
+
+        }
+        else if (contact.y >= 9 && contact.x > -16 && contact.x < 16)
+        {
+            dir = 'U';
+        }
+        else if (contact.x <= -16 && contact.y > -9 && contact.y < 9)
+        {
+            dir = 'L';
+
+        }
+        else if (contact.x >= 16 && contact.y > -9 && contact.y < 9)
+        {
+            dir = 'R';
+
+        }
+
+        cameraSH.directionalShake(dir);
+
+
+    }
+    
 
 
     private IEnumerator waitToStart()
@@ -201,7 +236,7 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
 
     }
 
-     void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag=="Player"){
             Health playerHealth = other.GetComponent<Health>();
@@ -213,6 +248,9 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
         }
     }
 
+    
+
+    
 
 
 }

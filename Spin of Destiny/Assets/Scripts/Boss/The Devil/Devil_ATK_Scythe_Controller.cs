@@ -18,6 +18,9 @@ public class Devil_ATK_Scythe_Controller : MonoBehaviour
     private Coroutine attackMouv = null;
 
 
+    [Header("Impact Frame")]
+    private CameraShake cameraShake;
+
 
 
     [Header("Sprites")]
@@ -28,6 +31,8 @@ public class Devil_ATK_Scythe_Controller : MonoBehaviour
     [Header("Parent")]
     private Devil_ATK_Mesh_AtkZone meshController;
 
+
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -36,6 +41,7 @@ public class Devil_ATK_Scythe_Controller : MonoBehaviour
         baseSprite = mySprR.sprite;
         scythEffect = Resources.Load<Sprite>("Devil_scythe_FX"); 
         meshController = transform.parent.GetComponent<Devil_ATK_Mesh_AtkZone>();
+        
         this.gameObject.SetActive(false);
     }
 
@@ -45,6 +51,10 @@ public class Devil_ATK_Scythe_Controller : MonoBehaviour
         StartCoroutine(waitToAtk());
     }
 
+    public void setCamera(CameraShake x)
+    {
+        cameraShake = x;
+    }
 
 
 
@@ -54,7 +64,11 @@ public class Devil_ATK_Scythe_Controller : MonoBehaviour
 
         meshController.myMshR.enabled = false;
         StartCoroutine(attack());
-        
+
+        meshController.myPlC.enabled = true;
+        cameraShake.randomCameraShake();
+
+
     }
 
     private IEnumerator attack()
@@ -91,12 +105,16 @@ public class Devil_ATK_Scythe_Controller : MonoBehaviour
         swingElapsedT = 0;
         attackMouv = null;
 
+        meshController.myPlC.enabled = false;
         StartCoroutine(endAtk());
 
     }
 
+    
+
     private IEnumerator endAtk()
     {
+
         
         yield return new WaitForSeconds(0.5f);
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 44);

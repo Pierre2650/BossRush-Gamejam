@@ -41,9 +41,9 @@ public class World_ATK_Circle_Orbs_Controller : MonoBehaviour
     void Start()
     {
         StartCoroutine(rotate());
-        foreach(GameObject orb in orbs){
+       foreach(GameObject orb in orbs){
             orb.GetComponent<World_ATK_Circle_Single_Orb_Controller>().damage = damage;
-        }
+       }
     }
 
     // Update is called once per frame

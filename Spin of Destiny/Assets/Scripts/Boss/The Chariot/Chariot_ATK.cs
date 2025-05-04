@@ -9,6 +9,7 @@ public class Chariot_ATK: MonoBehaviour
 {
     [Header("To Init")]
     private Rigidbody2D myRb;
+    private BoxCollider2D myBx;
 
     //direction
     private Vector2 targetPos;
@@ -54,6 +55,8 @@ public class Chariot_ATK: MonoBehaviour
     void Start()
     {
         myRb = GetComponent<Rigidbody2D>();
+        myBx = GetComponent<BoxCollider2D>();
+
         mainController = GetComponent<Enemy_Controller>();
         generateAim();
 
@@ -66,14 +69,13 @@ public class Chariot_ATK: MonoBehaviour
 
     private void generateAim()
     {
-        prefabRedLine = (GameObject)Resources.Load("BossAim", typeof(GameObject));
+        prefabRedLine = (GameObject)Resources.Load("Chariot_ATK_Aim", typeof(GameObject));
         GameObject temp = Instantiate(prefabRedLine, this.transform);
 
         aimLine = temp.GetComponent<ChariotAim>();
         aimLine.player = mainController.thePlayer;
         aimLine.boss = this.gameObject;
         aimLine.enabled = true;
-        aimLine.length = chargeRange;
 
     }
 
@@ -85,37 +87,25 @@ public class Chariot_ATK: MonoBehaviour
         
         if (!aimLine.isAiming && !isCharging && nCharges > 0)
         {
-            print( "isAiming " + !aimLine.isAiming + " charge " + !isCharging + " n charge "+ (nCharges > 0));
             startCharges();
         }
 
        
 
         if (isCharging) {
-            
+
             myRb.linearVelocity = chargeDirection * chargeSpeed;
+
             //check is arrived at last position
-            if (Vector2.Distance(transform.position, positionBeforeCharge) >=chargeRange /*&& !startStop*/)// max distance reached
+            if (Vector2.Distance(transform.position, targetPos) <= 1 && !startStop )// max distance reached
             {
-                //startStop = true;
-                if (nCharges == 0)
-                {
-                    isWaiting = true;
-                    aimLine.setVisibleLine(false);
-
-                }
-                else
-                {
-                    aimLine.isAiming = true;
-                }
-
-                isCharging = false;
-                myRb.linearVelocity = Vector2.zero;
+                startStop = true;
             }
+            
 
-            /*if (startStop) {// is stoping 
+            if (startStop) {// is stoping 
                 stopCharge();
-            }*/
+            }
 
         }
 
@@ -133,16 +123,21 @@ public class Chariot_ATK: MonoBehaviour
     {
         targetPos = aimLine.lastPosition;
 
-        nCharges--;
+        
 
-        isCharging = true;
 
         dirFinder.selfRef = transform.position;
         dirFinder.target = targetPos;
 
         //chargeDirection = dirFinder.findDirToTarget();
+        
         chargeDirection = (mainController.thePlayer.transform.position - transform.position).normalized;
+       
+
         positionBeforeCharge = transform.position;
+
+        isCharging = true;
+        nCharges--;
     }
 
 
@@ -152,6 +147,7 @@ public class Chariot_ATK: MonoBehaviour
 
         if (stopElapsedT >= chargeStopDuration)
         {
+            myRb.linearVelocity = Vector2.zero;
 
             if (nCharges == 0)
             {
@@ -165,10 +161,9 @@ public class Chariot_ATK: MonoBehaviour
             }
 
             isCharging = false;
-
-            stopElapsedT = 0f;
             startStop = false;
 
+            stopElapsedT = 0f;
 
         }
 
@@ -190,6 +185,7 @@ public class Chariot_ATK: MonoBehaviour
 
     private IEnumerator backToSafety()
     {
+        myBx.enabled = false;
         
         Vector2 start = transform.localPosition;
         Vector2 end = safeZone;
@@ -212,6 +208,7 @@ public class Chariot_ATK: MonoBehaviour
         
         nCharges = 3;
 
+        myBx.enabled = true;
     }
 
     
@@ -229,14 +226,18 @@ public class Chariot_ATK: MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag=="Player" && isCharging){
+
+
             Health playerHealth = other.GetComponent<Health>();
+
             if(!playerHealth.isInvincible){
+
                 playerHealth.takeDamage(damage);
-                /*Vector2 tmp = transform.position + playerHealth.transform.position;
-                float crossProduct = tmp.y*chargeDirection.x - tmp.x*chargeDirection.y;
-                Vector2 knockbackDir = crossProduct>0 ?  Quaternion.Euler(0,0,45) *(Vector3)chargeDirection :Quaternion.Euler(0,0,-45) *(Vector3)chargeDirection;*/
+             
                 Vector2 knockbackDir =  (playerHealth.transform.position -transform.position).normalized;
+
                 float angle = Vector3.SignedAngle(chargeDirection,knockbackDir,Vector3.forward);
+
                 if(Mathf.Abs(angle)>knockbackMaxAngle){
                     angle = angle>0 ? knockbackMaxAngle : -knockbackMaxAngle;
                     print("Angle: "+angle);

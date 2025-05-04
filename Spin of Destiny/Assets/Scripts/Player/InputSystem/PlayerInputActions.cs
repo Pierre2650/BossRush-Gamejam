@@ -86,31 +86,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""39477dcb-e9e7-49a8-90ed-7a07614f4e62"",
-                    ""path"": ""<Keyboard>/#(Z)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";KeyBoard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""down"",
-                    ""id"": ""a753f5b1-42cd-4c80-a273-730f75fab935"",
-                    ""path"": ""<Keyboard>/#(S)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";KeyBoard"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""1faf1271-1523-4fb3-bd59-cb440c92caf4"",
-                    ""path"": ""<Keyboard>/#(Q)"",
+                    ""id"": ""24016ebb-26b2-4cf2-afad-4e4a83b48c99"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";KeyBoard"",
@@ -121,7 +99,29 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""56046131-182f-4ed9-b985-f5f5b95b4f8f"",
-                    ""path"": ""<Keyboard>/#(D)"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";KeyBoard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""a753f5b1-42cd-4c80-a273-730f75fab935"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";KeyBoard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""1faf1271-1523-4fb3-bd59-cb440c92caf4"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";KeyBoard"",

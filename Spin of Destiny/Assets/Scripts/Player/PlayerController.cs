@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [HideInInspector] public PlayerInputActions playerInputActions;
+    public PlayerInputActions playerInputActions;
     [Header("Movement")]
     private Rigidbody2D myRb;
     private Animator myAni;

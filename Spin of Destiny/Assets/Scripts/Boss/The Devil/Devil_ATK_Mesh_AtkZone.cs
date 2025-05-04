@@ -1,6 +1,7 @@
 using NUnit.Framework.Internal;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
@@ -8,6 +9,11 @@ public class Devil_ATK_Mesh_AtkZone : MonoBehaviour
 {
     public MeshRenderer myMshR;
     public Devil_ATK controller;
+
+    public PolygonCollider2D myPlC;
+
+    private CameraShake cameraShake;
+   
 
     [Header("Paramters")]
     private float radius = 4f;
@@ -19,12 +25,18 @@ public class Devil_ATK_Mesh_AtkZone : MonoBehaviour
     public GameObject child;
 
 
+    public float damage;
+
+
     // Start is called before the first frame update
     void Start()
     {
         myMshR = GetComponent<MeshRenderer>();
+        myPlC = GetComponent<PolygonCollider2D>();
         myMshR.enabled = false;
         generateAttackZone();
+        cameraShake = transform.parent.GetComponent<CameraShake>();
+        child.GetComponent<Devil_ATK_Scythe_Controller>().setCamera(cameraShake);
 
     }
 
@@ -104,12 +116,27 @@ public class Devil_ATK_Mesh_AtkZone : MonoBehaviour
     public void showScythe()
     {
         child.SetActive(true);
+
     }
 
     public void attackEnded()
     {
         child.SetActive(false);
         controller.stateMachine();
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            Health playerHealth = other.GetComponent<Health>();
+            if (!playerHealth.isInvincible)
+            {
+                playerHealth.takeDamage(damage);
+            }
+
+            myPlC.enabled = false;
+        }
     }
 
     private void OnDrawGizmos()

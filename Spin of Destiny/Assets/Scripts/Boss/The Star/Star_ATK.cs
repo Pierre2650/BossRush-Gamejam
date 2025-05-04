@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Star_ATK : MonoBehaviour
@@ -26,16 +27,21 @@ public class Star_ATK : MonoBehaviour
 
     [Header("MainStar")]
     private GameObject mainStarPrefab;
+
+    public CameraShake cameraSH;
     // Start is called before the first frame update
     void Start()
     {
         mainController = GetComponent<Enemy_Controller>();
         mySprR = GetComponent<SpriteRenderer>();
+        cameraSH = GetComponent<CameraShake>();
 
         grid = mainController.Grid;
 
         mainStarPrefab = (GameObject)Resources.Load("Star_ATK_Main_Star", typeof(GameObject));
         mapPrefab = (GameObject)Resources.Load("Star_ATK_Bounce_Walls", typeof(GameObject));
+
+        
 
         Instantiate(mapPrefab, grid.transform);
 
@@ -59,8 +65,8 @@ public class Star_ATK : MonoBehaviour
 
         spawnMainStar();
 
-        transform.gameObject.SetActive(false);
-        //mySprR.enabled = false;
+        //transform.gameObject.SetActive(false);
+        mySprR.enabled = false;
 
     }
 
@@ -70,6 +76,7 @@ public class Star_ATK : MonoBehaviour
         GameObject temp = Instantiate(mainStarPrefab, transform.position, transform.rotation, transform.parent);
         Star_ATK_Main_Star_Controller tempController = temp.GetComponent<Star_ATK_Main_Star_Controller>();
         tempController.theBoss = this.gameObject;
+        tempController.cameraSH = cameraSH;
         tempController.player = mainController.thePlayer;
     }
 
