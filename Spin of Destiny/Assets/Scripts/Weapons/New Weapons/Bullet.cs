@@ -30,9 +30,16 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Health enemyHealth = other.GetComponent<Health>();
-        if(other.tag!="Player" && enemyHealth!=null){
+        Enemy_Controller enemyController = other.GetComponent<Enemy_Controller>();
+
+        if (other.tag!="Player" && enemyHealth!=null){
             enemyHealth.takeDamage(damage);
             StartCoroutine("HitCoroutine");
+
+            if (enemyController != null)
+            {
+                enemyController.isHit();
+            }
         }
     }
 
@@ -46,6 +53,8 @@ public class Bullet : MonoBehaviour
         yield return null;
         Destroy(gameObject, animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
     }
+
+    
 
     
 }

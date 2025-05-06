@@ -1,49 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Controller : MonoBehaviour
 {
-    public GameObject Actions;
-    public GameObject AttackUI;
 
-    private GameObject currentUI;
+    public GameObject gameOver;
 
+    [Header("Obscuring")]
+    public Image obscureImage;
+    public AnimationCurve curve;
+    private float ObsElapsed = 0f;
+    private float ObsDur = 0.3f;
 
-    // Start is called before the first frame update
-    void Start()
+  
+
+    public void gameOverUI()
     {
-        currentUI = Actions;
-        
+        gameOver.SetActive(true);
+        StartCoroutine(obscuring());
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private IEnumerator obscuring()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        float percentageDur = 0;
+
+
+        Color start = new Color(0f, 0f, 0f, 0f); // black
+        Color end = new Color(0f, 0f, 0f, 210 / 255f); // obscure
+
+        while (ObsElapsed < ObsDur)
         {
-            goBack();
+
+            percentageDur = ObsElapsed / ObsDur;
+
+            obscureImage.color = Color.Lerp(start, end, curve.Evaluate(percentageDur));
+
+            ObsElapsed += Time.deltaTime;
+            yield return null;
 
         }
-        
+        ObsElapsed = 0;
+
     }
-
-
-    public void chooseAttack()
-    {
-        currentUI = AttackUI;
-
-        AttackUI.SetActive(true);
-
-        Actions.SetActive(false);
-    }
-
-    public void goBack()
-    {
-        currentUI.SetActive(false);
-
-        Actions.SetActive(true);
-    }
-
 
 }

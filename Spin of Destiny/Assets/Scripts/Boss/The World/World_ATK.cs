@@ -168,7 +168,7 @@ public class World_ATK : MonoBehaviour
 
         //Reset orbs Speed and orb mouv distance
         circleOrbsController.orbsMoveDistance = 2.2f;
-        StartCoroutine(circleOrbsController.changeRotationSpeed(1f));
+        StartCoroutine(circleOrbsController.changeRotationSpeed(0.9f));
 
         yield return new WaitForSeconds(1f);
 

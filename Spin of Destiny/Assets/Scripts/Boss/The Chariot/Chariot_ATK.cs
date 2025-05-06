@@ -10,6 +10,7 @@ public class Chariot_ATK: MonoBehaviour
     [Header("To Init")]
     private Rigidbody2D myRb;
     private BoxCollider2D myBx;
+    private Animator myAni;
 
     //direction
     private Vector2 targetPos;
@@ -56,6 +57,7 @@ public class Chariot_ATK: MonoBehaviour
     {
         myRb = GetComponent<Rigidbody2D>();
         myBx = GetComponent<BoxCollider2D>();
+        myAni = GetComponent<Animator>();
 
         mainController = GetComponent<Enemy_Controller>();
         generateAim();
@@ -108,15 +110,41 @@ public class Chariot_ATK: MonoBehaviour
             }
 
         }
+        else
+        {
+            setSpriteDir();
+        }
 
         if (isWaiting)
         {
-            wait();
+            waitToSafety();
 
         }
 
 
        
+    }
+
+    private void setSpriteDir()
+    {
+        float angleY = 0f;
+
+        if (transform.position.x < mainController.thePlayer.transform.position.x)
+        {
+
+            angleY = 0f;
+        }
+
+        if (transform.position.x > mainController.thePlayer.transform.position.x)
+        {
+
+
+            angleY = 180f;
+        }
+
+
+        transform.rotation = Quaternion.Euler(0, angleY, 0);
+
     }
 
     private void startCharges()
@@ -137,6 +165,7 @@ public class Chariot_ATK: MonoBehaviour
         positionBeforeCharge = transform.position;
 
         isCharging = true;
+        myAni.SetBool("Charging", isCharging);
         nCharges--;
     }
 
@@ -158,9 +187,11 @@ public class Chariot_ATK: MonoBehaviour
             else
             {
                 aimLine.isAiming = true;
+                aimLine.setVisibleLine(true);
             }
 
             isCharging = false;
+            myAni.SetBool("Charging", isCharging);
             startStop = false;
 
             stopElapsedT = 0f;
@@ -170,7 +201,7 @@ public class Chariot_ATK: MonoBehaviour
     }
 
 
-    private void wait()
+    private void waitToSafety()
     {
         vulnerableElapsedT += Time.deltaTime;
 
@@ -229,11 +260,13 @@ public class Chariot_ATK: MonoBehaviour
 
 
             Health playerHealth = other.GetComponent<Health>();
+            PlayerController playerController = other.GetComponent<PlayerController>();
 
             if(!playerHealth.isInvincible){
 
                 playerHealth.takeDamage(damage);
-             
+                playerController.isHit();
+
                 Vector2 knockbackDir =  (playerHealth.transform.position -transform.position).normalized;
 
                 float angle = Vector3.SignedAngle(chargeDirection,knockbackDir,Vector3.forward);
@@ -243,7 +276,7 @@ public class Chariot_ATK: MonoBehaviour
                     print("Angle: "+angle);
                     knockbackDir = Quaternion.Euler(0,0,angle) * chargeDirection;
                 }
-                StartCoroutine(other.GetComponent<PlayerController>().knockback(knockbackDir.normalized, 0.5f, chargeKnockBack, 0.2f, 0.2f));
+                StartCoroutine(playerController.knockback(knockbackDir.normalized, 0.5f, chargeKnockBack, 0.2f, 0.2f));
             }
             
 

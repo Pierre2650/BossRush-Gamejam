@@ -41,8 +41,14 @@ public class Axe : Weapon
     void OnTriggerEnter2D(Collider2D other)
     {
         Health enemyHealth = other.GetComponent<Health>();
-        if(other.tag!="Player"&& enemyHealth!=null){
+        Enemy_Controller enemyController = other.GetComponent<Enemy_Controller>();
+        if (other.tag!="Player"&& enemyHealth!=null){
             enemyHealth.takeDamage(damage);
+
+            if (enemyController != null)
+            {
+                enemyController.isHit();
+            }
         }
     }
 }

@@ -150,7 +150,10 @@ public class World_ATK_Circle_Single_Orb_Controller : MonoBehaviour
      
         if(other.tag=="Player"){
             Health playerHealth = other.GetComponent<Health>();
+            PlayerController playerController = other.GetComponent<PlayerController>();
+
             playerHealth.takeDamage(damage);
+            playerController.isHit();
         }
     }
 }

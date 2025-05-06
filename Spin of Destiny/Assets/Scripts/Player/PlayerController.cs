@@ -1,10 +1,12 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     public PlayerInputActions playerInputActions;
+
     [Header("Movement")]
     private Rigidbody2D myRb;
     private Animator myAni;
@@ -20,6 +22,17 @@ public class PlayerController : MonoBehaviour
     [Header("Debuff")]
     [HideInInspector]public bool mouvConstrained = false;
 
+    [Header("Health")]
+    private Health myHealth;
+
+
+    [Header("Hit")]
+    private Coroutine hitCooldownC = null;
+
+    [Header("Game Over")]
+    public Game_Over_Controller gameOverController;
+    private bool gameIsOver = false;
+
     //private Vector2 lastMouvDir = Vector2.zero;
     //private bool debugZone = false;
 
@@ -27,6 +40,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
         mouvConstrained = false;
+        myHealth = GetComponent<Health>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,23 +56,69 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = playerInputActions.Player.Move.ReadValue<Vector2>();
         targetSpeed = speed * moveInput.magnitude;
-        if(moveInput.magnitude==0 || myRb.linearVelocity.magnitude>speed){
-            myAni.SetBool("isMoving", false);
-            accelRate = decelerationValue; 
+
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SceneManager.LoadScene("SampleScene");
         }
-        else{
+
+       
+         mouvemmentAnimation();
+        
+        if(myHealth.isDead)
+        {
+            if (!gameIsOver)
+            {
+                gameOverController.GameOver();
+                gameIsOver = true;
+            }
+            
+        }
+    }
+
+
+    private void mouvemmentAnimation()
+    {
+        if (moveInput.magnitude == 0 || myRb.linearVelocity.magnitude > speed)
+        {
+            myAni.SetBool("isMoving", false);
+            accelRate = decelerationValue;
+        }
+        else
+        {
             myAni.SetBool("isMoving", true);
             accelRate = accelerationValue;
-            spriteRenderer.flipX = moveInput.x>0? false : moveInput.x<0 ?true :spriteRenderer.flipX;
+            spriteRenderer.flipX = moveInput.x > 0 ? false : moveInput.x < 0 ? true : spriteRenderer.flipX;
         }
+
     }
 
     void FixedUpdate()
     {
-        if(!mouvConstrained || accelRate == decelerationValue){
+        if((!mouvConstrained || accelRate == decelerationValue) && !myHealth.isDead)
+        {
             applyForceToSpeed(targetSpeed, moveInput, myRb, accelRate);
         }
         
+    }
+
+    public void isHit()
+    {
+
+        if (hitCooldownC == null)
+        {
+            myAni.SetTrigger("Hit");
+            hitCooldownC = StartCoroutine(hitCooldown());
+        }
+    }
+
+    private IEnumerator hitCooldown()
+    {
+        yield return new WaitForSeconds(myHealth.invincibilityTime);
+
+        hitCooldownC = null;
+
     }
 
     public IEnumerator knockback(Vector2 dir, float slowFactor, float force, float slowTime, float newAcceleration){

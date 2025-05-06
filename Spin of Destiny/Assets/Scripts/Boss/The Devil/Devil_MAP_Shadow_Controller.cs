@@ -85,7 +85,7 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
                 
 
                 //free Player
-                player.GetComponent<Player_controller>().freeMouvement();
+                //player.GetComponent<PlayerController>().freeMouvement();
 
                 Debug.Log("Attrac Player = false");
                 attractPlayer = false;

@@ -17,8 +17,10 @@ public class ChariotAim : MonoBehaviour
     public Vector2 lastPosition;
     [HideInInspector]public bool isAiming;
     private float timer = 0f;
-    private float aimDuration = 1.5f;
+    private float aimDuration = 2f;
     public float length;
+
+    private bool flickering = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,21 +33,30 @@ public class ChariotAim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
 
         if (isAiming)
         {
-            myLR.enabled = true;
             setPoints();
 
 
             timer += Time.deltaTime;
+
+            if (timer >= aimDuration - 1 && timer < aimDuration && !flickering)
+            {
+                StartCoroutine(flickerAim(aimDuration-timer));
+                flickering = true;
+
+            }
+
             if (timer > aimDuration)
             {
 
                 lastPosition = player.transform.position;
                 isAiming = false;
+                
                 timer = 0f;
-
+                flickering = false;
             }
 
         }
@@ -53,6 +64,7 @@ public class ChariotAim : MonoBehaviour
 
 
     }
+
 
 
     private void setPoints()
@@ -66,7 +78,30 @@ public class ChariotAim : MonoBehaviour
 
     public void setVisibleLine(bool visible)
     {
+
         myLR.enabled = visible;
+
+    }
+
+    private IEnumerator flickerAim(float remainsT)
+    {
+        float nbFlickers = 3;
+        float t = remainsT / (nbFlickers*2);
+        int count = 0;
+        bool temp = false;
+
+      
+        while(count < (nbFlickers * 2))
+        {
+            setVisibleLine(temp);
+            yield return new WaitForSeconds(t);
+
+            temp = !temp;
+            count++;
+
+        }
+
+        setVisibleLine(temp);
 
     }
 

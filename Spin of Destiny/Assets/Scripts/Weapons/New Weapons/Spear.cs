@@ -64,8 +64,14 @@ public class Spear : Weapon
     void OnTriggerEnter2D(Collider2D other)
     {
         Health enemyHealth = other.GetComponent<Health>();
-        if(other.tag!="Player"&& enemyHealth!=null){
+        Enemy_Controller enemyController = other.GetComponent<Enemy_Controller>();
+        if (other.tag != "Player" && enemyHealth != null) {
             enemyHealth.takeDamage(damage);
+
+            if (enemyController != null)
+            {
+                enemyController.isHit();
+            }
         }
     }
 
@@ -83,31 +89,6 @@ public class Spear : Weapon
         GetComponent<SpriteRenderer>().sprite = spriteIdle;
     }
 
-    /*public IEnumerator SpearAnimCoroutine(){
-        box.enabled = true;
-        isAttacking = true;
-        Vector3 startPosition = transform.localPosition;
-        
-        for(int i = 0; i < frames.Length; i++){
-            renderer.sprite = frames[i];
-            float elapsedTime = 0;
-            Vector3 position = transform.localPosition;
-           
-            Vector3 endPoint = transform.localPosition+(Vector3)this.direction *animationOffsets[i];
-            Debug.Log(direction);
-            while(elapsedTime <= animationTimes[i]){
-                transform.up = direction;
-                float t = elapsedTime / animationTimes[i];
-                transform.localPosition = Vector3.Lerp(position, endPoint, t );
-                yield return null;
-                elapsedTime += Time.deltaTime;
-            }
-            transform.localPosition = transform.localPosition+(Vector3)this.direction *animationOffsets[i];
-        }
-        transform.localPosition = startPosition;
-        box.enabled = false;
-        isAttacking = false;
-    }*/
     
 
 

@@ -27,7 +27,9 @@ public class Health : MonoBehaviour
             currentHealth -= dmg;
             healthBar.enQueueRoutine(dmg);
 
-            if(currentHealth < 0){isDead=true;}
+
+
+            if(currentHealth <= 0){isDead=true;}
 
         }
     }

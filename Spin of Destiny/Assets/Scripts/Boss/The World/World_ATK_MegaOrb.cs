@@ -194,29 +194,20 @@ public class World_ATK_MegaOrb : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
-        myLR.enabled = false;
+        
 
         float duration = 1.5f;
+        int count = 0;
+        bool temp = false;
 
-        yield return new WaitForSeconds(duration/6);
+        while(count < 6)
+        {
+            myLR.enabled = temp;
+            yield return new WaitForSeconds(duration / 6);
+            temp = !temp;
+            count++;
 
-        myLR.enabled = true;
-        yield return new WaitForSeconds(duration / 6);
-
-        myLR.enabled = false;
-
-        yield return new WaitForSeconds(duration / 6);
-
-        myLR.enabled = true;
-        yield return new WaitForSeconds(duration / 6);
-
-        myLR.enabled = false;
-
-        yield return new WaitForSeconds(duration / 6);
-
-        myLR.enabled = true;
-        yield return new WaitForSeconds(duration / 6);
-
+        }
 
         myLR.enabled = false;
 
@@ -271,6 +262,17 @@ public class World_ATK_MegaOrb : MonoBehaviour
         myLR.SetPosition(0, transform.position);
         myLR.SetPosition(1, temp);
 
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            
+            PlayerController playerController = other.GetComponent<PlayerController>();
+            playerController.isHit();
+        }
     }
 
 

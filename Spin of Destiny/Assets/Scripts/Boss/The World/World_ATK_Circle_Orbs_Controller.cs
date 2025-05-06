@@ -13,7 +13,7 @@ public class World_ATK_Circle_Orbs_Controller : MonoBehaviour
     public AnimationCurve curve;
 
     [Header("Rotation Speed")]
-    public float rotationAcceleration = 1;
+    public float rotationAcceleration = 0.85f;
     private float changeSpeedElapsedT = 0f;
     public float changeSpeedDur = 0.25f;
 

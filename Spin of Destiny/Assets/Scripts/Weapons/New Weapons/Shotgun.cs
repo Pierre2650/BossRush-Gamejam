@@ -34,16 +34,22 @@ public class ShotGun : Weapon
 
     public IEnumerator AttackCoroutine(){
         transform.right = direction;
+
         animator.Play("sotgun_Clip");
+
         StartCoroutine(player.gameObject.GetComponent<PlayerController>().knockback(-direction,slowFactor, knockBackForce, slowTime, accelerationRate));
+
         fire();
         yield return null;
-        print(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+
         float waitingTime = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;//animator.GetCurrentAnimatorStateInfo(0).length;
         float t = 0;
+
         while(t< waitingTime){
+
             yield return null;
-            t+=Time.deltaTime;
+
+            t += Time.deltaTime;
         }
         spear.SetActive(true);
         gameObject.SetActive(false);
@@ -52,7 +58,9 @@ public class ShotGun : Weapon
 
     void fire(){
         for(int i=-bulletNumber/2;i<=bulletNumber/2;++i){
+
             if(bulletNumber%2==0 && i ==0)continue;
+
             GameObject bulletClone = Instantiate(bullet);
             bulletClone.transform.position = canonEnd.position;
             bulletClone.GetComponent<Bullet>().speed = bulletSpeed;
@@ -60,8 +68,11 @@ public class ShotGun : Weapon
             bulletClone.GetComponent<Bullet>().accelerationRate = bulletAcceleration;
             bulletClone.transform.position = bulletClone.transform.position + transform.up * i * bulletOffset;
             bulletClone.transform.right = transform.right;
+
             int angle = i==0 ? 0 : Random.Range(-angleRange, angleRange + 1);
+
             bulletClone.transform.rotation *=  Quaternion.Euler(0,0,angle);
+
             Destroy(bulletClone, 5);
         }
     }
