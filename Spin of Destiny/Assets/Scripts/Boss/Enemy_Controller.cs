@@ -8,16 +8,17 @@ public class Enemy_Controller : MonoBehaviour
     // à enlever 
 
     [Header("Init")]
-    private Health myHealth;
-    private Animator myAni;
+    protected Health myHealth;
+    protected Animator myAni ;
 
     public GameObject thePlayer;
     public GameObject Grid;
     public GameObject camera;
+    public GameObject bossUI;
 
 
     [Header("Hit")]
-    private Coroutine hitCooldownC = null;
+    protected Coroutine hitCooldownC = null;
 
     private void Start()
     {
@@ -27,7 +28,7 @@ public class Enemy_Controller : MonoBehaviour
 
 
 
-    public void isHit()
+    public void isHit( )
     {
         
         if (hitCooldownC == null)
@@ -37,12 +38,17 @@ public class Enemy_Controller : MonoBehaviour
         }
     }
 
-    private IEnumerator hitCooldown()
+    protected IEnumerator hitCooldown()
     {
         yield return new WaitForSeconds(myHealth.invincibilityTime);
 
         hitCooldownC = null;
 
+        if (myHealth.isDead)
+        {
+            Destroy(myHealth.healthBar.gameObject);
+            Destroy(this.gameObject);
+        }
     }
     public void reStartPos()
     {

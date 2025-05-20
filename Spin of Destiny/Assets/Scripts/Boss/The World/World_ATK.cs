@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.UIElements;
 
 public class World_ATK : MonoBehaviour
 {
-
+    private CameraShake cameraSH;
     private Vector2 startPos;
 
     [Header("Berzier Mouvement")]
@@ -41,24 +44,37 @@ public class World_ATK : MonoBehaviour
     //Multiple nb of atks by 2
     private int nbATK = 6;
 
+        [Header("Push")]
+        private CircleCollider2D myCC;
+
+        [Header("Phase 2 ")]
+        private GameObject phase2Prefab;
+
     //Attack Phase
     private int phase = 1;
 
     [Header("MegaOrb")]
     //ATK phase 3
-    private GameObject MegaOrbPrefab;
+    private GameObject megaOrbPrefab;
+    private GameObject phase2SFX;
+
+
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        myCC = GetComponent<CircleCollider2D>();
+        cameraSH = GetComponent<CameraShake>();
+
         startPos = transform.position;
         mainController = GetComponent<Enemy_Controller>();
         player = mainController.thePlayer;
 
         circleOrbsPrefab = (GameObject)Resources.Load("Word_ATK_CircleOrbs", typeof(GameObject));
-        MegaOrbPrefab = (GameObject)Resources.Load("World_ATK_MegaOrb", typeof(GameObject));
+        megaOrbPrefab = (GameObject)Resources.Load("World_ATK_MegaOrb", typeof(GameObject));
+        phase2Prefab = (GameObject)Resources.Load("World_ATK_Ph2_FX", typeof(GameObject));
 
         spawnPrefab();
         StartCoroutine(waitToJump());
@@ -131,14 +147,23 @@ public class World_ATK : MonoBehaviour
             circleOrbsController.approachAllOrbs(1);
             switchMouv = !switchMouv;
 
+            StartCoroutine(waitToPush());
+
 
         }
-
         else
         {
+            myCC.enabled = false;
             circleOrbsController.moveAwayAllOrbs(1);
             switchMouv = !switchMouv;
         }
+
+    }
+
+    private IEnumerator waitToPush()
+    {
+        yield return new WaitForSeconds(1f);
+        myCC.enabled = true;
 
     }
 
@@ -150,19 +175,26 @@ public class World_ATK : MonoBehaviour
         circleOrbsController.orbsMoveDistance = 2.5f;;
 
         StartCoroutine(circleOrbsController.changeRotationSpeed(2.5f));
+        phase2SFX = Instantiate(phase2Prefab, this.transform);
 
         yield return new WaitForSeconds(2f);
 
         circleOrbsController.moveAwayAllOrbs(nbMoveTimes);
+        StartCoroutine(phase2SFX.GetComponent<World_ATK_Phase2_SFX>().changeSize(phase2SFX.transform.localScale,new Vector2(20,20), false));
+
+        //Coroutine to expand collider
+
         StartCoroutine(reset(nbMoveTimes));
 
     }
+
 
     private IEnumerator reset(int nbMoveTimes)
     {
         //end attack phase 2
         yield return new WaitForSeconds(4f);
         circleOrbsController.approachAllOrbs(nbMoveTimes);
+        StartCoroutine(phase2SFX.GetComponent<World_ATK_Phase2_SFX>().changeSize(phase2SFX.transform.localScale, new Vector2(4, 4),true));
 
         yield return new WaitForSeconds(3f);
 
@@ -235,8 +267,9 @@ public class World_ATK : MonoBehaviour
 
         Vector2 spawnPos = new Vector2(transform.position.x, transform.position.y + 1f);
 
-        GameObject temp = Instantiate(MegaOrbPrefab, spawnPos, transform.rotation,transform.parent);
+        GameObject temp = Instantiate(megaOrbPrefab, spawnPos, transform.rotation,transform.parent);
         World_ATK_MegaOrb tempController = temp.GetComponent<World_ATK_MegaOrb>();
+        tempController.cameraSH = cameraSH;
         tempController.player = player;
         tempController.headController = this;
 
@@ -246,8 +279,20 @@ public class World_ATK : MonoBehaviour
     public void restartStateMachine()
     {
        phase = 1;
-        nbATK = 6;
+       nbATK = 6;
        StartCoroutine( waitToJump());
 
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.tag == "Player"  && myCC.IsTouching(collision.GetComponent<Collider2D>()))
+        {
+            PlayerController playerController = collision.GetComponent<PlayerController>();
+            Vector2 knockbackDir = (playerController.transform.position - transform.position).normalized;
+            StartCoroutine(playerController.knockback(knockbackDir.normalized, 0.5f, 25f, 0.2f, 0.2f));
+        }
     }
 }

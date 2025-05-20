@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
@@ -11,6 +12,7 @@ public class World_ATK_MegaOrb : MonoBehaviour
     [Header("To Init")]
     private LineRenderer myLR;
     private Rigidbody2D myRB;
+    public CameraShake cameraSH;
 
     [Header("The PLayer")]
     public GameObject player;
@@ -105,13 +107,14 @@ public class World_ATK_MegaOrb : MonoBehaviour
         if (transform.position.y < -8.5f && !stop)
         {
             stop = true;
-
         }
 
         if (stop) {
+            cameraSH.randomCameraShake();
             StopAllCoroutines();
             throwOrb = false;
             transform.localScale = Vector3.one * 6;
+
             StartCoroutine(toDestroy());
         }
     }

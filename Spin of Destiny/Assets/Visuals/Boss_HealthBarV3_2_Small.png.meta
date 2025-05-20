@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 679a18a0bfec15b409421049a99635f9
+guid: 467c293c57eb261459218bb48724b2f9
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boss_HealthBarV3_2_0
+      name: Boss_HealthBarV3_2_Small
       rect:
         serializedVersion: 2
         x: 0
@@ -108,7 +108,7 @@ TextureImporter:
         width: 160
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 8ccf12aaa434d7e428b6b3e42b9210af
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Boss_HealthBarV3_2_0: 7936389219817614389
+      Boss_HealthBarV3_2_Small: 7936389219817614389
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

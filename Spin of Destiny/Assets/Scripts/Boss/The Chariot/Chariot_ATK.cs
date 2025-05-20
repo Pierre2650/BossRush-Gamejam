@@ -254,6 +254,23 @@ public class Chariot_ATK: MonoBehaviour
 
     }
 
+
+    private void pushPlayer(Vector3 plPosition, PlayerController plController)
+    {
+        Vector2 knockbackDir = (plPosition - transform.position).normalized;
+
+        float angle = Vector3.SignedAngle(chargeDirection, knockbackDir, Vector3.forward);
+
+        if (Mathf.Abs(angle) > knockbackMaxAngle)
+        {
+            angle = angle > 0 ? knockbackMaxAngle : -knockbackMaxAngle;
+            print("Angle: " + angle);
+            knockbackDir = Quaternion.Euler(0, 0, angle) * chargeDirection;
+        }
+        StartCoroutine(plController.knockback(knockbackDir.normalized, 0.5f, chargeKnockBack, 0.2f, 0.2f));
+
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag=="Player" && isCharging){
@@ -267,16 +284,8 @@ public class Chariot_ATK: MonoBehaviour
                 playerHealth.takeDamage(damage);
                 playerController.isHit();
 
-                Vector2 knockbackDir =  (playerHealth.transform.position -transform.position).normalized;
+                pushPlayer(playerHealth.transform.position, playerController);
 
-                float angle = Vector3.SignedAngle(chargeDirection,knockbackDir,Vector3.forward);
-
-                if(Mathf.Abs(angle)>knockbackMaxAngle){
-                    angle = angle>0 ? knockbackMaxAngle : -knockbackMaxAngle;
-                    print("Angle: "+angle);
-                    knockbackDir = Quaternion.Euler(0,0,angle) * chargeDirection;
-                }
-                StartCoroutine(playerController.knockback(knockbackDir.normalized, 0.5f, chargeKnockBack, 0.2f, 0.2f));
             }
             
 

@@ -40,23 +40,13 @@ public class World_ATK_Circle_Orbs_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(rotate());
+       StartCoroutine(rotate());
+
        foreach(GameObject orb in orbs){
             orb.GetComponent<World_ATK_Circle_Single_Orb_Controller>().damage = damage;
        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-
-        if (Input.GetKeyUp(KeyCode.C))
-        {
-            StopAllCoroutines();
-        }
-
-    }
 
     public IEnumerator showOrbs()
     {
