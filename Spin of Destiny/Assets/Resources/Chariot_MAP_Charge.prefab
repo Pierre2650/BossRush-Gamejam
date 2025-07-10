@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2657431886788287027}
   - component: {fileID: 2870756125954908303}
   - component: {fileID: 773748784616479369}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chariot_MAP_Charge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80db13c7848d53546aacb92489a4f44e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentController: {fileID: 0}
   Line: {fileID: 0}
   direction: 76
   force: 50

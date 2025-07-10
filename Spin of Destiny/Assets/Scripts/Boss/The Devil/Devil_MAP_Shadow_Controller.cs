@@ -7,6 +7,8 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
 {
     //Debug to do : when the player is close 
 
+    public Devil_MAP fatherController;
+
     [Header("The Player")]
     public GameObject player;
     private Rigidbody2D plRB;
@@ -65,7 +67,7 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
                 }
 
                 //stop Player
-                //player.GetComponent<Player_controller>().restrainMouvement();
+                player.GetComponent<PlayerController>().restrainMouvement();
 
                 attractPlayer = true;
 
@@ -85,7 +87,7 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
                 
 
                 //free Player
-                //player.GetComponent<PlayerController>().freeMouvement();
+                player.GetComponent<PlayerController>().removeRestrain();
 
                 Debug.Log("Attrac Player = false");
                 attractPlayer = false;
@@ -202,6 +204,7 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
         chainHJController.aim = false;
 
         destroyPullChain();
+        fatherController.callWaitToDestroy();
     }
 
 
@@ -248,6 +251,8 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
 
     public void destroyChain()
     {
+        player.GetComponent<HingeJoint2D>().enabled = false;
+        player.GetComponent<PlayerController>().chained = false;
         chainHJController.destroyChain();
     }
 }

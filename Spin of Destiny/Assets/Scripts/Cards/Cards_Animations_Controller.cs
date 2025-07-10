@@ -9,6 +9,9 @@ using static UnityEngine.Rendering.GPUSort;
 
 public class Cards_Animations_Controller : MonoBehaviour
 {
+
+    private Card_Selection_Controller cardsSelectionC;
+
     [Header("Rotating Card")]
     public GameObject rotatingCards;
     private Cards_Rotation_Animation_Controller rtCardsController;
@@ -29,25 +32,30 @@ public class Cards_Animations_Controller : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        cardsSelectionC = GetComponent<Card_Selection_Controller>();
         rtCardsController = rotatingCards.GetComponent<Cards_Rotation_Animation_Controller>();
         deckController = deck.GetComponent<Cards_Deck_Controller>();
         deckStartPos = deck.transform.position;
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Card_Selection_Controller.round > 1)
         {
-
-            StartCoroutine(moveRight());
+            startAnimations();
         }
-
-        
     }
 
+ 
+
+
+    public void startAnimations()
+    {
+        StartCoroutine(moveRight());
+
+    }
 
 
     private IEnumerator moveRight()
@@ -94,11 +102,11 @@ public class Cards_Animations_Controller : MonoBehaviour
 
             deckToRotation();
 
-            yield return new WaitForSeconds(0.14f);
+            yield return new WaitForSeconds(0.13f);
 
         }
 
-        StartCoroutine(selectPlayableCards(3));
+        StartCoroutine(selectPlayableCards(cardsSelectionC.nbCards));
     }
 
     private void deckToRotation()
@@ -133,11 +141,13 @@ public class Cards_Animations_Controller : MonoBehaviour
     private IEnumerator selectPlayableCards(int nbCards)
     {
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         int i = 0;
 
-
-        int randIndex = Random.Range(0, 3);
+        if (nbCards == 2)
+        {
+            i++;
+        }
 
         while (deckController.cards.Count < nbCards)
         {
@@ -250,7 +260,7 @@ public class Cards_Animations_Controller : MonoBehaviour
     {
         //1. Deck back to start position
         //2. all the cards on Deck Game object
-
+        //3. all the cars size = 1;
         deck.transform.position = deckStartPos;
 
         foreach(GameObject card in rtCardsController.cards)
@@ -265,8 +275,11 @@ public class Cards_Animations_Controller : MonoBehaviour
         {
             card.transform.eulerAngles = Vector3.zero;
             card.transform.position = deckStartPos;
+            card.transform.localScale = Vector3.one;
             card.SetActive(true);
         }
+
+        deckController.backInPlace();
 
 
 

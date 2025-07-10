@@ -130,9 +130,12 @@ public class Devil_ATK_Mesh_AtkZone : MonoBehaviour
         if (other.tag == "Player")
         {
             Health playerHealth = other.GetComponent<Health>();
+            PlayerController playerController = other.GetComponent<PlayerController>();
+
             if (!playerHealth.isInvincible)
             {
                 playerHealth.takeDamage(damage);
+                playerController.isHit();
             }
 
             myPlC.enabled = false;

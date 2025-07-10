@@ -10,8 +10,6 @@ public class Cards_Rotation_Animation_Controller : MonoBehaviour
     public List<GameObject> cards = new List<GameObject>();
     public  float radius = 1;
     public int n = 22;
-    public int nextCardPosition = 0;
-
 
     [Header("Rotation")]
     public float rotationDur;
@@ -23,10 +21,13 @@ public class Cards_Rotation_Animation_Controller : MonoBehaviour
 
     public AnimationCurve curve;
 
+    private PickableObj_Mouvement myPickObjMouv;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         generateCardsPosition();
+        myPickObjMouv = GetComponent<PickableObj_Mouvement>();
 
     }
 
@@ -38,6 +39,8 @@ public class Cards_Rotation_Animation_Controller : MonoBehaviour
 
     private void OnDisable()
     {
+        rotationAcceleration = 1f;
+        myPickObjMouv.enabled = false;
         StopAllCoroutines();
     }
 

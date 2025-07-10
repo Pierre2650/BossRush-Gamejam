@@ -6,13 +6,14 @@ using UnityEngine;
 public class Star_ATK : MonoBehaviour
 {
     public SpriteRenderer mySprR;
-    
+    public BoxCollider2D myBxC;
     [Header("Boss Controller")]
     private Enemy_Controller mainController;
 
     [Header("Bounce Walls")]
     private GameObject grid;
     private GameObject mapPrefab;
+    private GameObject map;
 
     private Vector2 startPos;
 
@@ -34,6 +35,7 @@ public class Star_ATK : MonoBehaviour
     {
         mainController = GetComponent<Enemy_Controller>();
         mySprR = GetComponent<SpriteRenderer>();
+        myBxC = GetComponent<BoxCollider2D>();
         cameraSH = GetComponent<CameraShake>();
 
         grid = mainController.Grid;
@@ -43,7 +45,7 @@ public class Star_ATK : MonoBehaviour
 
         
 
-        Instantiate(mapPrefab, grid.transform);
+        map = Instantiate(mapPrefab, grid.transform);
 
         startPos = transform.position;
         StartCoroutine(waitToAttack());
@@ -67,6 +69,7 @@ public class Star_ATK : MonoBehaviour
 
         //transform.gameObject.SetActive(false);
         mySprR.enabled = false;
+        myBxC.enabled = false;
 
     }
 
@@ -87,7 +90,7 @@ public class Star_ATK : MonoBehaviour
 
     private IEnumerator waitToJumpSpawn()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(5f);
         setControlPoints();
         toSpawn = true;
     }
@@ -107,6 +110,11 @@ public class Star_ATK : MonoBehaviour
             StartCoroutine(waitToAttack());
         }
 
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(map);
     }
 
     private void setControlPoints()

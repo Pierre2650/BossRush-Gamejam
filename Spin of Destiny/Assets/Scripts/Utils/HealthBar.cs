@@ -37,6 +37,11 @@ public class HealthBar : MonoBehaviour
         mainSlider.value = health;
     }
 
+    public void healFull()
+    {
+        mainSlider.value = mainSlider.maxValue;
+    }
+
     public void enQueueRoutine(float dmg) {
  
         if(currentRoutine == null)

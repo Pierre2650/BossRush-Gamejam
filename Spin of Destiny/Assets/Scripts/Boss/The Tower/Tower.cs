@@ -9,8 +9,11 @@ public class Tower : IControllerFinder
         switch (t)
         {
             case 'A':
+                //Tower_ATK tempA = boss.GetComponent<Tower_ATK>();
+                //tempA.enabled = true;
+
+                boss.AddComponent<Tower_ATK>();
                 Tower_ATK tempA = boss.GetComponent<Tower_ATK>();
-                tempA.enabled = true;
                 Controllers.Add(tempA);
 
                 break;
@@ -22,8 +25,11 @@ public class Tower : IControllerFinder
 
 
             case 'M':
+                //Tower_MAP tempM = boss.GetComponent<Tower_MAP>();
+                //tempM.enabled = true;
+                
+                boss.AddComponent<Tower_MAP>();
                 Tower_MAP tempM = boss.GetComponent<Tower_MAP>();
-                tempM.enabled = true;
                 Controllers.Add(tempM);
 
                // temp.enabled = false;
@@ -32,8 +38,11 @@ public class Tower : IControllerFinder
 
             default:
 
+                //Tower_MAP temp = boss.GetComponent<Tower_MAP>();
+                //temp.enabled = true;
+
+                boss.AddComponent<Tower_MAP>();
                 Tower_MAP temp = boss.GetComponent<Tower_MAP>();
-                temp.enabled = true;
                 Controllers.Add(temp);
 
 

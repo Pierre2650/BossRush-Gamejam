@@ -23,25 +23,25 @@ public class Chariot_ATK: MonoBehaviour
 
 
     [Header("ChargeAttack")]
-    public float chargeRange;
-    public float chargeSpeed = 40f;
-    public float chargeKnockBack;
-    public float knockbackMaxAngle;
-    public int damage;
+    public float chargeRange = 12f;
+    public float chargeSpeed = 36f;
+    public float chargeKnockBack = 60f;
+    public float knockbackMaxAngle = 75f;
+    public int damage = 25;
     private Personal_Direction_Finder dirFinder;
     private Vector2 chargeDirection;
     private bool isCharging = false;
     public int nCharges = 3;
     private bool startStop = false; //start to stop the charge
     private float stopElapsedT;
-    public float chargeStopDuration = 0f;
+    public float chargeStopDuration = 0.1f;
     private Vector2 positionBeforeCharge;
     
     [Header("Vulnerability")]
     private bool isVulnerable;
     private bool isWaiting = false;
     private float vulnerableElapsedT;
-    public float vulnerableDuration = 1.5f; //temps d'attente avant de repartir au safe spot
+    public float vulnerableDuration = 2f; //temps d'attente avant de repartir au safe spot
 
     [Header("Invulnerability")]
     private float backToSafetyElapsed = 0;
@@ -267,7 +267,7 @@ public class Chariot_ATK: MonoBehaviour
             print("Angle: " + angle);
             knockbackDir = Quaternion.Euler(0, 0, angle) * chargeDirection;
         }
-        StartCoroutine(plController.knockback(knockbackDir.normalized, 0.5f, chargeKnockBack, 0.2f, 0.2f));
+        plController.startKnockBack(knockbackDir.normalized, 0.5f, chargeKnockBack, 0.2f, 0.2f);
 
     }
 

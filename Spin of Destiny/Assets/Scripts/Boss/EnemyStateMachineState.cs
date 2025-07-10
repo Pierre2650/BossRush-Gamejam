@@ -36,7 +36,7 @@ public class Turn_Controller : MonoBehaviour
             if (bossTurnTimer > bossTurnDuration)
             {
                 bossTurnTimer = 0;
-                playerTurn();
+               
             }
 
         }
@@ -44,25 +44,7 @@ public class Turn_Controller : MonoBehaviour
         
     }
 
-    public void playerTurn()
-    {
-        turnCount++;
-        isPlayersTurn = true;
-        UI.SetActive(true);
-        plController.enabled = false;
-
-        bossController.reStartPos();
-
-        // Unhide UI
-        // able player controller
-
-        foreach (MonoBehaviour i in BSController.Controllers)
-        {
-            i.enabled = false;
-
-
-        }
-    }
+   
 
 
     public void BossTurn()

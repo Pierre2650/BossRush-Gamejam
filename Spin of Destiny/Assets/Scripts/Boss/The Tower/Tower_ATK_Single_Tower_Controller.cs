@@ -40,6 +40,7 @@ public class Single_Tower_Controller : Enemy_Controller
 
     [Header("Health")]
     private GameObject uiPrefab;
+    private GameObject uiBar;
     private List<Image> uiHealthBar = new List<Image>();
     private Coroutine barVisibility = null;
 
@@ -64,10 +65,10 @@ public class Single_Tower_Controller : Enemy_Controller
 
         // set prefab and a fonction to instantiated?
         uiPrefab = (GameObject)Resources.Load("Tower_ATK_HealthBar", typeof(GameObject));
-        GameObject temp = Instantiate(uiPrefab, new Vector2(transform.position.x, transform.position.y + 5.5f), transform.rotation, mainController.bossUI.transform);
-        myHealth.healthBar = temp.transform.GetChild(0).GetComponent<HealthBar>();
-        uiHealthBar.Add(temp.transform.GetChild(0).GetChild(0).GetComponent<Image>());
-        uiHealthBar.Add(temp.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Image>());
+        uiBar = Instantiate(uiPrefab, new Vector2(transform.position.x, transform.position.y + 5.5f), transform.rotation, mainController.bossUI.transform);
+        myHealth.healthBar = uiBar.transform.GetChild(0).GetComponent<HealthBar>();
+        uiHealthBar.Add(uiBar.transform.GetChild(0).GetChild(0).GetComponent<Image>());
+        uiHealthBar.Add(uiBar.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Image>());
 
         setVisibleHealth(false);
     }
@@ -234,7 +235,7 @@ public class Single_Tower_Controller : Enemy_Controller
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "PlayerAtk")
         {
             if (barVisibility == null)
             {
@@ -246,14 +247,17 @@ public class Single_Tower_Controller : Enemy_Controller
                 barVisibility = StartCoroutine(waitToHideHealthBar());
             }
 
+        }
 
+        if (collision.tag == "Player")
+        {
             if (myCC.IsTouching(collision.GetComponent<Collider2D>()))
             {
                 PlayerController playerController = collision.GetComponent<PlayerController>();
 
                 if (playerController != null) { 
                     Vector2 knockbackDir = (playerController.transform.position - transform.position).normalized;
-                    StartCoroutine(playerController.knockback(knockbackDir.normalized, 0.5f, 37f, 0.2f, 0.2f));
+                    playerController.startKnockBack(knockbackDir.normalized, 0.5f, 35f, 0.2f, 0.2f);
                 }
             }
 
@@ -280,6 +284,7 @@ public class Single_Tower_Controller : Enemy_Controller
         dadController.resetAttack();
         dadController.towers.Remove(this);
         StopAllCoroutines();
+        Destroy(uiBar);
     }
 
 }

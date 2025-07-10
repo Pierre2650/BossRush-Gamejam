@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Threading;
 using UnityEngine;
 
 public class Star_ATK_Main_Star_Controller : MonoBehaviour
@@ -76,13 +77,16 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
         if (nbBouces % 3 == 0)
         {
             speed += 2;
+            Debug.Log("Distance =" + Vector2.Distance(transform.position, player.transform.position));
 
-            dir = (player.transform.position - transform.position).normalized;
-            myRB.linearVelocity = dir * speed;
+            if (Vector2.Distance(transform.position, player.transform.position) > 6.5f) { 
+                dir = (player.transform.position - transform.position).normalized;
+                myRB.linearVelocity = dir * speed; 
+            }
 
 
 
-            if (nbBouces > 0) { 
+            if (nbBouces >= 0) { 
                 spawnMiniStars(collision.contacts[0].point);
             }   
         }
@@ -130,20 +134,15 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
         myLR.enabled = true;
 
         float duration = 2;
+        int count = 0;
+        while(count < 5)
+        {
+            yield return new WaitForSeconds(duration / 5);
+            myLR.enabled = !myLR.enabled;
+            count++;
+        }
 
-        yield return new WaitForSeconds(duration / 5);
-        myLR.enabled = false;
-
-        yield return new WaitForSeconds(duration / 5);
-        myLR.enabled = true;
-
-        yield return new WaitForSeconds(duration / 5);
-        myLR.enabled = false;
-
-        yield return new WaitForSeconds(duration / 5);
-        myLR.enabled = true;
-
-        yield return new WaitForSeconds(duration / 5);
+       
         myLR.enabled = false;
 
         dir = (player.transform.position - transform.position).normalized;
@@ -179,24 +178,19 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
+        int count = 0;
         float duration = 0.1f;
 
         mySprR.enabled = false;
-        yield return new WaitForSeconds(duration);
 
-        mySprR.enabled = true;
-        yield return new WaitForSeconds(duration );
+        while (count <5)
+        {
+            yield return new WaitForSeconds(duration);
 
+            mySprR.enabled = !mySprR.enabled;
+            count++;
+        }
 
-        mySprR.enabled = false;
-        yield return new WaitForSeconds(duration );
-
-        mySprR.enabled = true;
-        yield return new WaitForSeconds(duration );
-
-
-        mySprR.enabled = false;
-        yield return new WaitForSeconds(duration);
 
         mySprR.enabled = true;
         yield return new WaitForSeconds(1f);
@@ -213,9 +207,10 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
         theBoss.transform.position = transform.position;
 
         theBoss.GetComponent<Star_ATK>().mySprR.enabled = true;
+        theBoss.GetComponent<Star_ATK>().myBxC.enabled = true;
         //theBoss.SetActive(true);
 
-
+        spawnMiniStars(Vector2.zero);
         theBoss.GetComponent<Star_ATK>().startJumpSpawn();
 
         Destroy(this.gameObject);
@@ -240,10 +235,14 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
     {
         if(other.tag=="Player"){
             Health playerHealth = other.GetComponent<Health>();
-            if(!playerHealth.isInvincible){
+            PlayerController playerController = other.GetComponent<PlayerController>();
+
+            if (!playerHealth.isInvincible){
                 playerHealth.takeDamage(damage);
+                playerController.isHit();
+
             }
-            
+
 
         }
     }

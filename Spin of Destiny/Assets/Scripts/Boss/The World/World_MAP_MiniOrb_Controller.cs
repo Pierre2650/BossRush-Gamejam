@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Word_MAP_OrbSpawn_Controller : MonoBehaviour
+public class World_MAP_MiniOrb_Controller : MonoBehaviour
 {
     private Rigidbody2D myRb;
 
 
 
-    private GameObject player;
+    public GameObject player;
     private Vector2 mouvDirection;
-    private float speed = 5f;
+    private float speed = 6f; // old 5
 
 
 
@@ -28,7 +28,7 @@ public class Word_MAP_OrbSpawn_Controller : MonoBehaviour
     void Start()
     {
         myRb = GetComponent<Rigidbody2D>();
-        player = GameObject.Find("Player");
+
     }
 
     // Update is called once per frame
@@ -76,10 +76,13 @@ public class Word_MAP_OrbSpawn_Controller : MonoBehaviour
     }
 
 
+    
 
 
 
 
+
+    ///change thios also
     private void pathFinding(Vector2 targetPos)
     {
         /*calculate the nearest direction to the Boss,
@@ -169,8 +172,18 @@ public class Word_MAP_OrbSpawn_Controller : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         Health playerHealth = collision.GetComponent<Health>();
-        if(collision.gameObject.tag == "Player"){
+        PlayerController playerController = collision.GetComponent<PlayerController>();
+
+        if (collision.gameObject.tag == "Player"){
             playerHealth.takeDamage(damage);
+            playerController.isHit();
+            Destroy(this.gameObject);
+        }
+
+        if (collision.gameObject.tag == "PlayerAtk")
+        {
+         
+            Destroy(this.gameObject);
         }
     }
 

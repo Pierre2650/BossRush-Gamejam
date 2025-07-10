@@ -23,9 +23,14 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        if(!isDead)PlayerController.applyForceToSpeed(speed, transform.right.normalized, rb2d, accelerationRate);
+        //if(!isDead)PlayerController.applyForceToSpeed(speed, transform.right.normalized, rb2d, accelerationRate);
     }
 
+    private void FixedUpdate()
+    {
+        if (!isDead) PlayerController.applyForceToSpeed(speed, transform.right.normalized, rb2d, accelerationRate);
+
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {

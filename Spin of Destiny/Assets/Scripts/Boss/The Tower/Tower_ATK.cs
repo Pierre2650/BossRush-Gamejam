@@ -13,6 +13,7 @@ public class Tower_ATK : MonoBehaviour
     private Vector2[] spawnPos = new Vector2[4];
     private float spawnInterval = 0.3f;
 
+    private Coroutine ToRespawn = null;
     //private Vector2 lastPos = Vector2.zero;
 
     [Header("Attack")]
@@ -25,6 +26,7 @@ public class Tower_ATK : MonoBehaviour
 
     [Header("Controller")]
     private Enemy_Controller mainController;
+    private Health mainHealth;
 
 
 
@@ -32,6 +34,7 @@ public class Tower_ATK : MonoBehaviour
     void Start()
     {
         mainController = GetComponent<Enemy_Controller>();
+        mainHealth = GetComponent<Health>();
         player = mainController.thePlayer;
         towerPrefab =  (GameObject)Resources.Load("Tower", typeof(GameObject));
 
@@ -79,12 +82,14 @@ public class Tower_ATK : MonoBehaviour
     {
 
 
-        if(towers.Count < 1 && isAttacking)
+        if (towers.Count < 1 && isAttacking)
         {
+            Debug.Log("towers < 1 and aTTacking,  start waitToRespawn");
             StartCoroutine(waitToRespawn());
+            isAttacking = false;
         }
 
-        if(isAttacking)
+        if (isAttacking && towers.Count >= 1)
         {
             atkInterval += Time.deltaTime;
 
@@ -97,13 +102,19 @@ public class Tower_ATK : MonoBehaviour
 
         }
 
+        
+
     }
 
     private IEnumerator waitToRespawn()
     {
+        //Future animation
+        mainHealth.takeDamage(mainHealth.maxHealth/3 + 5f);
+        mainController.isHit();
+
         yield return new WaitForSeconds(3);
 
-        isAttacking = false;
+        
         atkInterval = 0;
 
         generateRandPos();
@@ -112,6 +123,7 @@ public class Tower_ATK : MonoBehaviour
 
     private IEnumerator spawnTowers()
     {
+        Debug.Log("Start SpawnTowers");
         float towerWaitTime = 1 + spawnInterval*4;
         float towerWaitAtkTime = 0;
 
@@ -136,10 +148,14 @@ public class Tower_ATK : MonoBehaviour
 
             yield return new WaitForSeconds(spawnInterval);
         }
-        
-        yield return new WaitForSeconds(1.5f + towerWaitAtkTime);
+
         nTowers = 4;
+
+
+        yield return new WaitForSeconds(1.5f + towerWaitAtkTime);
         isAttacking = true;
+        
+        
     }
 
 
@@ -147,7 +163,7 @@ public class Tower_ATK : MonoBehaviour
     {
         int rand = 0;
         //int nTowers = towers.Count;
-        if (towers.Count > 2){ 
+        if (towers.Count >= 2){ 
             rand = Random.Range(0, towers.Count);
             StartCoroutine(towers[rand].waitToAttack(waitToAtkT));
         }

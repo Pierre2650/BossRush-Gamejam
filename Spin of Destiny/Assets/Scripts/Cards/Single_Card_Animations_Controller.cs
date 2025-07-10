@@ -57,7 +57,7 @@ public class Single_Card_Animations_Controller : MonoBehaviour
     {
         P0 = transform.position;
         P2 = new Vector3(P0.x + 13.6f, P0.y, 0);
-        P1 = new Vector3(P0.x + 5.5f , P0.y -6, 0);
+        P1 = new Vector3(P0.x + 5.5f , P0.y -7, 0);
         
     }
 
@@ -136,6 +136,7 @@ public class Single_Card_Animations_Controller : MonoBehaviour
     {
 
         yield return new WaitForSeconds(0.05f + i);
+        t = 0f;
         isSpreading = false;
 
     }

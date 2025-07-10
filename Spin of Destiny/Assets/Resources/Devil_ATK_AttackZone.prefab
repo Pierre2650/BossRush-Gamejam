@@ -113,8 +113,9 @@ GameObject:
   - component: {fileID: 1851951077112399696}
   - component: {fileID: 7163875471599260604}
   - component: {fileID: 3020201657715886901}
+  - component: {fileID: 1733146497690289753}
   - component: {fileID: 1865059308149265572}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Devil_ATK_AttackZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,22 +237,59 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 3.7930157, y: 1.1944464}
-      - {x: 3.353199, y: 2.167603}
-      - {x: 2.8100283, y: 2.822706}
-      - {x: 2.1148033, y: 3.363374}
-      - {x: 1.2032844, y: 3.8206446}
-      - {x: -0.08079839, y: 4.0541816}
+    - - {x: 3.7961512, y: 0.44479176}
+      - {x: 3.61225, y: 1.2305996}
+      - {x: 3.196535, y: 2.2037563}
+      - {x: 2.689516, y: 2.834757}
+      - {x: 1.9219856, y: 3.387476}
+      - {x: 1.0955818, y: 3.7077029}
+      - {x: -0.07193935, y: 3.963828}
       - {x: -0.04611385, y: 0.11510065}
-      - {x: -0.038355887, y: -3.9763155}
-      - {x: 0.63626444, y: -3.9278371}
-      - {x: 1.4828917, y: -3.7080069}
-      - {x: 2.3506484, y: -3.2586124}
-      - {x: 3.1381109, y: -2.5281389}
-      - {x: 3.656035, y: -1.7103466}
-      - {x: 3.9565606, y: -0.7020619}
-      - {x: 3.9890773, y: 0.2766983}
+      - {x: -0.0005853772, y: -3.595046}
+      - {x: 0.71872646, y: -3.501387}
+      - {x: 1.5277301, y: -3.2687955}
+      - {x: 2.0894105, y: -2.959619}
+      - {x: 2.779005, y: -2.3896084}
+      - {x: 3.048164, y: -2.0405066}
+      - {x: 3.3901677, y: -1.457943}
+      - {x: 3.7414212, y: -0.5789836}
   m_UseDelaunayMesh: 0
+--- !u!58 &1733146497690289753
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370246196449552057}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.17}
+  m_Radius: 3.75
 --- !u!114 &1865059308149265572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myMshR: {fileID: 0}
   controller: {fileID: 0}
+  myPlC: {fileID: 0}
   Dir: {x: 0, y: 0}
   child: {fileID: 1261665951170704576}
   damage: 20

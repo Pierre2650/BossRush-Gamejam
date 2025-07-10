@@ -2183,12 +2183,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_100
+      name: World_Map_Explosion_4
       rect:
         serializedVersion: 2
-        x: 335
+        x: 336
         y: 127
-        width: 18
+        width: 16
         height: 18
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -2205,13 +2205,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_101
+      name: World_Map_Explosion_5
       rect:
         serializedVersion: 2
-        x: 351
-        y: 118
-        width: 18
-        height: 27
+        x: 352
+        y: 128
+        width: 17
+        height: 17
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2337,7 +2337,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_107
+      name: World_Map_Explosion_0
       rect:
         serializedVersion: 2
         x: 306
@@ -3327,7 +3327,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_159
+      name: World_Map_Explosion_1
       rect:
         serializedVersion: 2
         x: 17
@@ -3635,13 +3635,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_182
+      name: World_Map_Explosion_2
       rect:
         serializedVersion: 2
         x: 16
-        y: 64
+        y: 65
         width: 16
-        height: 16
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3921,13 +3921,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Purple Effect and Bullet 16x16_209
+      name: World_Map_Explosion_3
       rect:
         serializedVersion: 2
         x: 15
-        y: 47
+        y: 48
         width: 18
-        height: 18
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5579,7 +5579,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5601,7 +5601,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5623,7 +5623,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5645,7 +5645,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -5654,6 +5654,28 @@ TextureImporter:
       bones: []
       spriteID: 19cac86ae7a5a4849a5678b691d88b0d
       internalID: -1096400753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: World_Map_Hit
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 215
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c81b3897676a5b5468e94890bb5d068f
+      internalID: -529795537
       vertices: []
       indices: 
       edges: []
@@ -5685,6 +5707,8 @@ TextureImporter:
       Mini_Stars_particle_1: 1731674716
       Mini_Stars_particle_2: -8577874
       Mini_Stars_particle_3: 158852292
+      Purple Effect and Bullet 16x16_0: -1472901382
+      Purple Effect and Bullet 16x16_1: 169697036
       Purple Effect and Bullet 16x16_97: -1349370602
       STAR_0: -742778087786236747
       STAR_1: -735108343921175016
@@ -5699,6 +5723,13 @@ TextureImporter:
       World_ATK_Phase2_1: -941018287
       World_ATK_Phase2_2: 775588932
       World_ATK_Phase2_3: -1096400753
+      World_Map_Explosion_0: 4001774575617997204
+      World_Map_Explosion_1: 3938122638417190328
+      World_Map_Explosion_2: 4764098699856616594
+      World_Map_Explosion_3: 3159400767813897771
+      World_Map_Explosion_4: -4802124113331504650
+      World_Map_Explosion_5: -6236837732898308495
+      World_Map_Hit: -529795537
       loversAtk_0: -1297344740
       loversAtk_1: 698087946
       loversAtk_2: -1558447239

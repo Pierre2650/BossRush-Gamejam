@@ -15,22 +15,7 @@ public class Falling_Star_Controller : MonoBehaviour
     private Vector2 fallZone;
     public bool fallEnd = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            //StartCoroutine(Fall());
-
-        }
-        
-    }
 
     public void makeItFall()
     {

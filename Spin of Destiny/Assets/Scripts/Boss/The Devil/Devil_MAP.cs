@@ -41,15 +41,9 @@ public class Devil_MAP : MonoBehaviour
         StartCoroutine(waitToStart());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private IEnumerator waitToStart()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         spawnPlayerShadow();
     }
 
@@ -62,9 +56,19 @@ public class Devil_MAP : MonoBehaviour
 
     }
 
-    private void changeMask(int i)
+    private void changeMask(bool i)
     {
-        maskRenderer.sprite = masks[i];
+        if (i)
+        {
+            
+            maskRenderer.sprite = masks[1];
+
+        }
+        else
+        {
+            maskRenderer.sprite = masks[0];
+
+        }
 
     }
     private void spawnPlayerShadow()
@@ -73,6 +77,7 @@ public class Devil_MAP : MonoBehaviour
         plShadow = Instantiate(plShadowPrefab, spawnPos, transform.rotation, transform.parent);
         plShadowController = plShadow.GetComponent<Devil_MAP_Shadow_Controller>();
         plShadowController.player = player;
+        plShadowController.fatherController = this;
 
         StartCoroutine(countdownToPull());
     
@@ -119,14 +124,14 @@ public class Devil_MAP : MonoBehaviour
         {
             case 1:
 
-                return new Vector2(Random.Range(-15, -9), Random.Range(-9, 9));
+                return new Vector2(Random.Range(-17, -10.5f), Random.Range(-9f, 9f));
 
             case 2:
-                return new Vector2(Random.Range(-9, 5), Random.Range(-9, 3));
+                return new Vector2(Random.Range(-10f, 7.5f), Random.Range(-9, 0f));
 
             case 3:
                     
-                return new Vector2(Random.Range(5, 15), Random.Range(-9, 9));
+                return new Vector2(Random.Range(7.5f, 17), Random.Range(-9, 9));
 
             default:
                 return Vector2.zero;
@@ -144,45 +149,57 @@ public class Devil_MAP : MonoBehaviour
 
     private IEnumerator countdownToPull()
     {
-         yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3f);
 
         markPlayer();
 
-        yield return new WaitForSeconds(5f);
+       yield return new WaitForSeconds(3f);
 
-        int i = 1;
+        bool i = true;
 
         changeMask(i);
+        i = !i;
 
-        
         float dur = 2f;
-        
-        yield return new WaitForSeconds(dur/4);
-        changeMask(--i);
-        yield return new WaitForSeconds(dur/4);
-        changeMask(++i);
-        yield return new WaitForSeconds(dur/4);
-        changeMask(--i);
-        yield return new WaitForSeconds(dur/4);
-        changeMask(++i);
+        int count = 0;
 
+        while(count < 4)
+        {
+
+            yield return new WaitForSeconds(dur / 4);
+            changeMask(i);
+            i = !i;
+
+            count++;
+        }
+        
+    
         yield return new WaitForSeconds(2);
 
         chainPlayer();
 
-        StartCoroutine(waitToDestroy());
-
     }
 
-
+    public void callWaitToDestroy()
+    {
+        StartCoroutine(waitToDestroy());
+    }
     private IEnumerator waitToDestroy()
     {
-        yield return new WaitForSeconds(11f);
+        yield return new WaitForSeconds(10f);
         removePlayerShadow();
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         StartCoroutine(waitToStart());
     }
 
+
+    private void OnDestroy()
+    {
+        if(mask != null)
+        {
+            Destroy(mask);
+        }
+    }
 
 }

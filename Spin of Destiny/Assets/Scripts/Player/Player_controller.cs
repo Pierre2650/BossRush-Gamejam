@@ -184,6 +184,7 @@ public class Player_controller : MonoBehaviour
         mouvConstrained = true;
 
         myBxC.excludeLayers = LayerMask.GetMask("Obstacles");
+
         //Bx collider filter obstacles not deactivate
     }
 

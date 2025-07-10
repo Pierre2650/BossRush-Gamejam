@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Weapon_Coldowns : MonoBehaviour
+public class UI_Weapon_Coldowns : MonoBehaviour
 {
     [Header("Spear")]
     public Image spear;
@@ -22,22 +22,7 @@ public class Weapon_Coldowns : MonoBehaviour
 
     private Coroutine dashAnimationCoroutine;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            
-            //StartCoroutine(shotGunColdownAnimation(shotGun , shGAnimationTime / shGFrames.Length));
-        }
-        
-    }
 
     public void axeOnColdown(float coldownT)
     {

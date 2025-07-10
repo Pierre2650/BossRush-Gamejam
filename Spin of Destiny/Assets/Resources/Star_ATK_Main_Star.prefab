@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -8607257037922252962}
   - component: {fileID: 4828728947285826941}
   - component: {fileID: 6435682802190948227}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Star_ATK_Main_Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}

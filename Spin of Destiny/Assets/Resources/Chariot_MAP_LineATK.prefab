@@ -52,6 +52,7 @@ SpriteRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d33b02f9f242e4e9f80c2fd754e9f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentController: {fileID: 0}
   player: {fileID: 0}
   curve:
     serializedVersion: 2
@@ -124,6 +126,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  charge: {fileID: 0}
 --- !u!1 &8942469256714820284
 GameObject:
   m_ObjectHideFlags: 0

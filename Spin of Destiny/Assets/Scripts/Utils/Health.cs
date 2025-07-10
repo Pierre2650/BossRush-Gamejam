@@ -34,6 +34,14 @@ public class Health : MonoBehaviour
         }
     }
 
+
+    public void resetHealth()
+    {
+        currentHealth = maxHealth;
+        healthBar.healFull();
+        isDead = false;
+    }
+
     IEnumerator InvicibilityCoroutine(){
         isInvincible = true;
         yield return new WaitForSeconds(invincibilityTime);

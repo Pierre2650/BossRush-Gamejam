@@ -9,8 +9,11 @@ public class World : IControllerFinder
         switch (t)
         {
             case 'A':
+                //World_ATK tempA = boss.GetComponent<World_ATK>();
+                //tempA.enabled = true;
+
+                boss.AddComponent<World_ATK>();
                 World_ATK tempA = boss.GetComponent<World_ATK>();
-                tempA.enabled = true;
                 Controllers.Add(tempA);
 
                 break;
@@ -23,8 +26,12 @@ public class World : IControllerFinder
 
             case 'M':
 
+                //World_MAP tempM = boss.GetComponent<World_MAP>();
+                //tempM.enabled = true;
+
+                boss.AddComponent<World_MAP>();
                 World_MAP tempM = boss.GetComponent<World_MAP>();
-                tempM.enabled = true;
+
                 Controllers.Add(tempM);
 
                 //temp.enabled = false;
@@ -32,8 +39,12 @@ public class World : IControllerFinder
                 break;
 
             default:
+                //World_MAP tempD = boss.GetComponent<World_MAP>();
+                //tempD.enabled = true;
+
+                boss.AddComponent<World_MAP>();
                 World_MAP tempD = boss.GetComponent<World_MAP>();
-                tempD.enabled = true;
+
                 Controllers.Add(tempD);
 
                 break;

@@ -13,9 +13,14 @@ public class Chariot_MAP : MonoBehaviour
     [Header("Line")]
     private GameObject linePrefab;
 
+
     [Header("Spawn Controller")]
     private float spawnIntervalElapsedT = 0f;
     private float spawnIntervalStep = 4f;
+
+    private bool locked = false;
+
+    public List<GameObject> currentCharges;
 
     // Start is called before the first frame update
     void Start()
@@ -23,19 +28,22 @@ public class Chariot_MAP : MonoBehaviour
         MainController = GetComponent<Enemy_Controller>();
         player = MainController.thePlayer;
         linePrefab = (GameObject)Resources.Load("Chariot_MAP_LineATK", typeof(GameObject));
+        currentCharges = new List<GameObject>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        spawnIntervalElapsedT += Time.deltaTime;
-        if (spawnIntervalElapsedT > spawnIntervalStep)
+        if (!locked)
         {
-            spawn();
-            spawnIntervalElapsedT = 0;
+            spawnIntervalElapsedT += Time.deltaTime;
+            if (spawnIntervalElapsedT > spawnIntervalStep)
+            {
+                spawn();
+                spawnIntervalElapsedT = 0;
 
+            }
         }
 
 
@@ -44,8 +52,13 @@ public class Chariot_MAP : MonoBehaviour
     private void instantiateLine()
     {
         GameObject temp = Instantiate(linePrefab, transform.parent);
-        Chariot_MAP_Line_Controller temp2 = temp.transform.GetChild(0).GetComponentInChildren<Chariot_MAP_Line_Controller>();
+        currentCharges.Add(temp);
+        Chariot_MAP_Line_Controller temp2 = temp.transform.GetComponentInChildren<Chariot_MAP_Line_Controller>();
         temp2.player = player;
+        temp2.parentController = this;
+
+        locked = true;
+        spawnIntervalElapsedT = 0;
     }
 
     private void spawn()
@@ -62,5 +75,17 @@ public class Chariot_MAP : MonoBehaviour
             instantiateLine();
         }
 
+        StartCoroutine(waitForChargesToFinish());
+    }
+
+
+    private IEnumerator waitForChargesToFinish()
+    {
+        while(currentCharges.Count > 0)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+
+        locked = false;
     }
 }

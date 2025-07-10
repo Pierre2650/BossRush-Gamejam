@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerInputActions playerInputActions;
 
+    private BoxCollider2D myBxC;
+
     [Header("Movement")]
     private Rigidbody2D myRb;
     private Animator myAni;
@@ -18,9 +20,10 @@ public class PlayerController : MonoBehaviour
     private float accelerationBuffer;
     public float decelerationValue;
     private float accelRate;
+    public bool chained = false;
 
     [Header("Debuff")]
-    [HideInInspector]public bool mouvConstrained = false;
+    public bool mouvConstrained = false;
 
     [Header("Health")]
     private Health myHealth;
@@ -33,14 +36,19 @@ public class PlayerController : MonoBehaviour
     public Game_Over_Controller gameOverController;
     private bool gameIsOver = false;
 
-    //private Vector2 lastMouvDir = Vector2.zero;
-    //private bool debugZone = false;
+    [Header("Debug")]
+    public Vector2 circlePos = Vector2.zero; 
+    public float circleSize = 0.1f ;
+    public bool debugPlayer = false;
 
+    [SerializeField]
+    private Vector2 lastMouvDir = new Vector2(5,0);
     void Awake(){
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
         mouvConstrained = false;
         myHealth = GetComponent<Health>();
+        myBxC = GetComponent<BoxCollider2D>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,14 +57,30 @@ public class PlayerController : MonoBehaviour
         myAni = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         accelerationBuffer = accelerationValue;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveInput = playerInputActions.Player.Move.ReadValue<Vector2>();
-        targetSpeed = speed * moveInput.magnitude;
+        if (myRb.linearVelocity != Vector2.zero && mouvConstrained)
+        {
 
+            lastMouvDir = myRb.linearVelocity;
+        }
+
+        if (debugPlayer)
+        {
+            insideObstacleDebug();
+        }
+
+        if (!debugPlayer && !mouvConstrained)
+        {
+            moveInput = playerInputActions.Player.Move.ReadValue<Vector2>();
+            targetSpeed = speed * moveInput.magnitude;
+
+        }
+        
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -75,6 +99,8 @@ public class PlayerController : MonoBehaviour
             }
             
         }
+
+       
     }
 
 
@@ -96,9 +122,14 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if((!mouvConstrained || accelRate == decelerationValue) && !myHealth.isDead)
+        if((!chained || accelRate == decelerationValue) && !myHealth.isDead)
         {
             applyForceToSpeed(targetSpeed, moveInput, myRb, accelRate);
+        }
+
+        if (chained)
+        {
+            myRb.linearVelocity = moveInput * speed;
         }
         
     }
@@ -121,7 +152,13 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public IEnumerator knockback(Vector2 dir, float slowFactor, float force, float slowTime, float newAcceleration){
+
+    public void startKnockBack(Vector2 dir, float slowFactor, float force, float slowTime, float newAcceleratio)
+    {
+        StartCoroutine(knockback(dir, slowFactor, force, slowTime, newAcceleratio));
+
+    }
+    private IEnumerator knockback(Vector2 dir, float slowFactor, float force, float slowTime, float newAcceleration){
         myRb.linearVelocity *= slowFactor;
         myRb.AddForce(dir*force, ForceMode2D.Impulse);
         accelerationValue = newAcceleration;
@@ -136,32 +173,63 @@ public class PlayerController : MonoBehaviour
         rb2d.AddForce(speedDiff * accelerationRate,ForceMode2D.Force);
     }
 
+    public void restrainMouvement()
+    {
+        myRb.linearVelocity = Vector2.zero;
+        mouvConstrained = true;
 
-    /*private void insideObstacleDebug()
+        myBxC.excludeLayers = LayerMask.GetMask("Obstacles","Boss");
+
+        //Bx collider filter obstacles not deactivate
+    }
+
+    public void removeRestrain()
+    {
+        myRb.linearVelocity = Vector2.zero;
+        mouvConstrained = false;
+        debugPlayer = true;
+        chained = true;
+
+    }
+
+    private void insideObstacleDebug()
     {
      
         // Box parameters
-        Vector2 position = new Vector2(transform.position.x, transform.position.y + 0.2f);  // Center of the box
-        float size = 0.1f; // Size of the box (width x height)
+        Vector2 position = new Vector2(transform.position.x, transform.position.y );  // Center of the box
+        float size = 0.2f; // Size of the box (width x height)
 
+        circlePos = position;
+        circleSize = size;
 
         Collider2D overlap = Physics2D.OverlapCircle(position, size, LayerMask.GetMask("Obstacles"));
-        
-     
-        if (overlap && !debugZone ) {
-            Debug.Log(overlap);
 
-           myBxC.isTrigger = true;
-           debugZone = true;
-            
 
-        }else if (!overlap && debugZone ) 
+        if (overlap)
         {
-            debugZone = false;
-            myBxC.isTrigger = false;
 
-            myRb.velocity = Vector2.zero;
+            Debug.Log("Overlap = "+overlap+" Inside obstacle");
+            myRb.linearVelocity = lastMouvDir;
+
 
         }
-    }*/
+        else
+        {
+            debugPlayer = false;
+            myBxC.excludeLayers = LayerMask.GetMask("Nothing");
+        }
+   
+    }
+
+    public void resetPlayer()
+    {
+        this.transform.position = new Vector2(-1.20f, -5.20f);
+        myHealth.resetHealth();
+        
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(circlePos, circleSize);
+    }
 }

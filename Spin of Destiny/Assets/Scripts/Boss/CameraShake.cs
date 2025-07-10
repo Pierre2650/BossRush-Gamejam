@@ -101,7 +101,9 @@ public class CameraShake : MonoBehaviour
             yield return null;
 
         }
-       
+
+        cameraTransform.position = start;
+
         shakeElapsedT = 0;
 
     }
@@ -167,6 +169,7 @@ public class CameraShake : MonoBehaviour
 
         }
 
+        cameraTransform.position = start;
 
         shakeElapsedT = 0;
 

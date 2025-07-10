@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI_Controller : MonoBehaviour
@@ -45,6 +46,18 @@ public class UI_Controller : MonoBehaviour
         }
         ObsElapsed = 0;
 
+    }
+
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
 }

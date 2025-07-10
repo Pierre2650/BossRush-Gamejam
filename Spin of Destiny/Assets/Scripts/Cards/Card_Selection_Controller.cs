@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
@@ -8,8 +9,9 @@ using static UnityEngine.Rendering.DebugUI;
 public class Card_Selection_Controller : MonoBehaviour
 {
     [Header("Selected Cards Manager")]
-    public List<Card_Enum_Type> cards = new List<Card_Enum_Type>();
-    public int numberOfCards = 3;
+    public List<Card_Enum_Type> cards;
+    public static int round = 1;
+    public int nbCards = 1;
 
     [Header("Start Game")]
     public GameObject Game;
@@ -19,31 +21,54 @@ public class Card_Selection_Controller : MonoBehaviour
     [Header("Cards Animation Manager")]
     public Cards_Animations_Controller animationController;
 
+    [Header("Cards Deck Controller")]
+    public Cards_Deck_Controller deckController;
+
     [Header("UI")]
     public AnimationCurve curve; 
     public Image obscureImage;
 
+    public GameObject StartUI;
+    public GameObject roundCounter;
+
     [Header("Obscuring")]
     private float ObsElapsed = 0f;
     private float ObsDur = 0.3f;
+
+ 
+
+    private void OnEnable()
+    {
+        roundCounter.transform.GetComponent<TMP_Text>().text = round.ToString();
+
+        if (round == 1)
+        {
+            nbCards = 1;
+        }
+        else if (round == 2)
+        {
+            nbCards = 2;
+        }
+        else
+        {
+            nbCards = 3;
+        }
+
+        cards = new List<Card_Enum_Type>();
+
+    }
+
     // Update is called once per frame
     void Update()
     {
 
-        if (cards.Count == numberOfCards)
+        if (cards.Count == nbCards)
         {
             //startGame
             animationController.everythingBackInPlace();
             startGame();
         }
 
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-
-            obscure();
-
-        }
 
     }
 
@@ -59,6 +84,7 @@ public class Card_Selection_Controller : MonoBehaviour
 
     private IEnumerator obscuring()
     {
+        deckController.changeClickableState(false);
         float percentageDur = 0;
 
 
@@ -99,6 +125,8 @@ public class Card_Selection_Controller : MonoBehaviour
 
         }
         ObsElapsed = 0;
+
+        deckController.changeClickableState(true);
     }
 
 
@@ -126,9 +154,17 @@ public class Card_Selection_Controller : MonoBehaviour
 
     }
              
+    public void startAnimation()
+    {
 
+        animationController.startAnimations();
+        StartUI.SetActive(false);
+
+    }
     private void startGame()
     {
+        round++;
+
         Game.SetActive(true);
         thisObj.SetActive(false);
     }

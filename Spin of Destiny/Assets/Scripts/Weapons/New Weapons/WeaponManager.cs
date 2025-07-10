@@ -24,7 +24,7 @@ public class WeaponManager : MonoBehaviour
     public PlayerInputActions playerInputActions;
 
 
-    public Weapon_Coldowns uiManager;
+    public UI_Weapon_Coldowns uiManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -12,7 +12,7 @@ public class Devil_ATK : MonoBehaviour
     private Vector3 P0;
     private Vector3 P1;
     private Vector3 P2; // jump end position
-    public float maxD = 3.2f;
+    public float maxD = 1.8f;
 
 
     [Header("Jump")]
@@ -42,7 +42,7 @@ public class Devil_ATK : MonoBehaviour
 
     private bool isAttacking = true;
 
-
+    private bool scan = false;
 
     // Start is called before the first frame update
     void Start()
@@ -80,16 +80,32 @@ public class Devil_ATK : MonoBehaviour
     {
         setFakeScytheDir();
 
-        if (Vector3.Distance(this.transform.position, player.transform.position) > maxD && isAttacking)
+
+        if (t >= 0.3f)
         {
-            P2 = player.transform.position + new Vector3(Random.Range(0.1f, 0.4f), Random.Range(0.1f,0.4f));
+            if (Vector3.Distance(this.transform.position, player.transform.position) < maxD)
+            {
+                t = 1f;
+                Debug.Log("Stop going to player");
+                t = 1f;
+   
+            }
         }
+
+
+        if (isAttacking)
+        {
+            P2 = player.transform.position + new Vector3(Random.Range(0.1f, 0.4f), Random.Range(0.1f, 0.4f));
+
+        }
+       
+
        
 
         if (goJump)
         {
             jump();
-            
+
         }
 
 
@@ -138,6 +154,7 @@ public class Devil_ATK : MonoBehaviour
             if (isAttacking) { 
                 nJumps--;
                 showAttack();
+               
             }
             else
             {
@@ -176,7 +193,7 @@ public class Devil_ATK : MonoBehaviour
     }
     private IEnumerator waitToJump()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         P0 = transform.position;
 
@@ -191,11 +208,12 @@ public class Devil_ATK : MonoBehaviour
         
 
         goJump = true;
+        scan = false;
     }
 
     private IEnumerator waitOnSpawn()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         isAttacking = true;
         nJumps = 3;
         stateMachine();

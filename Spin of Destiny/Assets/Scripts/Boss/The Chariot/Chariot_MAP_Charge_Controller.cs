@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Chariot_MAP_Charge_Controller : MonoBehaviour
 {
+    public Chariot_MAP parentController;
+
     [Header("To init")]
     private Rigidbody2D myRb;
 
@@ -83,7 +85,13 @@ public class Chariot_MAP_Charge_Controller : MonoBehaviour
     {
         if(other.tag=="Player"){
             PlayerController playerController = other.GetComponent<PlayerController>();
-            StartCoroutine(playerController.knockback(dir, slowFactor, force, slowTime, newAcceleration));
+            playerController.startKnockBack(dir, slowFactor, force, slowTime, newAcceleration);
         }
+    }
+
+
+    private void OnDestroy()
+    {
+        parentController.currentCharges.Remove(Line);
     }
 }

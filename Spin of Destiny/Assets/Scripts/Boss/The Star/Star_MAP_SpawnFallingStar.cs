@@ -29,13 +29,6 @@ public class SpawnFallingStar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            //star.transform.position = starSpawnPos;
-            //spawnStar();
-
-        }
-
 
         if (star_Controller.fallEnd)
         {
@@ -53,6 +46,6 @@ public class SpawnFallingStar : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(starSpawnPos, 0.25f);
+        Gizmos.DrawWireSphere(transform.position, damage_zone_radius);
     }
 }

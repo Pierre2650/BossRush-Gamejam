@@ -60,7 +60,7 @@ public class Devil_ATK_Scythe_Controller : MonoBehaviour
 
     private IEnumerator waitToAtk()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
 
         meshController.myMshR.enabled = false;
         StartCoroutine(attack());
@@ -73,7 +73,10 @@ public class Devil_ATK_Scythe_Controller : MonoBehaviour
 
     private IEnumerator attack()
     {
-       
+        if (transform.localEulerAngles.y != 180)
+        {
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 180, 44);
+        }
 
         float percentageDur = 0;
 
@@ -114,9 +117,10 @@ public class Devil_ATK_Scythe_Controller : MonoBehaviour
 
     private IEnumerator endAtk()
     {
-
-        
+   
         yield return new WaitForSeconds(0.5f);
+
+       
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 44);
         meshController.attackEnded();
     }

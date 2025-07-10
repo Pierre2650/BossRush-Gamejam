@@ -10,13 +10,16 @@ public class World_MAP : MonoBehaviour
 
     [Header("Atk Pace")]
     private float waitTimer = 0;
-    private float waitDuration = 2f;
+    private float waitDuration = 3f;
+
+    private GameObject thePlayer;
 
     
     // Start is called before the first frame update
     void Start()
     {
         orbPrefab = (GameObject)Resources.Load("World_MAP_Orb", typeof(GameObject));
+        thePlayer = GetComponent<Enemy_Controller>().thePlayer;
 
         spawnOrb();
     }
@@ -47,7 +50,28 @@ public class World_MAP : MonoBehaviour
  
     private Vector2 newSpawnPos()
     {
-        return new Vector2(Random.Range(-13.2f, 17.5f), Random.Range(6.6f, -10f));
+        int zone = Random.Range(1, 4);
+
+        switch (zone)
+        {
+            case 1:
+
+                return new Vector2(Random.Range(-17.5f, -7.15f), Random.Range(-9.0f, 10f));
+                
+
+            case 2:
+
+                return new Vector2(Random.Range(-7.10f, 4.10f), Random.Range(-9f, 3.2f));
+
+            case 3:
+
+                return new Vector2(Random.Range(4.15f, 17.5f), Random.Range(-9f, -10f));
+
+            default:
+
+                return new Vector2(Random.Range(-13.2f, 17.5f), Random.Range(6.6f, -10f));
+        }
+
 
     }
 
@@ -55,6 +79,11 @@ public class World_MAP : MonoBehaviour
     {
         spawnPos = newSpawnPos();
         orb = Instantiate(orbPrefab, spawnPos, transform.rotation, transform.parent);
+        World_MAP_Orb temp = orb.GetComponent<World_MAP_Orb>();
+        temp.mainController = GetComponent<Enemy_Controller>();
+        temp.player = thePlayer;
+
+        waitTimer = 0f;
 
     }
 }

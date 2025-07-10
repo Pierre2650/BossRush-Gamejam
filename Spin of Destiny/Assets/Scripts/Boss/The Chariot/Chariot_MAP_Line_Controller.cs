@@ -8,6 +8,7 @@ public class Chariot_MAP_Line_Controller : MonoBehaviour
     [Header("To Init")]
     private SpriteRenderer mySprR;
 
+    public Chariot_MAP parentController;
 
     [Header("Player")]
     public GameObject player;
@@ -129,35 +130,30 @@ public class Chariot_MAP_Line_Controller : MonoBehaviour
 
         }
 
-
-
         yield return new WaitForSeconds(1f);
 
 
         float temp = 1;
-
+        int count = 0;
         mySprR.enabled = false;
 
-        yield return new WaitForSeconds(temp/4);
+        while(count < 4)
+        {
 
-        mySprR.enabled = true;
+            yield return new WaitForSeconds(temp / 4);
 
-        yield return new WaitForSeconds(temp/4);
+            mySprR.enabled = !mySprR.enabled;
 
-        mySprR.enabled = false;
+            count++;
 
-        yield return new WaitForSeconds(temp / 4);
 
-        mySprR.enabled = true;
 
-        yield return new WaitForSeconds(temp / 4);
+        }
 
-        mySprR.enabled = false;
 
         spawnCharge();
 
         stretchElapsedT = 0f;
-
         startPosCalibration = 2.5f;
 
     }
@@ -179,10 +175,14 @@ public class Chariot_MAP_Line_Controller : MonoBehaviour
 
         charge = Instantiate(chargePrefab, tempPos, transform.rotation, transform.parent.transform.parent);
         Chariot_MAP_Charge_Controller tempController = charge.GetComponent<Chariot_MAP_Charge_Controller>();
+    
+        tempController.parentController = parentController;
         tempController.direction = dir;
         tempController.Line = transform.parent.gameObject;
 
 
     }
+
+
 
 }

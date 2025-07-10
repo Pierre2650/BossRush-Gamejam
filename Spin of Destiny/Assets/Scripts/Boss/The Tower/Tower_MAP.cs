@@ -1,9 +1,5 @@
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Tower_MAP : MonoBehaviour
 {
@@ -11,6 +7,8 @@ public class Tower_MAP : MonoBehaviour
     private GameObject Grid;
     private GameObject newMapPrefab;
     private Tilemap towerMap;
+
+    private GameObject map;
     //private int maxX = 16, maxY = 9;
 
 
@@ -22,6 +20,9 @@ public class Tower_MAP : MonoBehaviour
     private float intervalElapsed = 0f;
     private float interval = 0.5f;
     private Vector3Int lastObstPos = Vector3Int.zero;
+
+    private float restardElapsed = 0f;
+    private float restardT = 10f;
 
     [Header("Player")]
     private GameObject player;
@@ -38,9 +39,9 @@ public class Tower_MAP : MonoBehaviour
 
         Grid = mainController.Grid;
         newMapPrefab =  (GameObject)Resources.Load("Tower_MAP_Map", typeof(GameObject));
-        GameObject temp = Instantiate(newMapPrefab,Grid.transform);
-        temp.layer = 7;
-        towerMap = temp.GetComponent<Tilemap>();
+        map = Instantiate(newMapPrefab,Grid.transform);
+        map.layer = 7;
+        towerMap = map.GetComponent<Tilemap>();
 
         obstacle = Resources.Load<Tile>("obstacle");
         
@@ -66,6 +67,17 @@ public class Tower_MAP : MonoBehaviour
                 nbObstacles--;
                 intervalElapsed = 0f;
             }
+        }
+        else
+        {
+            restardElapsed += Time.deltaTime;
+
+            if (restardElapsed > restardT)
+            {
+                resetObstacles();
+                restardElapsed = 0;
+            }
+
         }
 
 
@@ -112,6 +124,12 @@ public class Tower_MAP : MonoBehaviour
 
     }
     
+
+    private void resetObstacles()
+    {
+        towerMap.ClearAllTiles();
+        nbObstacles = 8;
+    }
 
     private Vector3Int generateSpawnPos(int zone)
     {
@@ -348,6 +366,12 @@ public class Tower_MAP : MonoBehaviour
 
         }
 
+    }
+
+
+    private void OnDestroy()
+    {
+        Destroy(map);
     }
 
 

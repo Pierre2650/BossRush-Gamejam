@@ -37,7 +37,7 @@ public class ShotGun : Weapon
 
         animator.Play("sotgun_Clip");
 
-        StartCoroutine(player.gameObject.GetComponent<PlayerController>().knockback(-direction,slowFactor, knockBackForce, slowTime, accelerationRate));
+        player.gameObject.GetComponent<PlayerController>().startKnockBack(-direction,slowFactor, knockBackForce, slowTime, accelerationRate);
 
         fire();
         yield return null;

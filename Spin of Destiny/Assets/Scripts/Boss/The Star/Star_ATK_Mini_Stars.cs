@@ -309,8 +309,12 @@ public class Star_ATK_Mini_Stars : MonoBehaviour
     {
         if(other.tag=="Player"){
             Health playerHealth = other.GetComponent<Health>();
-            if(!playerHealth.isInvincible){
+            PlayerController playerController = other.GetComponent<PlayerController>();
+
+            if (!playerHealth.isInvincible){
                 playerHealth.takeDamage(damage);
+                playerController.isHit();
+
             }
 
             Destroy(this.gameObject);

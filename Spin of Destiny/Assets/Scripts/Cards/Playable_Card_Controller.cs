@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Card_Controller : MonoBehaviour
+public class Playable_Card_Controller : MonoBehaviour
 {
     [Header("InitComponents")]
     private SpriteRenderer spriteComponent;
@@ -55,7 +55,11 @@ public class Card_Controller : MonoBehaviour
     private float zoomAnimationD = 0.3f;
 
 
-
+    private void OnEnable()
+    {
+        clickable = false;
+        onObject = false;
+    }
     private void Awake()
     {
         spriteComponent = GetComponent<SpriteRenderer>();
@@ -66,11 +70,7 @@ public class Card_Controller : MonoBehaviour
         //hoverEnd = new Vector2(transform.localScale.x + 13f, transform.localScale.y + 13f);
     }
 
-    private void OnEnable()
-    {
-        //clickable = true;
-    }
-
+   
     // Update is called once per frame
     void Update()
     {
@@ -116,10 +116,10 @@ public class Card_Controller : MonoBehaviour
         Debug.Log("Card Type = " + type);
 
 
-        if (selectionController.cards.Count == selectionController.numberOfCards - 1 && selectionController.checkConditions('A'))
+        if (selectionController.cards.Count == selectionController.nbCards - 1 && selectionController.checkConditions('A'))
         {
             type = 'A';
-            Debug.Log("Card Type changed to A " + type);
+            Debug.Log("Card Type changed to A = " + type);
         }
     }
 
@@ -316,7 +316,7 @@ public class Card_Controller : MonoBehaviour
 
         flipAnimationElapsed = 0;
 
-        child.SetActive(enabled);
+        child.SetActive(true);
 
         StartCoroutine(zoom_CenterCard());
         
@@ -398,5 +398,13 @@ public class Card_Controller : MonoBehaviour
     }
 
 
+    public void resetPlayableCard()
+    {
+
+        spriteComponent.sprite = sprites[0];
+        this.transform.position = new Vector3(21, 0, 0);
+        child.SetActive(false);
+
+    }
 
 }
