@@ -13324,7 +13324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1698373f2dc7e34479ce3e68c8e75e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 150
   healthBar: {fileID: 1744649803}
   invincibilityTime: 0.2
 --- !u!114 &935546756
@@ -16257,7 +16257,7 @@ Transform:
   m_GameObject: {fileID: 1372805938}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.19, y: -5.21, z: 0}
+  m_LocalPosition: {x: -0.87, y: -5.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16364,7 +16364,7 @@ BoxCollider2D:
   m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.01}
+  m_Offset: {x: -0.01, y: -0.26}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.54545456, y: 0.47058824}
@@ -16374,7 +16374,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.45, y: 0.87}
+  m_Size: {x: 0.34, y: 0.37}
   m_EdgeRadius: 0
 --- !u!50 &1372805944
 Rigidbody2D:

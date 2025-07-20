@@ -12,7 +12,7 @@ public class Devil_ATK : MonoBehaviour
     private Vector3 P0;
     private Vector3 P1;
     private Vector3 P2; // jump end position
-    public float maxD = 1.8f;
+    public float maxD = 1f;
 
 
     [Header("Jump")]

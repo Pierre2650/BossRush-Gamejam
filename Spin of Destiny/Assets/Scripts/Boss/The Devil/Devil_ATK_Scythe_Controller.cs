@@ -60,7 +60,7 @@ public class Devil_ATK_Scythe_Controller : MonoBehaviour
 
     private IEnumerator waitToAtk()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
 
         meshController.myMshR.enabled = false;
         StartCoroutine(attack());

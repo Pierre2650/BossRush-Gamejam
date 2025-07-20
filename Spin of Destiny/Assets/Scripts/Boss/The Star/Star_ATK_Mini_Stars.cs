@@ -119,7 +119,7 @@ public class Star_ATK_Mini_Stars : MonoBehaviour
         P0 = transform.position;
         P0.z = 0;
 
-        P2 = player.transform.position;
+        P2 = new Vector3 (player.transform.position.x, player.transform.position.y - 0.25f, player.transform.position.z)   ;
 
         int distance = 5;
 

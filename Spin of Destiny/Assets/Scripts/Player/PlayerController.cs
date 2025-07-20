@@ -175,10 +175,11 @@ public class PlayerController : MonoBehaviour
 
     public void restrainMouvement()
     {
+        myBxC.excludeLayers = LayerMask.GetMask("Obstacles", "Boss");
         myRb.linearVelocity = Vector2.zero;
         mouvConstrained = true;
 
-        myBxC.excludeLayers = LayerMask.GetMask("Obstacles","Boss");
+       
 
         //Bx collider filter obstacles not deactivate
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
@@ -40,16 +41,15 @@ public class World_MAP_Orb : Enemy_Controller
 
     [Header("Health")]
     private GameObject uiPrefab;
+    private GameObject uiBar;
     private List<Image> uiHealthBar = new List<Image>();
     private Coroutine barVisibility = null;
 
+    [Header("Anim")]
+    private GameObject imagePrefab;
+    public AnimationCurve curve;
 
-    private void OnEnable()
-    {
-        if (miniOrbsPrefab == null) { 
-            miniOrbsPrefab = (GameObject)Resources.Load("World_MAP_orbSpawn", typeof(GameObject));
-        }
-    }
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -65,12 +65,13 @@ public class World_MAP_Orb : Enemy_Controller
 
         // set prefab and a fonction to instantiated?
         uiPrefab = (GameObject)Resources.Load("World_MAP_HealthBar", typeof(GameObject));
-        GameObject temp = Instantiate(uiPrefab, new Vector2(transform.position.x, transform.position.y + 1.5f), transform.rotation, mainController.bossUI.transform);
-        myHealth.healthBar = temp.transform.GetChild(0).GetComponent<HealthBar>();
-        uiHealthBar.Add(temp.transform.GetChild(0).GetChild(0).GetComponent<Image>());
-        uiHealthBar.Add(temp.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Image>());
-
+        uiBar = Instantiate(uiPrefab, new Vector2(transform.position.x, transform.position.y + 1.5f), transform.rotation, mainController.bossUI.transform);
+        myHealth.healthBar = uiBar.transform.GetChild(0).GetComponent<HealthBar>();
+        uiHealthBar.Add(uiBar.transform.GetChild(0).GetChild(0).GetComponent<Image>());
+        uiHealthBar.Add(uiBar.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Image>());
         setVisibleHealth(false);
+
+        imagePrefab = (GameObject)Resources.Load("World_MAP_ExplosionFX", typeof(GameObject));
 
         getExplosionAnimDur();
 
@@ -124,11 +125,6 @@ public class World_MAP_Orb : Enemy_Controller
             
         }
 
-        if(lineController.radius>=Vector2.Distance(transform.position, player.transform.position) && !isfinishing){
-            
-        }
-
-
         if (spawn ) { 
             spawnOrb();
         }
@@ -141,7 +137,7 @@ public class World_MAP_Orb : Enemy_Controller
     private void evolve()
     {
 
-        size++;
+        size*=2;
         transform.localScale = new Vector2(size, size);
         StartCoroutine(push());
 
@@ -159,6 +155,7 @@ public class World_MAP_Orb : Enemy_Controller
         setVisibleHealth(false);
         myAni.SetTrigger("Explode");
         StartCoroutine(waitToHideSprite());
+        StartCoroutine(screenEffect());
 
         CircleCollider2D[] colliders = GetComponents<CircleCollider2D>();
         foreach (CircleCollider2D cc in colliders)
@@ -174,6 +171,51 @@ public class World_MAP_Orb : Enemy_Controller
         isfinishing = true;
         evoElapsedTime = 0;
         StartCoroutine(waitToDestroy());
+    }
+
+    private IEnumerator screenEffect()
+    {
+
+        GameObject temp = Instantiate(imagePrefab , mainController.bossUI.transform);
+        Image purpleImage = temp.GetComponent<Image>();
+
+        float dur = 2f, elapsed = 0; ;
+        float percentageDur = 0;
+
+        Color start = new Color(148f / 255f, 38f / 255f, 228f / 255f , 0f); // transparent
+        Color end = new Color(148f / 255f, 38f / 255f, 228f / 255f, 1); // purple
+
+        while (elapsed < dur/2)
+        {
+
+            percentageDur = elapsed / (dur / 2);
+
+            purpleImage.color = Color.Lerp(start, end, curve.Evaluate(percentageDur));
+
+            elapsed += Time.deltaTime;
+            yield return null;
+
+        }
+
+        purpleImage.color = end;
+
+        elapsed = 0;
+        percentageDur = 0;
+
+        while (elapsed < dur/2)
+        {
+
+            percentageDur = elapsed / (dur/2);
+
+            purpleImage.color = Color.Lerp(end, start, curve.Evaluate(percentageDur));
+
+            elapsed += Time.deltaTime;
+            yield return null;
+
+        }
+
+        Destroy(temp);
+
     }
 
     private IEnumerator waitToHideSprite()
@@ -214,19 +256,25 @@ public class World_MAP_Orb : Enemy_Controller
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (barVisibility == null)
+        if(other.tag == "PlayerAtk")
         {
-            barVisibility = StartCoroutine(waitToHideHealthBar());
-        }
-        else
-        {
-            StopCoroutine(barVisibility);
-            barVisibility = StartCoroutine(waitToHideHealthBar());
+            if (barVisibility == null)
+            {
+                barVisibility = StartCoroutine(waitToHideHealthBar());
+            }
+            else
+            {
+                StopCoroutine(barVisibility);
+                barVisibility = StartCoroutine(waitToHideHealthBar());
+            }
         }
 
 
         if (other.tag == "Player")
         {
+           
+
+
 
             Health playerHealth = other.GetComponent<Health>();
             PlayerController playerController = other.GetComponent<PlayerController>();
@@ -260,6 +308,14 @@ public class World_MAP_Orb : Enemy_Controller
         yield return new WaitForSeconds(timeBeforeDestruction);
         myHealth.takeDamage(9999);
         isHit();
+    }
+
+    private void OnDestroy()
+    {
+
+        Destroy(uiBar);
+
+        
     }
 
 

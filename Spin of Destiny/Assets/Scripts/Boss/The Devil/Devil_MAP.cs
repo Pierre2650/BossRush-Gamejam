@@ -25,6 +25,9 @@ public class Devil_MAP : MonoBehaviour
     private GameObject mask;
     private SpriteRenderer maskRenderer;
 
+    [Header("Conditions")]
+    private bool worldATK = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +40,12 @@ public class Devil_MAP : MonoBehaviour
 
         main_controller = GetComponent<Enemy_Controller>();
         player = main_controller.thePlayer;
+
+        if(GetComponent<World_ATK>() != null)
+        {
+            worldATK = true;
+        }
+
 
         StartCoroutine(waitToStart());
     }
@@ -73,7 +82,18 @@ public class Devil_MAP : MonoBehaviour
     }
     private void spawnPlayerShadow()
     {
-        Vector2 spawnPos = spawnPosGeneration();
+        Vector2 spawnPos;
+        if (worldATK) {
+
+            spawnPos = spawnPosCorners();
+        }
+        else
+        {
+
+            spawnPos = spawnPosGeneration();
+
+        }
+
         plShadow = Instantiate(plShadowPrefab, spawnPos, transform.rotation, transform.parent);
         plShadowController = plShadow.GetComponent<Devil_MAP_Shadow_Controller>();
         plShadowController.player = player;
@@ -81,6 +101,47 @@ public class Devil_MAP : MonoBehaviour
 
         StartCoroutine(countdownToPull());
     
+    }
+
+    private Vector2 spawnPosCorners()
+    {
+        int spawnZone, temp = 0;
+        
+        Vector2 pos = Vector2.zero;
+
+        do
+        {
+            spawnZone = Random.Range(1, 5);
+            if (temp > 200)
+            {
+                Debug.Log("spawnPosCorners() treshold reached");
+                break;
+            }
+
+            switch (spawnZone)
+            {
+                case 1:
+                    pos =  new Vector2(-12.58f, 6.75f);
+                    break;
+                case 2:
+                    pos = new Vector2(11.68f, 6.75f);
+                    break;
+                case 3:
+                    pos = new Vector2(12.77f, -5.66f);
+                    break;
+                case 4:
+                    pos = new Vector2(-12.14f, -5.66f);
+                    break;
+
+            }
+
+            temp++;
+        }
+        while (Vector2.Distance(pos, transform.position) < 10);
+
+
+        return pos;
+
     }
 
     private void removePlayerShadow()

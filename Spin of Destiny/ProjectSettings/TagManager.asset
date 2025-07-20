@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - PlayerAtk
+  - PlayerFeet
   layers:
   - Default
   - TransparentFX

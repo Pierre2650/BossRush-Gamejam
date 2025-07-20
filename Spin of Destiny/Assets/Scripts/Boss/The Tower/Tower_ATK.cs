@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class Tower_ATK : MonoBehaviour
 {
@@ -38,12 +40,7 @@ public class Tower_ATK : MonoBehaviour
         player = mainController.thePlayer;
         towerPrefab =  (GameObject)Resources.Load("Tower", typeof(GameObject));
 
-        //spawnPos[0] = new Vector2(-1.5f, 1.5f);
-        //spawnPos[1] = new Vector2(-1.5f, -7.5f);
-        //spawnPos[2] = new Vector2(-11f, -2.5f);
-        //spawnPos[3] = new Vector2(8f, -2.5f);
-
-        generateRandPos();
+        generateStartPos();
 
         StartCoroutine(spawnTowers());
 
@@ -51,9 +48,8 @@ public class Tower_ATK : MonoBehaviour
 
     }
 
-    private void generateRandPos()
+    private void generateStartPos()
     {
-        Vector2 temp = new Vector2(-1.5f, 1.5f);
         List<Vector2> possiblePos = new List<Vector2>();
         possiblePos.Add(new Vector2(-1.5f, 1.5f));
         possiblePos.Add(new Vector2(-1.5f, -7.5f));
@@ -76,6 +72,74 @@ public class Tower_ATK : MonoBehaviour
 
 
     }
+
+    private void generateRandPos()
+    {
+        List<Vector2> possiblePos = new List<Vector2>();
+        Vector2 testPos;
+        int spawnZone, i = 0,  treshold = 0;
+
+        while (possiblePos.Count < 4)
+        {
+            if(treshold > 200) { Debug.Log("generateRandPos() Treshold reached"); break; }
+
+            spawnZone = Random.Range(1, 4);
+            testPos = generateSpawnPos(spawnZone);
+            
+            if(Vector2.Distance(testPos,player.transform.position) >= 2f && checkTowerDistance(testPos, possiblePos) > 2f)
+            {
+                possiblePos.Add(testPos);
+            }
+
+            treshold++;
+        }
+
+
+        for(i=0; i < spawnPos.Length; i++)
+        {
+            spawnPos[i] = possiblePos[i];
+        }
+
+    }
+
+    private  float checkTowerDistance(Vector2 test, List<Vector2> currentPos)
+    {
+        float min = 999;
+
+        foreach(Vector2 p in currentPos)
+        {
+            if(Vector2.Distance(p,test) < min)
+            {
+                min = Vector2.Distance(p, test);
+            }
+        }
+
+        return min;
+
+    }
+    private Vector2 generateSpawnPos(int zone)
+    {
+        switch (zone)
+        {
+            case 1:
+
+                return new Vector2(Random.Range(-15, -9), Random.Range(-9, 9));
+
+            case 2:
+                return new Vector2(Random.Range(-9, 5), Random.Range(-9, 3));
+
+            case 3:
+
+                return new Vector2(Random.Range(5, 15), Random.Range(-9, 9));
+
+            default:
+                return Vector2.zero;
+
+        }
+
+    }
+
+ 
 
     // Update is called once per frame
     void Update()
@@ -117,6 +181,7 @@ public class Tower_ATK : MonoBehaviour
         
         atkInterval = 0;
 
+        
         generateRandPos();
         StartCoroutine(spawnTowers());
     }

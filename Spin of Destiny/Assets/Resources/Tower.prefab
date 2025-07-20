@@ -367,6 +367,8 @@ MonoBehaviour:
   Grid: {fileID: 0}
   camera: {fileID: 0}
   bossUI: {fileID: 0}
+  victory_controller: {fileID: 0}
+  spawnedAttacks: []
   dadController: {fileID: 0}
   player: {fileID: 0}
   waitT: 0
@@ -385,6 +387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1698373f2dc7e34479ce3e68c8e75e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 30
   healthBar: {fileID: 0}
   invincibilityTime: 0.3
