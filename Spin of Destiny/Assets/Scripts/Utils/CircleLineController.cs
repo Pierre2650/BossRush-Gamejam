@@ -1,7 +1,5 @@
-using Unity.Mathematics;
-using UnityEngine;
-using UnityEngine.SocialPlatforms.GameCenter;
 
+using UnityEngine;
 public class CircleLineController : MonoBehaviour
 {
     public int vertices=1; 

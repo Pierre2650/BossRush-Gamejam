@@ -32,7 +32,7 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
     private bool attractPlayer = false;
     public bool changeChain = false;
 
-    private Vector2 dirToShadow;
+    private Vector2 dirToNextChain;
     private float speed = 20;
 
     [Header("Hinged join Chains")]
@@ -49,6 +49,13 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
         chainHJController.player = player;
     }
 
+    private void FixedUpdate()
+    {
+        if (attractPlayer)
+        {
+            pullPlayer();
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -63,7 +70,7 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
 
                 if (index >= 0)
                 {
-                    dirToShadow = pullChain[index].GetComponent<Devil_Map_Single_Chain_Controller>().directionToPlayer * -1;
+                    dirToNextChain = pullChain[index].GetComponent<Devil_Map_Single_Chain_Controller>().directionToPlayer * -1;
                 }
 
                 //stop Player
@@ -102,7 +109,7 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
 
 
 
-            pullPlayer();
+            //pullPlayer();
 
             
 
@@ -220,22 +227,17 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
 
             index--;
 
-
-            Debug.Log("pullChain.count = "+ pullChain.Count);
-
             Devil_Map_Single_Chain_Controller tempController = pullChain[index].GetComponent<Devil_Map_Single_Chain_Controller>();
-
-            dirToShadow = tempController.directionToPlayer * -1;
-
-
-            
+            tempController.setNewDir();
+            dirToNextChain = tempController.directionToPlayer * -1;
+  
 
             changeChain = false;
             
 
         }
 
-        plRB.linearVelocity = dirToShadow * speed;
+        plRB.linearVelocity = dirToNextChain * speed;
 
 
     }
@@ -255,4 +257,6 @@ public class Devil_MAP_Shadow_Controller : MonoBehaviour
         player.GetComponent<PlayerController>().chained = false;
         chainHJController.destroyChain();
     }
+
+  
 }

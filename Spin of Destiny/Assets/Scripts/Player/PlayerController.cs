@@ -78,17 +78,18 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = playerInputActions.Player.Move.ReadValue<Vector2>();
             targetSpeed = speed * moveInput.magnitude;
-
+            mouvemmentAnimation();
         }
         
 
         if (Input.GetKeyDown(KeyCode.P))
         {
+            Card_Selection_Controller.round = 1;
             SceneManager.LoadScene("SampleScene");
         }
 
        
-         mouvemmentAnimation();
+        
         
         if(myHealth.isDead)
         {
@@ -228,9 +229,5 @@ public class PlayerController : MonoBehaviour
         myHealth.resetHealth();
         
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(circlePos, circleSize);
-    }
+    
 }

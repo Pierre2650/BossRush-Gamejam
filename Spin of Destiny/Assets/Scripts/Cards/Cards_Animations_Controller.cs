@@ -1,11 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using Unity.VisualScripting;
+
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using static UnityEditor.U2D.ScriptablePacker;
-using static UnityEngine.Rendering.GPUSort;
 
 public class Cards_Animations_Controller : MonoBehaviour
 {

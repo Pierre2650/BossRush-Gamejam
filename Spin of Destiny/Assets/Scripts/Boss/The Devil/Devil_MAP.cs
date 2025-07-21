@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class Devil_MAP : MonoBehaviour
 {
@@ -58,7 +56,7 @@ public class Devil_MAP : MonoBehaviour
 
     private void markPlayer()
     {
-        Vector2 spawnPos = new Vector2(player.transform.position.x, player.transform.position.y + 1.9f);
+        Vector2 spawnPos = new Vector2(player.transform.position.x, player.transform.position.y + 1.5f);
         mask = Instantiate(maskPrefab, spawnPos, player.transform.rotation, player.transform);
         maskRenderer = mask.GetComponent<SpriteRenderer>();
 
@@ -210,11 +208,11 @@ public class Devil_MAP : MonoBehaviour
 
     private IEnumerator countdownToPull()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         markPlayer();
 
-       yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
 
         bool i = true;
 
@@ -233,9 +231,10 @@ public class Devil_MAP : MonoBehaviour
 
             count++;
         }
+        mask.GetComponent<PickableObj_Mouvement>().enabled = false;
         
-    
-        yield return new WaitForSeconds(2);
+        
+        yield return new WaitForSeconds(3);
 
         chainPlayer();
 
@@ -250,7 +249,7 @@ public class Devil_MAP : MonoBehaviour
         yield return new WaitForSeconds(10f);
         removePlayerShadow();
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(9f);
         StartCoroutine(waitToStart());
     }
 

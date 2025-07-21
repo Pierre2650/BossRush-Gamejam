@@ -1,13 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.RuleTile.TilingRuleOutput;
-
 public class Star_ATK_Mini_Stars : MonoBehaviour
 {
     private ParticleSystem myPrtSys;
@@ -311,11 +303,11 @@ public class Star_ATK_Mini_Stars : MonoBehaviour
             Health playerHealth = other.GetComponent<Health>();
             PlayerController playerController = other.GetComponent<PlayerController>();
 
-            if (!playerHealth.isInvincible){
-                playerHealth.takeDamage(damage);
-                playerController.isHit();
+          
+               playerHealth.takeDamage(damage);
+               playerController.isHit();
 
-            }
+            
 
             Destroy(this.gameObject);
 

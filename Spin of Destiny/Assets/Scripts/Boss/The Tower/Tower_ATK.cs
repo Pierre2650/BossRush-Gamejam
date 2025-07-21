@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class Tower_ATK : MonoBehaviour
 {

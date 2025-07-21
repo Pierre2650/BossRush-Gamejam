@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -69,6 +70,11 @@ public class Card_Selection_Controller : MonoBehaviour
             startGame();
         }
 
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            round = 1;
+            SceneManager.LoadScene("SampleScene");
+        }
 
     }
 

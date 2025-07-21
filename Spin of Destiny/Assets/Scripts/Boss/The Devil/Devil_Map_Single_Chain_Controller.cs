@@ -7,7 +7,7 @@ public class Devil_Map_Single_Chain_Controller : MonoBehaviour
     private BoxCollider2D myBXC;
 
     [Header("Player")]
-    public GameObject player = null;
+    public GameObject player;
 
     [Header("Direction")]
     public Vector2 directionToPlayer;
@@ -34,6 +34,11 @@ public class Devil_Map_Single_Chain_Controller : MonoBehaviour
         }
     }
 
+    public void setNewDir()
+    {
+        directionToPlayer = (player.transform.position - transform.position).normalized;
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -42,12 +47,15 @@ public class Devil_Map_Single_Chain_Controller : MonoBehaviour
 
             shadowController.changeChain = true;
             shadowController.pullChain.Remove(this.gameObject);
-            Destroy(this.gameObject);
+
+            Debug.LogError("check");
+           Destroy(this.gameObject);
 
 
         }
 
     }
+
 
 
 }

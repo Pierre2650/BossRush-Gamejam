@@ -1,9 +1,5 @@
 using System.Collections;
-using System.Security.Cryptography;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.Rendering.GPUSort;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Single_Card_Animations_Controller : MonoBehaviour
 {
