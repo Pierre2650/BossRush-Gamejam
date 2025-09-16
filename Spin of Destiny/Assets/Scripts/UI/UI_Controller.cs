@@ -51,6 +51,7 @@ public class UI_Controller : MonoBehaviour
 
     public void Restart()
     {
+        Card_Selection_Controller.round = 1;
         SceneManager.LoadScene("SampleScene");
     }
 
