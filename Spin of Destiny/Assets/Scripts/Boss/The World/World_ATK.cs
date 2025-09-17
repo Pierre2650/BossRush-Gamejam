@@ -279,19 +279,19 @@ public class World_ATK : MonoBehaviour
 
     }
 
-    /*
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log(collision.gameObject.name);
 
-        //if (collision.tag == "Player"  && myCC.IsTouching(collision.GetComponent<Collider2D>()))
-        //{
-            //PlayerController playerController = collision.GetComponent<PlayerController>();
+       if (collision.tag == "Player"  && myCC.IsTouching(collision.GetComponent<Collider2D>()))
+       {
+            PlayerController playerController = collision.GetComponent<PlayerController>();
 
             
-          //  Vector2 knockbackDir = (collision.transform.position - transform.position).normalized;
-           //playerController.startKnockBack(knockbackDir.normalized, 0.5f, 25f, 0.2f, 0.2f);
+            Vector2 knockbackDir = (collision.transform.position - transform.position).normalized;
+           playerController.startKnockBack(knockbackDir.normalized, 0.5f, 25f, 0.2f, 0.2f);
             
-        //}
-    }*/
+        }
+    }
 }
