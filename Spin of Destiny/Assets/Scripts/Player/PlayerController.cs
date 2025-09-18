@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     private float accelRate;
     public bool chained = false;
 
+    [Header("Weapons")]
+    private WeaponManager weaponManager;
+
     [Header("Debuff")]
     public bool mouvConstrained = false;
 
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour
         mouvConstrained = false;
         myHealth = GetComponent<Health>();
         myBxC = GetComponent<BoxCollider2D>();
+        weaponManager = GetComponent<WeaponManager>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -227,6 +231,7 @@ public class PlayerController : MonoBehaviour
     {
         this.transform.position = new Vector2(-1.20f, -5.20f);
         myHealth.resetHealth();
+        weaponManager.ResetWeapons();
         
     }
     

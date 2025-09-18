@@ -77,7 +77,6 @@ public class Playable_Card_Controller : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && onObject && clickable)
         {
-
             StartCoroutine(onClick());
 
             selectType();
@@ -91,8 +90,6 @@ public class Playable_Card_Controller : MonoBehaviour
 
         }
 
-
-     
     }
 
 

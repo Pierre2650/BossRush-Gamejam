@@ -61,7 +61,7 @@ public class Star_ATK : MonoBehaviour
 
    private IEnumerator waitToAttack()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         spawnMainStar();
 

@@ -1,4 +1,7 @@
+using NUnit;
 using System.Collections;
+using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class World_ATK : MonoBehaviour
@@ -43,6 +46,8 @@ public class World_ATK : MonoBehaviour
         private CircleCollider2D myCC;
 
         [Header("Phase 2 ")]
+        private AnimationCurve curve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
+        private float pushDamage = 5;
         private GameObject phase2Prefab;
 
     //Attack Phase
@@ -167,7 +172,7 @@ public class World_ATK : MonoBehaviour
         int nbMoveTimes = 2;
 
         //Accelerate mouv roation and change mouv distance step
-        circleOrbsController.orbsMoveDistance = 2.5f;;
+        circleOrbsController.orbsMoveDistance = 2.5f;
 
         StartCoroutine(circleOrbsController.changeRotationSpeed(2.5f));
         phase2SFX = Instantiate(phase2Prefab, this.transform);
@@ -175,7 +180,12 @@ public class World_ATK : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         circleOrbsController.moveAwayAllOrbs(nbMoveTimes);
+
+        //Expand Duration
+
         StartCoroutine(phase2SFX.GetComponent<World_ATK_Phase2_SFX>().changeSize(phase2SFX.transform.localScale,new Vector2(20,20), false));
+        pushDamage *= 2;
+        StartCoroutine(ChangeCircleColliderRadius(myCC.radius, 16.7f ));
 
         //Coroutine to expand collider
 
@@ -183,6 +193,28 @@ public class World_ATK : MonoBehaviour
 
     }
 
+    private IEnumerator ChangeCircleColliderRadius(float start, float end)
+    {
+        float expandElapsedT = 0f, expandDur = 2f;
+        float percetageDur;
+
+
+        while (expandElapsedT < expandDur)
+        {
+
+
+            percetageDur = expandElapsedT / expandDur;
+
+            myCC.radius = Mathf.Lerp(start, end, curve.Evaluate(percetageDur));
+
+
+            expandElapsedT += Time.deltaTime;
+
+            yield return null;
+
+        }
+
+    }
 
     private IEnumerator reset(int nbMoveTimes)
     {
@@ -190,6 +222,8 @@ public class World_ATK : MonoBehaviour
         yield return new WaitForSeconds(4f);
         circleOrbsController.approachAllOrbs(nbMoveTimes);
         StartCoroutine(phase2SFX.GetComponent<World_ATK_Phase2_SFX>().changeSize(phase2SFX.transform.localScale, new Vector2(4, 4),true));
+        pushDamage/= 2;
+        StartCoroutine(ChangeCircleColliderRadius(myCC.radius,2.2f));
 
         yield return new WaitForSeconds(3f);
 
@@ -287,8 +321,16 @@ public class World_ATK : MonoBehaviour
        if (collision.tag == "Player"  && myCC.IsTouching(collision.GetComponent<Collider2D>()))
        {
             PlayerController playerController = collision.GetComponent<PlayerController>();
+            Health playerHealth = collision.GetComponent<Health>();
 
-            
+            if (!playerHealth.isInvincible)
+            {
+
+                playerHealth.takeDamage(pushDamage);
+                playerController.isHit();
+
+            }
+
             Vector2 knockbackDir = (collision.transform.position - transform.position).normalized;
            playerController.startKnockBack(knockbackDir.normalized, 0.5f, 25f, 0.2f, 0.2f);
             

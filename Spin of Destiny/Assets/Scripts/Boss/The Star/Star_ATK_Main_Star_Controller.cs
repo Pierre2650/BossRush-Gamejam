@@ -25,7 +25,9 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
     public GameObject player;
 
     [Header("bounce")]
-    private int nbBouces = 12;
+    //multiple de 3
+    private int nbBouces = 9;
+    private int countBounce = 0;
 
     [Header("Mini Stars")]
     public GameObject miniPrefab;
@@ -64,8 +66,8 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
     {
         screenShake(collision.GetContact(0).point);
 
-
-            nbBouces--;
+        countBounce++;
+         nbBouces--;
 
         if(nbBouces <= 0)
         {
@@ -73,10 +75,16 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
             
         }
 
+        if (countBounce == 2  && nbBouces > 0 ) {
+            myLR.enabled = true;
+            countBounce = 0;
+        }
+
 
         if (nbBouces % 3 == 0)
         {
-            speed += 2;
+            myLR.enabled  = false;
+            speed += 3;
             Debug.Log("Distance =" + Vector2.Distance(transform.position, player.transform.position));
 
             if (Vector2.Distance(transform.position, player.transform.position) > 6.5f) { 
@@ -176,6 +184,7 @@ public class Star_ATK_Main_Star_Controller : MonoBehaviour
     {
         //OverallTime 2.5
 
+        speed -= 3;
         yield return new WaitForSeconds(1.5f);
 
         int count = 0;

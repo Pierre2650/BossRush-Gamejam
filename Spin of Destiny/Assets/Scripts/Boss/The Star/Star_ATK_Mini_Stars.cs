@@ -71,7 +71,7 @@ public class Star_ATK_Mini_Stars : MonoBehaviour
         }
 
 
-        if(Vector2.Distance(transform.position, P2) < 1 )
+        if (Vector2.Distance(transform.position, P2) < 1 )
         {
             myCC.enabled = true;
 

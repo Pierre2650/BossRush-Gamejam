@@ -84,4 +84,12 @@ public class UI_Weapon_Coldowns : MonoBehaviour
 
 
     }
+
+
+    public void ResetWeaponsUI()
+    {
+        StopAllCoroutines();
+        axe.sprite = axeFrames[0];
+        shotGun.sprite = shGFrames[0];
+    }
 }

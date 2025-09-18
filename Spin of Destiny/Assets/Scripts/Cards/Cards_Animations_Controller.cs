@@ -89,8 +89,11 @@ public class Cards_Animations_Controller : MonoBehaviour
 
     private IEnumerator MoveDeckToRotation()
     {
+        if (Card_Selection_Controller.round == 1) { yield return new WaitForSeconds(1.5f); }
+        else { yield return new WaitForSeconds(1f);}
 
-        yield return new WaitForSeconds(1.2f);
+        //yield return new WaitForSeconds(1.5f);
+        //yield return new WaitForSeconds(1f);
 
 
         while (deckController.cards.Count > 0 )
@@ -98,7 +101,11 @@ public class Cards_Animations_Controller : MonoBehaviour
 
             deckToRotation();
 
+            //if (Card_Selection_Controller.round == 1) { yield return new WaitForSeconds(0.13f); }
+            //else { yield return new WaitForSeconds(0.1f); }
+
             yield return new WaitForSeconds(0.13f);
+            //yield return new WaitForSeconds(0.1f);
 
         }
 
@@ -137,7 +144,12 @@ public class Cards_Animations_Controller : MonoBehaviour
     private IEnumerator selectPlayableCards(int nbCards)
     {
 
-        yield return new WaitForSeconds(2f);
+        if (Card_Selection_Controller.round == 1) { yield return new WaitForSeconds(2f); }
+        else { yield return new WaitForSeconds(0.5f); }
+
+        //yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(0.5f);
+
         int i = 0;
 
         if (nbCards == 2)

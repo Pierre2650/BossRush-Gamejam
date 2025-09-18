@@ -20,45 +20,10 @@ public class World_ATK_Phase2_SFX : MonoBehaviour
 
     }
 
-    private IEnumerator rotate()
-    {
-        float percetageDur;
-
-        Vector3 start = new Vector3(0, 0, 0);
-        Vector3 end = new Vector3(0, 0, 360);
-
-
-        while (true)
-        {
-            if(rotationElapsedT > rotationDur)
-            {
-
-                rotationElapsedT = 0f;
-
-            }
-
-            percetageDur = rotationElapsedT / rotationDur;
-
-            transform.eulerAngles = Vector3.Lerp(start, end, curve.Evaluate(percetageDur));
-
-
-            rotationElapsedT += Time.deltaTime;
-
-            yield return null;
-
-        }
-
-
-        //rotationElapsedT = 0f;
-
-        //StartCoroutine(rotate());
-
-    }
 
 
     public IEnumerator changeSize(Vector2 start, Vector2 end , bool destroy)
     {
-        //yield return new WaitForSeconds(0.5f);
 
         float percetageDur;
 

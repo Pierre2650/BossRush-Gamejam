@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -69,6 +70,9 @@ public class WeaponManager : MonoBehaviour
         if(isReady1.activator && canAttack){
             canAttack = false;
             isReady1.activator = false;
+
+            if (!gameObject.activeSelf) { return; }
+
             StartCoroutine(CooldownCoroutine(secondaryCooldown1, isReady1));
 
             uiManager.axeOnColdown(secondaryCooldown1);
@@ -87,6 +91,9 @@ public class WeaponManager : MonoBehaviour
 
             canAttack = false;
             isReady2.activator = false;
+
+            if (!gameObject.activeSelf) { return; }
+
             StartCoroutine(CooldownCoroutine(secondaryCooldown2, isReady2));
             uiManager.shotGunOnColdown(secondaryCooldown2);
 
@@ -128,5 +135,19 @@ public class WeaponManager : MonoBehaviour
         {
             this.activator = v;
         }
+    }
+
+
+    public void ResetWeapons()
+    {
+        StopAllCoroutines();
+        isReady1.activator = true;
+        isReady2.activator = true;
+        main.gameObject.SetActive(true);
+        secondaryWeapon1.gameObject.SetActive(false);
+        secondaryWeapon2.gameObject.SetActive(false);
+        canAttack = true;
+        uiManager.ResetWeaponsUI();
+        
     }
 }
