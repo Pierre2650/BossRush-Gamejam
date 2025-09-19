@@ -11,7 +11,7 @@ public class CameraShake : MonoBehaviour
     Coroutine dirShakeC = null;
 
     private float shakeElapsedT = 0f;
-    private float shakeDur = 0.15f;
+    public float shakeDur = 0.15f;
 
     private AnimationCurve curve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
 
@@ -26,7 +26,9 @@ public class CameraShake : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            
+            //longCameraShake(0.5f);
+
+
         }
     }
 
@@ -35,6 +37,12 @@ public class CameraShake : MonoBehaviour
         StartCoroutine(randomShake());
         
     }
+
+    public void longCameraShake(float duration)
+    {
+        StartCoroutine(longShake(duration));
+    }
+
 
     private IEnumerator randomShake()
     {
@@ -103,11 +111,23 @@ public class CameraShake : MonoBehaviour
         }
 
         cameraTransform.position = start;
-
         shakeElapsedT = 0;
 
     }
 
+    private IEnumerator longShake(float dur)
+    {
+        float count = 0;
+        bool temp = false;
+
+        while (count < dur )
+        {
+            StartCoroutine(randomShake());
+            yield return new WaitForSeconds(shakeDur);
+            count+= shakeDur;
+
+        }
+    }
 
     public void directionalShake(char dir)
     {

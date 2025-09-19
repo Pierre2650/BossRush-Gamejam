@@ -11,6 +11,7 @@ public class World_MAP_Orb : Enemy_Controller
     // PROBLEM PLAYER  GAMME OBJECT MISSING,  REPLACE :AIN CONTROLLER
 
     public Enemy_Controller mainController;
+    public World_MAP mapController;
 
     [Header("Init")]
     private SpriteRenderer mySpr;
@@ -18,7 +19,7 @@ public class World_MAP_Orb : Enemy_Controller
 
     [Header("Evolution")]
     private float evoElapsedTime = 0f;
-    private float evoTime = 5f;
+    private float evoTime = 6f;
     private int size = 1;
 
     [Header("MiniOrbs")]
@@ -35,7 +36,7 @@ public class World_MAP_Orb : Enemy_Controller
     private bool isfinishing;
     public float timeBeforeDestruction;
 
-    public float touchDamage;
+    private float touchDamage = 8;
 
     private float explosionAnimDur = 0f;
 
@@ -48,6 +49,8 @@ public class World_MAP_Orb : Enemy_Controller
     [Header("Anim")]
     private GameObject imagePrefab;
     public AnimationCurve curve;
+    public float shakeDur = 2f;
+    private bool flicker = false;
 
   
     // Start is called before the first frame update
@@ -65,7 +68,7 @@ public class World_MAP_Orb : Enemy_Controller
 
         // set prefab and a fonction to instantiated?
         uiPrefab = (GameObject)Resources.Load("World_MAP_HealthBar", typeof(GameObject));
-        uiBar = Instantiate(uiPrefab, new Vector2(transform.position.x, transform.position.y + 1.5f), transform.rotation, mainController.bossUI.transform);
+        uiBar = Instantiate(uiPrefab, new Vector2(transform.position.x, transform.position.y + 1.5f), transform.rotation,       mainController.bossUI.transform);
         myHealth.healthBar = uiBar.transform.GetChild(0).GetComponent<HealthBar>();
         uiHealthBar.Add(uiBar.transform.GetChild(0).GetChild(0).GetComponent<Image>());
         uiHealthBar.Add(uiBar.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Image>());
@@ -108,12 +111,23 @@ public class World_MAP_Orb : Enemy_Controller
             evoElapsedTime += Time.deltaTime; 
         }
 
+        /*if (size == 4 && evoElapsedTime > 2.5f && !flicker)
+        {
+            flicker = true;
+            StartCoroutine(Flicker(2f));
+
+        }*/
+
         if (evoElapsedTime > evoTime )
         {
             if (size == 4)
             {
-                lineController.gameObject.SetActive(true);
-                explosion();
+                isfinishing = true;
+                evoElapsedTime = 0;
+
+                StartCoroutine(Flicker(1f));
+                //lineController.gameObject.SetActive(true);
+                //explosion();
             }
             else {
                 evolve();
@@ -156,23 +170,46 @@ public class World_MAP_Orb : Enemy_Controller
         myAni.SetTrigger("Explode");
         StartCoroutine(waitToHideSprite());
         StartCoroutine(screenEffect());
+        mapController.CameraShake.longCameraShake(shakeDur);
+
+        //Screen Shake
 
         CircleCollider2D[] colliders = GetComponents<CircleCollider2D>();
-        foreach (CircleCollider2D cc in colliders)
-        {
-            cc.enabled = false;
-        }
+        foreach (CircleCollider2D cc in colliders) {     cc.enabled = false;}
 
         
         player.GetComponent<Health>().takeDamage(explosionDamage);
         player.GetComponent<PlayerController>().isHit();
 
 
-        isfinishing = true;
-        evoElapsedTime = 0;
+        /*isfinishing = true;
+        evoElapsedTime = 0;*/
         StartCoroutine(waitToDestroy());
     }
 
+    private IEnumerator Flicker(float dur)
+    {
+
+        int count = 0;
+        bool temp = false;
+
+        while (count < 6)
+        {
+            mySpr.enabled = temp;
+            yield return new WaitForSeconds(dur / 6);
+            temp = !temp;
+            count++;
+
+        }
+
+        yield return new WaitForSeconds(1);
+
+        lineController.gameObject.SetActive(true);
+        explosion();
+
+        // mySpr.enabled = true;
+
+    }
     private IEnumerator screenEffect()
     {
 
@@ -273,8 +310,6 @@ public class World_MAP_Orb : Enemy_Controller
         if (other.tag == "Player")
         {
            
-
-
 
             Health playerHealth = other.GetComponent<Health>();
             PlayerController playerController = other.GetComponent<PlayerController>();

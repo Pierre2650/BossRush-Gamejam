@@ -108,6 +108,20 @@ public class PlayerController : MonoBehaviour
        
     }
 
+    void FixedUpdate()
+    {
+        if ((!chained || accelRate == decelerationValue) && !myHealth.isDead)
+        {
+            applyForceToSpeed(targetSpeed, moveInput, myRb, accelRate);
+        }
+
+        if (chained)
+        {
+            myRb.linearVelocity = moveInput * speed;
+        }
+
+    }
+
 
     private void mouvemmentAnimation()
     {
@@ -125,19 +139,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
-        if((!chained || accelRate == decelerationValue) && !myHealth.isDead)
-        {
-            applyForceToSpeed(targetSpeed, moveInput, myRb, accelRate);
-        }
-
-        if (chained)
-        {
-            myRb.linearVelocity = moveInput * speed;
-        }
-        
-    }
+   
 
     public void isHit()
     {
@@ -194,7 +196,6 @@ public class PlayerController : MonoBehaviour
         myRb.linearVelocity = Vector2.zero;
         mouvConstrained = false;
         debugPlayer = true;
-        chained = true;
 
     }
 
@@ -216,12 +217,12 @@ public class PlayerController : MonoBehaviour
 
             Debug.Log("Overlap = "+overlap+" Inside obstacle");
             myRb.linearVelocity = lastMouvDir;
-
-
         }
         else
         {
+
             debugPlayer = false;
+            chained = true;
             myBxC.excludeLayers = LayerMask.GetMask("Nothing");
         }
    

@@ -106,39 +106,35 @@ public class Devil_MAP : MonoBehaviour
         int spawnZone, temp = 0;
         
         Vector2 pos = Vector2.zero;
+        float posX = 0, posY = 0;
 
-        do
+
+        
+
+        if (transform.position.x > -17.2 && transform.position.x < -7.9f)
         {
-            spawnZone = Random.Range(1, 5);
-            if (temp > 200)
-            {
-                Debug.Log("spawnPosCorners() treshold reached");
-                break;
-            }
+            return new Vector2(Random.Range(7.5f, 17), Random.Range(-9f, 9f));
 
-            switch (spawnZone)
-            {
-                case 1:
-                    pos =  new Vector2(-12.58f, 6.75f);
-                    break;
-                case 2:
-                    pos = new Vector2(11.68f, 6.75f);
-                    break;
-                case 3:
-                    pos = new Vector2(12.77f, -5.66f);
-                    break;
-                case 4:
-                    pos = new Vector2(-12.14f, -5.66f);
-                    break;
-
-            }
-
-            temp++;
         }
-        while (Vector2.Distance(pos, transform.position) < 10);
+        else if (transform.position.x > 4.9 && transform.position.x < 17.5f)
+        {
+            return new Vector2(Random.Range(-17, -10.5f), Random.Range(-9f, 9f));
+        }
+        else
+        {
+            int randSidesZones = Random.Range(0, 2);
 
+            if (randSidesZones == 0) 
+            {
 
-        return pos;
+                return new Vector2(Random.Range(7.5f, 17), Random.Range(-9f, 9f));
+
+            }
+            else
+            {
+                return new Vector2(Random.Range(-17, -10.5f), Random.Range(-9f, 9f));
+            }
+        }
 
     }
 
@@ -156,7 +152,7 @@ public class Devil_MAP : MonoBehaviour
 
         int temp = 0;
         
-         int spawnZone = Random.Range(1, 4);
+       int spawnZone = Random.Range(1, 4);
      
 
 
@@ -247,6 +243,7 @@ public class Devil_MAP : MonoBehaviour
     private IEnumerator waitToDestroy()
     {
         yield return new WaitForSeconds(10f);
+      
         removePlayerShadow();
 
         yield return new WaitForSeconds(9f);

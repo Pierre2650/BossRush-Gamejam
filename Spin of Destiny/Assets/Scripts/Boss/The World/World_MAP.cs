@@ -9,10 +9,12 @@ public class World_MAP : MonoBehaviour
     private Vector2 spawnPos = Vector2.zero;
 
     [Header("Atk Pace")]
-    private float waitTimer = 0;
-    private float waitDuration = 3f;
+    [SerializeField] private float waitTimer = 0;
+    private float waitDuration = 5f;
 
     private GameObject thePlayer;
+
+    public CameraShake CameraShake;
 
     
     // Start is called before the first frame update
@@ -20,6 +22,7 @@ public class World_MAP : MonoBehaviour
     {
         orbPrefab = (GameObject)Resources.Load("World_MAP_Orb", typeof(GameObject));
         thePlayer = GetComponent<Enemy_Controller>().thePlayer;
+        CameraShake = GetComponent<CameraShake>();
 
         spawnOrb();
     }
@@ -65,11 +68,11 @@ public class World_MAP : MonoBehaviour
 
             case 3:
 
-                return new Vector2(Random.Range(4.15f, 17.5f), Random.Range(-9f, -10f));
+                return new Vector2(Random.Range(4.15f, 17.5f), Random.Range(-9f, 10f));
 
             default:
 
-                return new Vector2(Random.Range(-13.2f, 17.5f), Random.Range(6.6f, -10f));
+                return new Vector2(Random.Range(-13.2f, 17.5f), Random.Range(-9f , 6.6f));
         }
 
 
@@ -80,6 +83,7 @@ public class World_MAP : MonoBehaviour
         spawnPos = newSpawnPos();
         orb = Instantiate(orbPrefab, spawnPos, transform.rotation, transform.parent);
         World_MAP_Orb temp = orb.GetComponent<World_MAP_Orb>();
+        temp.mapController = this;
         temp.mainController = GetComponent<Enemy_Controller>();
         temp.player = thePlayer;
 

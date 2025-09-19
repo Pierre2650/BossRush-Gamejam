@@ -47,8 +47,6 @@ public class Devil_Map_Single_Chain_Controller : MonoBehaviour
 
             shadowController.changeChain = true;
             shadowController.pullChain.Remove(this.gameObject);
-
-            Debug.LogError("check");
            Destroy(this.gameObject);
 
 

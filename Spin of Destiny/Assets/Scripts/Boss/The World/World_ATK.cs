@@ -47,7 +47,7 @@ public class World_ATK : MonoBehaviour
 
         [Header("Phase 2 ")]
         private AnimationCurve curve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
-        private float pushDamage = 5;
+        private float pushDamage = 10;
         private GameObject phase2Prefab;
 
     //Attack Phase
