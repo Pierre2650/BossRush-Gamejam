@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -22,7 +23,9 @@ public class Tower_MAP : MonoBehaviour
     private Vector3Int lastObstPos = Vector3Int.zero;
 
     private float restardElapsed = 0f;
-    private float restardT = 10f;
+    private float restardT = 12f;
+
+    private GameObject pushZonePrefab;
 
     [Header("Player")]
     private GameObject player;
@@ -39,6 +42,8 @@ public class Tower_MAP : MonoBehaviour
 
         Grid = mainController.Grid;
         newMapPrefab =  (GameObject)Resources.Load("Tower_MAP_Map", typeof(GameObject));
+        pushZonePrefab = (GameObject)Resources.Load("Tower_MAP_PushZone", typeof(GameObject));
+        
         map = Instantiate(newMapPrefab,Grid.transform);
         map.layer = 7;
         towerMap = map.GetComponent<Tilemap>();
@@ -155,6 +160,7 @@ public class Tower_MAP : MonoBehaviour
 
     private void chooseSpawnObstacle(int choice)
     {
+        StartCoroutine(Push());
 
         switch (choice)
         {
@@ -177,6 +183,13 @@ public class Tower_MAP : MonoBehaviour
                 spawnY(dir1);
                 break;
         }
+    }
+
+    private IEnumerator Push()
+    {
+        GameObject zone = Instantiate(pushZonePrefab, pos , Quaternion.identity ,transform.parent);
+        yield return new WaitForSeconds(0.3f);
+        Destroy(zone);
     }
 
     private void setPlayerPos()

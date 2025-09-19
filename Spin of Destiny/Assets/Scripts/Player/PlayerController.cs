@@ -214,7 +214,6 @@ public class PlayerController : MonoBehaviour
 
         if (overlap)
         {
-
             Debug.Log("Overlap = "+overlap+" Inside obstacle");
             myRb.linearVelocity = lastMouvDir;
         }
