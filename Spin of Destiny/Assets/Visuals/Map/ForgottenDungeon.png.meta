@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ForgottenDungeon_0: 8154580010414714901
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
