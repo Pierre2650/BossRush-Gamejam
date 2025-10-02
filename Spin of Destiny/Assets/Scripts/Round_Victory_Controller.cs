@@ -11,6 +11,9 @@ public class Round_Victory_Controller : MonoBehaviour
     public GameObject cardSelection;
 
     public Boss_Creation_Controller bossCreationC;
+
+    public float timeToEndRound;
+
     public void victory()
     {
         StartCoroutine(waitToEnd());
@@ -26,9 +29,13 @@ public class Round_Victory_Controller : MonoBehaviour
             i.enabled = false;
         }
 
+
+        yield return new WaitForSeconds(timeToEndRound);
+
         Boss.GetComponent<SpriteRenderer>().enabled = false;
-        Boss.GetComponent<BoxCollider2D>().enabled = false;
-        Boss.GetComponent<Enemy_Controller>().reStartPos();
+
+        Boss.GetComponent<Enemy_Controller>().RestartPos();
+        Boss.GetComponent<Enemy_Controller>().RestartAnim();
 
         yield return new WaitForSeconds(4);
 

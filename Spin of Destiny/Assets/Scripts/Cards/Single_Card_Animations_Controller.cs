@@ -140,13 +140,16 @@ public class Single_Card_Animations_Controller : MonoBehaviour
 
     public IEnumerator moveToPos(Vector2 pos, bool selection)
     {
+        
+        float dur = changePosDur;
+        if (Card_Selection_Controller.round != 1) { changePosDur = 0.3f; }
 
         float percetageDur;
 
         Vector2 start = transform.position;
 
 
-        while (changePosElapsedT < changePosDur)
+        while (changePosElapsedT < dur)
         {
             percetageDur = changePosElapsedT / changePosDur;
 

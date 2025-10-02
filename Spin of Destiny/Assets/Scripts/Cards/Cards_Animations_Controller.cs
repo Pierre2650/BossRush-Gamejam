@@ -49,8 +49,9 @@ public class Cards_Animations_Controller : MonoBehaviour
 
     public void startAnimations()
     {
-        StartCoroutine(moveRight());
-
+        // StartCoroutine(moveRight());
+        if (Card_Selection_Controller.round == 1) { StartCoroutine(moveRight()); }
+        else { StartCoroutine(MoveDeckToRotation()); }
     }
 
 

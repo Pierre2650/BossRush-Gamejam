@@ -10,7 +10,7 @@ public class Enemy_Controller : MonoBehaviour
     [Header("Init")]
     protected Health myHealth;
     protected Animator myAni ;
-    protected bool mainHealth = false ;
+    protected bool mainHealth = false;
 
     public GameObject thePlayer;
     public GameObject Grid;
@@ -40,7 +40,12 @@ public class Enemy_Controller : MonoBehaviour
 
     public void isHit( )
     {
-        
+        if (myHealth.isDead) 
+        { 
+            myAni.SetBool("Dead", true);
+            myBxC.enabled = false; 
+        }
+
         if (hitCooldownC == null)
         {
             myAni.SetTrigger("Hit");
@@ -89,7 +94,14 @@ public class Enemy_Controller : MonoBehaviour
         }
 
     }
-    public void reStartPos()
+
+    public void RestartAnim()
+    {
+        myAni.SetBool("Dead", false);
+        myAni.SetTrigger("Hit");
+        
+    }
+    public void RestartPos()
     {
         this.transform.position = new Vector2(-1.38f, 6.43f);
     }
