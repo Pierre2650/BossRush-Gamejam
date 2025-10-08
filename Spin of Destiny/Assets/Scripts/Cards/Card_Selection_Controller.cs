@@ -78,19 +78,19 @@ public class Card_Selection_Controller : MonoBehaviour
 
     }
 
-    public void obscure()
+    public void obscure(GameObject toSkip)
     {
-        StartCoroutine(obscuring());
+        StartCoroutine(obscuring(toSkip));
     }
 
-    public void unObscure()
+    public void unObscure(GameObject toSkip)
     {
-        StartCoroutine(unObscuring());
+        StartCoroutine(unObscuring(toSkip));
     }
 
-    private IEnumerator obscuring()
+    private IEnumerator obscuring(GameObject toSkip)
     {
-        deckController.changeClickableState(false);
+        deckController.changeClickableState(false, toSkip);
         float percentageDur = 0;
 
 
@@ -112,7 +112,7 @@ public class Card_Selection_Controller : MonoBehaviour
 
     }
 
-    private IEnumerator unObscuring()
+    private IEnumerator unObscuring(GameObject toSkip)
     {
         float percentageDur = 0;
 
@@ -132,7 +132,7 @@ public class Card_Selection_Controller : MonoBehaviour
         }
         ObsElapsed = 0;
 
-        deckController.changeClickableState(true);
+        deckController.changeClickableState(true, toSkip);
     }
 
 

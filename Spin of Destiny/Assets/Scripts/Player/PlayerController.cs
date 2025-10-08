@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public PlayerInputActions playerInputActions;
-
+    private AudioSource hurtSFX;
     private BoxCollider2D myBxC;
 
     [Header("Movement")]
@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
     [Header("Health")]
     private Health myHealth;
 
+    [Header("SFX")]
+
+
 
     [Header("Hit")]
     private Coroutine hitCooldownC = null;
@@ -47,6 +50,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Vector2 lastMouvDir = new Vector2(5,0);
     void Awake(){
+        hurtSFX = GetComponent<AudioSource>();
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
         mouvConstrained = false;
@@ -147,6 +151,7 @@ public class PlayerController : MonoBehaviour
         if (hitCooldownC == null)
         {
             myAni.SetTrigger("Hit");
+            hurtSFX.Play();
             hitCooldownC = StartCoroutine(hitCooldown());
         }
     }

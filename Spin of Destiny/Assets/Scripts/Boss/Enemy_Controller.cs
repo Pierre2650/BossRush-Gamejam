@@ -40,7 +40,7 @@ public class Enemy_Controller : MonoBehaviour
 
     public void isHit( )
     {
-        if (myHealth.isDead) 
+        if (myHealth.isDead && mainHealth) 
         { 
             myAni.SetBool("Dead", true);
             myBxC.enabled = false; 

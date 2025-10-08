@@ -213,7 +213,7 @@ public class Playable_Card_Controller : MonoBehaviour
         onClickElapsed = 0;
 
 
-        selectionController.obscure();
+        selectionController.obscure(this.gameObject);
         StartCoroutine(flipCard());
     }
 
@@ -351,7 +351,7 @@ public class Playable_Card_Controller : MonoBehaviour
         zoomElapsed = 0;
 
         yield return new WaitForSeconds(2f);
-        selectionController.unObscure();
+        selectionController.unObscure(this.gameObject);
         StartCoroutine(zoomAwaycard());
         
 

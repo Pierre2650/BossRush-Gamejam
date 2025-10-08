@@ -69,10 +69,11 @@ public class Cards_Deck_Controller : MonoBehaviour
     }
 
 
-    public void changeClickableState(bool state)
+    public void changeClickableState(bool state, GameObject skip)
     {
         foreach(GameObject card in playableCards)
         {
+            if (GameObject.ReferenceEquals(card, skip)) { continue; }
             Playable_Card_Controller temp = card.GetComponent<Playable_Card_Controller>();
             temp.clickable = state;
         }
