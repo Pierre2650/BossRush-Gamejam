@@ -20,6 +20,7 @@ public class Enemy_Controller : MonoBehaviour
     public GameObject victory_controller;
 
     private BoxCollider2D myBxC;
+    private AudioSource hurtSFX;
 
     public List<GameObject> spawnedAttacks = new List<GameObject>();
     
@@ -33,6 +34,7 @@ public class Enemy_Controller : MonoBehaviour
         myBxC = GetComponent<BoxCollider2D>();
         myHealth = GetComponent<Health>();
         myAni = GetComponent<Animator>();
+        hurtSFX = GetComponent<AudioSource>();
         mainHealth = true;
     }
 
@@ -40,6 +42,12 @@ public class Enemy_Controller : MonoBehaviour
 
     public void isHit( )
     {
+
+        if (hurtSFX != null)
+        {
+            hurtSFX.Play();
+        }
+
         if (myHealth.isDead && mainHealth) 
         { 
             myAni.SetBool("Dead", true);
