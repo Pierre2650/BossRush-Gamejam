@@ -151,6 +151,9 @@ public class PlayerController : MonoBehaviour
         if (hitCooldownC == null)
         {
             myAni.SetTrigger("Hit");
+
+            float pitch = Random.Range(0.8f, 1.2f);
+            hurtSFX.pitch = pitch;
             hurtSFX.Play();
             hitCooldownC = StartCoroutine(hitCooldown());
         }

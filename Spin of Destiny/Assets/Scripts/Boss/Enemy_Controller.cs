@@ -43,11 +43,6 @@ public class Enemy_Controller : MonoBehaviour
     public void isHit( )
     {
 
-        if (hurtSFX != null)
-        {
-            hurtSFX.Play();
-        }
-
         if (myHealth.isDead && mainHealth) 
         { 
             myAni.SetBool("Dead", true);
@@ -58,6 +53,14 @@ public class Enemy_Controller : MonoBehaviour
         {
             myAni.SetTrigger("Hit");
             hitCooldownC = StartCoroutine(hitCooldown());
+
+            if (hurtSFX != null)
+            {
+                float pitch = Random.Range(1.8f, 2.3f);
+                hurtSFX.pitch = pitch;
+                hurtSFX.Play();
+            }
+
         }
     }
 
