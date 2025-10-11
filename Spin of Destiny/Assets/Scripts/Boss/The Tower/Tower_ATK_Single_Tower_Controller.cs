@@ -58,6 +58,7 @@ public class Single_Tower_Controller : Enemy_Controller
         myHealth = GetComponent<Health>();
         myAni = GetComponent<Animator>();
         myCC = GetComponent<CircleCollider2D>();
+        hurtSFX = GetComponent<AudioSource>();
 
         flamePrefab = (GameObject)Resources.Load("TowerAttack", typeof(GameObject));
         StartCoroutine(spawnWait(waitT,aimT, waitToAtkT));

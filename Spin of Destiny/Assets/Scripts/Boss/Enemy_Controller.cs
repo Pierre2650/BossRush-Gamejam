@@ -20,7 +20,7 @@ public class Enemy_Controller : MonoBehaviour
     public GameObject victory_controller;
 
     private BoxCollider2D myBxC;
-    private AudioSource hurtSFX;
+    protected AudioSource hurtSFX = null;
 
     public List<GameObject> spawnedAttacks = new List<GameObject>();
     

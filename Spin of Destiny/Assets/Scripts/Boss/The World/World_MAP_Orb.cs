@@ -58,6 +58,7 @@ public class World_MAP_Orb : Enemy_Controller
     {
         mySpr = GetComponent<SpriteRenderer>();
         myCC = GetComponent<CircleCollider2D>();
+        hurtSFX = GetComponent<AudioSource>();
 
         myHealth = GetComponent<Health>();
         myAni = GetComponent<Animator>();
