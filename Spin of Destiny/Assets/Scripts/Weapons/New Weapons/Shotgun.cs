@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 
 public class ShotGun : Weapon
 {
-
+    private AudioSource shotgunSFX;
     [Header("Bullet")]
     public int bulletNumber;
     public float bulletOffset;
@@ -23,6 +24,7 @@ public class ShotGun : Weapon
     void OnEnable()
     {
         animator = GetComponent<Animator>();
+        shotgunSFX= GetComponent<AudioSource>();
         startPos = transform.position;
         
     } 
@@ -35,7 +37,9 @@ public class ShotGun : Weapon
         transform.right = direction;
 
         animator.Play("sotgun_Clip");
-
+        float pitch = Random.Range(0.8f, 1.2f);
+        shotgunSFX.pitch = pitch;
+        shotgunSFX.Play();
         player.gameObject.GetComponent<PlayerController>().startKnockBack(-direction,slowFactor, knockBackForce, slowTime, accelerationRate);
 
         fire();

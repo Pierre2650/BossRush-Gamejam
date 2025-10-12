@@ -56,7 +56,7 @@ public class World_ATK : MonoBehaviour
     [Header("MegaOrb")]
     //ATK phase 3
     private GameObject megaOrbPrefab;
-    private GameObject phase2SFX;
+    private GameObject phase2FX;
 
 
 
@@ -175,18 +175,17 @@ public class World_ATK : MonoBehaviour
         circleOrbsController.orbsMoveDistance = 2.5f;
 
         StartCoroutine(circleOrbsController.changeRotationSpeed(2.5f));
-        phase2SFX = Instantiate(phase2Prefab, this.transform);
+        phase2FX = Instantiate(phase2Prefab, this.transform);
 
         yield return new WaitForSeconds(2f);
 
         circleOrbsController.moveAwayAllOrbs(nbMoveTimes);
 
-        //Expand Duration
-
-        StartCoroutine(phase2SFX.GetComponent<World_ATK_Phase2_SFX>().changeSize(phase2SFX.transform.localScale,new Vector2(20,20), false));
+        //Expand 
+        StartCoroutine(phase2FX.GetComponent<World_ATK_Phase2_SFX>().changeSize(phase2FX.transform.localScale,new Vector2(20,20), false));
         pushDamage *= 2;
         StartCoroutine(ChangeCircleColliderRadius(myCC.radius, 16.7f ));
-
+        phase2FX.GetComponents<AudioSource>()[0].Play();
         //Coroutine to expand collider
 
         StartCoroutine(reset(nbMoveTimes));
@@ -221,8 +220,9 @@ public class World_ATK : MonoBehaviour
         //end attack phase 2
         yield return new WaitForSeconds(4f);
         circleOrbsController.approachAllOrbs(nbMoveTimes);
-        StartCoroutine(phase2SFX.GetComponent<World_ATK_Phase2_SFX>().changeSize(phase2SFX.transform.localScale, new Vector2(4, 4),true));
+        StartCoroutine(phase2FX.GetComponent<World_ATK_Phase2_SFX>().changeSize(phase2FX.transform.localScale, new Vector2(4, 4),true));
         pushDamage/= 2;
+        phase2FX.GetComponents<AudioSource>()[1].Play();
         StartCoroutine(ChangeCircleColliderRadius(myCC.radius,2.2f));
 
         yield return new WaitForSeconds(3f);

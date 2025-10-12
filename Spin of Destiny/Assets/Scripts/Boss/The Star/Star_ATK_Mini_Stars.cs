@@ -4,6 +4,7 @@ public class Star_ATK_Mini_Stars : MonoBehaviour
 {
     private ParticleSystem myPrtSys;
     private CircleCollider2D myCC;
+    private AudioSource mySFX;
     [Header("The player")]
     public GameObject player;
 
@@ -48,6 +49,7 @@ public class Star_ATK_Mini_Stars : MonoBehaviour
     {
         myPrtSys = GetComponent<ParticleSystem>();
         myCC = GetComponent<CircleCollider2D>();
+        mySFX = GetComponent<AudioSource>();
         particlesController = particles.GetComponent<Star_ATK_Mini_Particles_Controller>();
         
 
@@ -245,6 +247,10 @@ public class Star_ATK_Mini_Stars : MonoBehaviour
         myPrtSys.Stop(false, ParticleSystemStopBehavior.StopEmittingAndClear);
 
         toPlayer = true;
+
+        float pitch = Random.Range(1f, 2.2f);
+        mySFX.pitch = pitch;
+        mySFX.Play();
     }
 
     private IEnumerator startMouvement()

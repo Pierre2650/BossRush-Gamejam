@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class World_MAP_Orb : Enemy_Controller
 {
@@ -40,6 +41,8 @@ public class World_MAP_Orb : Enemy_Controller
 
     private float explosionAnimDur = 0f;
 
+    private AudioSource explosionSFX;
+
     [Header("Health")]
     private GameObject uiPrefab;
     private GameObject uiBar;
@@ -58,7 +61,8 @@ public class World_MAP_Orb : Enemy_Controller
     {
         mySpr = GetComponent<SpriteRenderer>();
         myCC = GetComponent<CircleCollider2D>();
-        hurtSFX = GetComponent<AudioSource>();
+        hurtSFX = GetComponents<AudioSource>()[0];
+        explosionSFX = GetComponents<AudioSource>()[1];
 
         myHealth = GetComponent<Health>();
         myAni = GetComponent<Animator>();
@@ -94,6 +98,14 @@ public class World_MAP_Orb : Enemy_Controller
             
         }
 
+    }
+
+
+    public void playHurt()
+    {
+        float pitch = Random.Range(1.8f, 2.3f);
+        hurtSFX.pitch = pitch;
+        hurtSFX.Play();
     }
 
     private void setVisibleHealth(bool state)
@@ -172,6 +184,7 @@ public class World_MAP_Orb : Enemy_Controller
         StartCoroutine(waitToHideSprite());
         StartCoroutine(screenEffect());
         mapController.CameraShake.longCameraShake(shakeDur);
+        explosionSFX.Play();
 
         //Screen Shake
 
@@ -277,6 +290,7 @@ public class World_MAP_Orb : Enemy_Controller
             
             GameObject temp = Instantiate(miniOrbsPrefab, this.transform.position, this.transform.rotation, this.transform.parent);
             World_MAP_MiniOrb_Controller temp2 = temp.GetComponent<World_MAP_MiniOrb_Controller>();
+            temp2.father = this;
             temp2.player = this.player;
             nbOrbs--;
             toSpawnElapsed = 0;

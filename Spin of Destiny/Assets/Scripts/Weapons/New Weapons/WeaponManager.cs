@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 
 
 public class WeaponManager : MonoBehaviour
@@ -9,11 +10,13 @@ public class WeaponManager : MonoBehaviour
     public Weapon main;
     public float mainOffset;
 
+
     public Weapon secondaryWeapon1;
     public float secondaryOffset1;
     public int secondaryCooldown1;
     public BooleanWrapper isReady1 = new BooleanWrapper(true);
 
+    
     public Weapon secondaryWeapon2;
     public float secondaryOffset2;
     public int secondaryCooldown2;
@@ -70,6 +73,7 @@ public class WeaponManager : MonoBehaviour
         if(isReady1.activator && canAttack){
             canAttack = false;
             isReady1.activator = false;
+
 
             if (!gameObject.activeSelf) { return; }
 

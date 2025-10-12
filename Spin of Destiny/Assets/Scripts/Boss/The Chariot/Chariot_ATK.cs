@@ -7,6 +7,7 @@ public class Chariot_ATK: MonoBehaviour
     private Rigidbody2D myRb;
     private BoxCollider2D myBx;
     private Animator myAni;
+    private AudioSource ChariotSFX;
 
     //direction
     private Vector2 targetPos;
@@ -54,6 +55,7 @@ public class Chariot_ATK: MonoBehaviour
         myRb = GetComponent<Rigidbody2D>();
         myBx = GetComponent<BoxCollider2D>();
         myAni = GetComponent<Animator>();
+        ChariotSFX = GetComponents<AudioSource>()[2];
 
         mainController = GetComponent<Enemy_Controller>();
         generateAim();
@@ -161,6 +163,9 @@ public class Chariot_ATK: MonoBehaviour
         positionBeforeCharge = transform.position;
 
         isCharging = true;
+        float pitch = Random.Range(0.5f, 1.5f);
+        ChariotSFX.pitch = pitch;
+        ChariotSFX.Play();
         myAni.SetBool("Charging", isCharging);
         nCharges--;
     }

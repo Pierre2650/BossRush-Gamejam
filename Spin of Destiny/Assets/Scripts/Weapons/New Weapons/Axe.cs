@@ -1,15 +1,18 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 
 public class Axe : Weapon
 {
     
     public Collider2D box; 
      public GameObject spear;
+    private AudioSource axeSFX;
     void OnEnable()
     {
         box = GetComponent<Collider2D>();
+        axeSFX = GetComponent<AudioSource>();
         box.enabled = false;
         animator = GetComponent<Animator>();
         startPos = transform.position;
@@ -23,6 +26,9 @@ public class Axe : Weapon
     public IEnumerator AttackCoroutine(){
         transform.right = direction;	
         box.enabled = true;
+        float pitch = Random.Range(0.8f, 1.2f);
+        axeSFX.pitch = pitch;
+        axeSFX.Play();
         animator.Play("axe_Clip");
         yield return null;
         print(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);

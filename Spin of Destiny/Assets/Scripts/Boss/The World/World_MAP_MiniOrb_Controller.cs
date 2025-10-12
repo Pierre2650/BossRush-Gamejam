@@ -21,14 +21,13 @@ public class World_MAP_MiniOrb_Controller : MonoBehaviour
     [Header("damage")]
     public float damage;
 
-
+    public World_MAP_Orb father;
     private bool goStraight;
 
     // Start is called before the first frame update
     void Start()
     {
         myRb = GetComponent<Rigidbody2D>();
-
     }
 
     // Update is called once per frame
@@ -182,7 +181,7 @@ public class World_MAP_MiniOrb_Controller : MonoBehaviour
 
         if (collision.gameObject.tag == "PlayerAtk")
         {
-         
+            father.playHurt();
             Destroy(this.gameObject);
         }
     }

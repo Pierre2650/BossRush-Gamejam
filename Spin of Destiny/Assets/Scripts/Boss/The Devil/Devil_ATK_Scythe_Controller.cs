@@ -6,6 +6,7 @@ public class Devil_ATK_Scythe_Controller : MonoBehaviour
 {
     private SpriteRenderer mySprR;
     private Sprite baseSprite;
+    private AudioSource scytheSFX;
 
     [Header("Attack Zone")]
     private Vector2 Dir = Vector2.zero;
@@ -38,6 +39,7 @@ public class Devil_ATK_Scythe_Controller : MonoBehaviour
     private void Awake()
     {
         mySprR = GetComponent<SpriteRenderer>();
+        scytheSFX = GetComponent<AudioSource>();
         baseSprite = mySprR.sprite;
         scythEffect = Resources.Load<Sprite>("Devil_scythe_FX"); 
         meshController = transform.parent.GetComponent<Devil_ATK_Mesh_AtkZone>();
@@ -67,6 +69,10 @@ public class Devil_ATK_Scythe_Controller : MonoBehaviour
 
         meshController.myPlC.enabled = true;
         cameraShake.randomCameraShake();
+
+        float pitch = Random.Range(0.7f, 1.3f);
+        scytheSFX.pitch = pitch;
+        scytheSFX.Play();
 
 
     }
