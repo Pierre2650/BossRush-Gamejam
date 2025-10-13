@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInputActions playerInputActions;
     private AudioSource hurtSFX;
     private BoxCollider2D myBxC;
+    private HingeJoint2D myHJ;
 
     [Header("Movement")]
     private Rigidbody2D myRb;
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastMouvDir = new Vector2(5,0);
     void Awake(){
         hurtSFX = GetComponent<AudioSource>();
+        myHJ = GetComponent<HingeJoint2D>();
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
         mouvConstrained = false;
@@ -240,6 +242,7 @@ public class PlayerController : MonoBehaviour
         this.transform.position = new Vector2(-1.20f, -5.20f);
         myHealth.resetHealth();
         weaponManager.ResetWeapons();
+        myHJ.enabled = false;
         
     }
     
