@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
+
 
 public class ShotGun : Weapon
 {

@@ -25,7 +25,7 @@ public class Tutorial_Controller : MonoBehaviour
             spearDone = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && !axeDone)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !axeDone)
         {
             tutoAxe.SetActive(false);
             axeDone = true;

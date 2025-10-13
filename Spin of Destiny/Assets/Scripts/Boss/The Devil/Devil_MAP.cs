@@ -59,6 +59,7 @@ public class Devil_MAP : MonoBehaviour
         Vector2 spawnPos = new Vector2(player.transform.position.x, player.transform.position.y + 1.5f);
         mask = Instantiate(maskPrefab, spawnPos, player.transform.rotation, player.transform);
         maskRenderer = mask.GetComponent<SpriteRenderer>();
+        mask.GetComponent<AudioSource>().Play();
 
 
     }
@@ -67,14 +68,15 @@ public class Devil_MAP : MonoBehaviour
     {
         if (i)
         {
-            
             maskRenderer.sprite = masks[1];
-
+            mask.GetComponent<AudioSource>().pitch = 0.7f;
+            mask.GetComponent<AudioSource>().Play();
         }
         else
         {
             maskRenderer.sprite = masks[0];
-
+            mask.GetComponent<AudioSource>().pitch = 1f;
+            mask.GetComponent<AudioSource>().Play();
         }
 
     }

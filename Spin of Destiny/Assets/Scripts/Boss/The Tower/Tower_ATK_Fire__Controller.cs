@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tower_ATK_Fire_Controller : MonoBehaviour
 {
 
+    private AudioSource fireSFX;
     [Header("Spawn Anim")]
     private float animElapsed = 0f;
     private float animDur = 0.2f;
@@ -24,7 +25,13 @@ public class Tower_ATK_Fire_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fireSFX = GetComponent<AudioSource>();
+
+        float pitch = Random.Range(0.6f, 1.2f);
+        fireSFX.pitch = pitch;
+        fireSFX.Play();
         StartCoroutine(spawnAnim());
+
 
     }
 

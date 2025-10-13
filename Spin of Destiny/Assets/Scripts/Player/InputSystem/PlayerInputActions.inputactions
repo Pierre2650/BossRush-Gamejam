@@ -164,11 +164,11 @@
                 },
                 {
                     "name": "",
-                    "id": "e01b1afb-6258-4f43-bb9e-802a58149e95",
-                    "path": "<Keyboard>/#(E)",
+                    "id": "3d603ef8-5a3b-493e-af55-a0779bbb3e4b",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";KeyBoard",
                     "action": "Special_1",
                     "isComposite": false,
                     "isPartOfComposite": false

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 
 
 public class WeaponManager : MonoBehaviour
@@ -70,6 +69,7 @@ public class WeaponManager : MonoBehaviour
     }
 
     void specialAttack1(InputAction.CallbackContext context){
+
         if(isReady1.activator && canAttack){
             canAttack = false;
             isReady1.activator = false;
